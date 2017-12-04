@@ -1,0 +1,6 @@
+framework module Pods_EyesOnCropsTests {
+  umbrella header "Pods-EyesOnCropsTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

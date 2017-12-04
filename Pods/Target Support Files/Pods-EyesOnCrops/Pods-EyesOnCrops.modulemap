@@ -1,0 +1,6 @@
+framework module Pods_EyesOnCrops {
+  umbrella header "Pods-EyesOnCrops-umbrella.h"
+
+  export *
+  module * { export * }
+}
