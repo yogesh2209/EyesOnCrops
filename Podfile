@@ -14,6 +14,7 @@ pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'GoogleSignIn'
 pod 'Firebase/Core'
+
   # Pods for EyesOnCrops
 
   target 'EyesOnCropsTests' do

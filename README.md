@@ -1,2 +1,2 @@
 # EyesOnCrops
-MS Thesis // Smartphone App
+Thesis Project // MS in CS at SDSU

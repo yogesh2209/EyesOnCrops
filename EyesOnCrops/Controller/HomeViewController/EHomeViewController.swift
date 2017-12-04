@@ -1,5 +1,5 @@
 //
-//  ERegisterOneViewController.swift
+//  EHomeViewController.swift
 //  EyesOnCrops
 //
 //  Created by Yogesh Kohli on 12/4/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ERegisterOneViewController: UIViewController {
+class EHomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

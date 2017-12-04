@@ -14,34 +14,38 @@
 		585D94491FD49C7A00F076A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 585D94471FD49C7A00F076A4 /* LaunchScreen.storyboard */; };
 		585D94541FD49C7A00F076A4 /* EyesOnCropsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585D94531FD49C7A00F076A4 /* EyesOnCropsTests.swift */; };
 		585D945F1FD49C7B00F076A4 /* EyesOnCropsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585D945E1FD49C7B00F076A4 /* EyesOnCropsUITests.swift */; };
-		58DA1D481FD5E2F900C3DA3B /* ERegisterOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D471FD5E2F900C3DA3B /* ERegisterOneViewController.swift */; };
-		58DA1D4A1FD5E30500C3DA3B /* ERegisterTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D491FD5E30500C3DA3B /* ERegisterTwoViewController.swift */; };
-		58DA1D4C1FD5E30F00C3DA3B /* ERegisterThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D4B1FD5E30F00C3DA3B /* ERegisterThreeViewController.swift */; };
-		58DA1D4E1FD5E31D00C3DA3B /* ERegisterFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D4D1FD5E31D00C3DA3B /* ERegisterFourthViewController.swift */; };
-		58DA1D501FD5E32900C3DA3B /* EMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D4F1FD5E32900C3DA3B /* EMainViewController.swift */; };
-		58DA1D521FD5E33200C3DA3B /* ELoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D511FD5E33200C3DA3B /* ELoginViewController.swift */; };
-		58DA1D541FD5E33A00C3DA3B /* ELoginEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D531FD5E33A00C3DA3B /* ELoginEmailViewController.swift */; };
-		58DA1D671FD5E38A00C3DA3B /* Brown-Bold-Alt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D551FD5E38700C3DA3B /* Brown-Bold-Alt.otf */; };
-		58DA1D681FD5E38A00C3DA3B /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D561FD5E38700C3DA3B /* OpenSans-ExtraBold.ttf */; };
-		58DA1D691FD5E38A00C3DA3B /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D571FD5E38700C3DA3B /* OpenSans-ExtraBoldItalic.ttf */; };
-		58DA1D6A1FD5E38A00C3DA3B /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D581FD5E38700C3DA3B /* OpenSans-Light.ttf */; };
-		58DA1D6B1FD5E38A00C3DA3B /* Brown-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D591FD5E38800C3DA3B /* Brown-Regular.otf */; };
-		58DA1D6C1FD5E38A00C3DA3B /* Brown-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D5A1FD5E38800C3DA3B /* Brown-Bold.otf */; };
-		58DA1D6D1FD5E38A00C3DA3B /* Brown Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D5B1FD5E38800C3DA3B /* Brown Bold.ttf */; };
-		58DA1D6E1FD5E38A00C3DA3B /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D5C1FD5E38800C3DA3B /* OpenSans-Regular.ttf */; };
-		58DA1D6F1FD5E38A00C3DA3B /* source-sans-pro.semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D5D1FD5E38800C3DA3B /* source-sans-pro.semibold.ttf */; };
-		58DA1D701FD5E38A00C3DA3B /* Brown Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D5E1FD5E38800C3DA3B /* Brown Regular.ttf */; };
-		58DA1D711FD5E38A00C3DA3B /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D5F1FD5E38800C3DA3B /* OpenSans-Bold.ttf */; };
-		58DA1D721FD5E38A00C3DA3B /* Brown-Regular-Alt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D601FD5E38900C3DA3B /* Brown-Regular-Alt.otf */; };
-		58DA1D731FD5E38A00C3DA3B /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D611FD5E38900C3DA3B /* OpenSans-BoldItalic.ttf */; };
-		58DA1D741FD5E38A00C3DA3B /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D621FD5E38900C3DA3B /* OpenSans-LightItalic.ttf */; };
-		58DA1D751FD5E38A00C3DA3B /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D631FD5E38900C3DA3B /* OpenSans-Semibold.ttf */; };
-		58DA1D761FD5E38A00C3DA3B /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D641FD5E38900C3DA3B /* SourceSansPro-Bold.otf */; };
-		58DA1D771FD5E38A00C3DA3B /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D651FD5E38A00C3DA3B /* OpenSans-Italic.ttf */; };
-		58DA1D781FD5E38A00C3DA3B /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58DA1D661FD5E38A00C3DA3B /* OpenSans-SemiboldItalic.ttf */; };
-		647D2CB8DC779C81B09DC95D /* Pods_EyesOnCropsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 973F37259CCFBB07077E5611 /* Pods_EyesOnCropsUITests.framework */; };
-		E06721583ECD71DAAB563379 /* Pods_EyesOnCropsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49F68EDD33EE8B44F924B4E /* Pods_EyesOnCropsTests.framework */; };
-		EC159583AB74C4F832A0CE23 /* Pods_EyesOnCrops.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFDEA5F43B4D8B4184D5A32 /* Pods_EyesOnCrops.framework */; };
+		58AE76F41FD4BABF002CAADC /* Brown-Bold-Alt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76E21FD4BABB002CAADC /* Brown-Bold-Alt.otf */; };
+		58AE76F51FD4BABF002CAADC /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76E31FD4BABB002CAADC /* OpenSans-ExtraBold.ttf */; };
+		58AE76F61FD4BABF002CAADC /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76E41FD4BABB002CAADC /* OpenSans-ExtraBoldItalic.ttf */; };
+		58AE76F71FD4BABF002CAADC /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76E51FD4BABB002CAADC /* OpenSans-Light.ttf */; };
+		58AE76F81FD4BABF002CAADC /* Brown-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76E61FD4BABC002CAADC /* Brown-Regular.otf */; };
+		58AE76F91FD4BABF002CAADC /* Brown-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76E71FD4BABC002CAADC /* Brown-Bold.otf */; };
+		58AE76FA1FD4BABF002CAADC /* Brown Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76E81FD4BABC002CAADC /* Brown Bold.ttf */; };
+		58AE76FB1FD4BABF002CAADC /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76E91FD4BABC002CAADC /* OpenSans-Regular.ttf */; };
+		58AE76FC1FD4BABF002CAADC /* source-sans-pro.semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76EA1FD4BABD002CAADC /* source-sans-pro.semibold.ttf */; };
+		58AE76FD1FD4BABF002CAADC /* Brown Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76EB1FD4BABD002CAADC /* Brown Regular.ttf */; };
+		58AE76FE1FD4BABF002CAADC /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76EC1FD4BABD002CAADC /* OpenSans-Bold.ttf */; };
+		58AE76FF1FD4BABF002CAADC /* Brown-Regular-Alt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76ED1FD4BABD002CAADC /* Brown-Regular-Alt.otf */; };
+		58AE77001FD4BABF002CAADC /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76EE1FD4BABE002CAADC /* OpenSans-BoldItalic.ttf */; };
+		58AE77011FD4BABF002CAADC /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76EF1FD4BABE002CAADC /* OpenSans-LightItalic.ttf */; };
+		58AE77021FD4BABF002CAADC /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76F01FD4BABE002CAADC /* OpenSans-Semibold.ttf */; };
+		58AE77031FD4BABF002CAADC /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76F11FD4BABE002CAADC /* SourceSansPro-Bold.otf */; };
+		58AE77041FD4BABF002CAADC /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76F21FD4BABE002CAADC /* OpenSans-Italic.ttf */; };
+		58AE77051FD4BABF002CAADC /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76F31FD4BABF002CAADC /* OpenSans-SemiboldItalic.ttf */; };
+		58AE77091FD4BC8B002CAADC /* EMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77081FD4BC8B002CAADC /* EMainViewController.swift */; };
+		58AE770D1FD4C07D002CAADC /* ELoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE770C1FD4C07D002CAADC /* ELoginViewController.swift */; };
+		58AE770F1FD4C091002CAADC /* ERegisterFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE770E1FD4C091002CAADC /* ERegisterFirstViewController.swift */; };
+		58AE77111FD4C6B7002CAADC /* ELoginEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77101FD4C6B7002CAADC /* ELoginEmailViewController.swift */; };
+		58AE77131FD4C957002CAADC /* ERegisterSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77121FD4C957002CAADC /* ERegisterSecondViewController.swift */; };
+		58AE77151FD4C973002CAADC /* ERegisterThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77141FD4C973002CAADC /* ERegisterThreeViewController.swift */; };
+		58AE77171FD4C97E002CAADC /* ERegisterFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77161FD4C97E002CAADC /* ERegisterFourthViewController.swift */; };
+		58DA1D7A1FD5EBBC00C3DA3B /* EConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D791FD5EBBC00C3DA3B /* EConstant.swift */; };
+		58DA1D7C1FD5F18900C3DA3B /* ECustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D7B1FD5F18900C3DA3B /* ECustomTextField.swift */; };
+		58DA1D7E1FD5F19C00C3DA3B /* ECustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D7D1FD5F19C00C3DA3B /* ECustomView.swift */; };
+		58DA1D811FD5FF2F00C3DA3B /* EHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D801FD5FF2F00C3DA3B /* EHomeViewController.swift */; };
+		70605C364C1A8286CBCA00DC /* Pods_EyesOnCropsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299D95EE3ADD58A2C1E5BA06 /* Pods_EyesOnCropsTests.framework */; };
+		F59B00C8B8547D5215F2FD6A /* Pods_EyesOnCropsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE20B05B2FF17501FEC8F0B /* Pods_EyesOnCropsUITests.framework */; };
+		FEEDB3E412263C8C258EB0CD /* Pods_EyesOnCrops.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E51D9A0D275515AED6B941 /* Pods_EyesOnCrops.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,9 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07055488FAA9F49352E7448A /* Pods-EyesOnCropsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCropsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCropsTests/Pods-EyesOnCropsTests.debug.xcconfig"; sourceTree = "<group>"; };
-		30AC19978EAA6D7619177BD1 /* Pods-EyesOnCrops.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCrops.release.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCrops/Pods-EyesOnCrops.release.xcconfig"; sourceTree = "<group>"; };
-		3659D45EB28ED1502956CBDF /* Pods-EyesOnCropsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCropsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCropsUITests/Pods-EyesOnCropsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		299D95EE3ADD58A2C1E5BA06 /* Pods_EyesOnCropsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EyesOnCropsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41E8739AABCDAAB198843575 /* Pods-EyesOnCropsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCropsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCropsTests/Pods-EyesOnCropsTests.release.xcconfig"; sourceTree = "<group>"; };
 		585D94381FD49C7A00F076A4 /* EyesOnCrops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EyesOnCrops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		585D943B1FD49C7A00F076A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		585D94401FD49C7A00F076A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,37 +81,42 @@
 		585D945A1FD49C7B00F076A4 /* EyesOnCropsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EyesOnCropsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		585D945E1FD49C7B00F076A4 /* EyesOnCropsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyesOnCropsUITests.swift; sourceTree = "<group>"; };
 		585D94601FD49C7B00F076A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		58DA1D471FD5E2F900C3DA3B /* ERegisterOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterOneViewController.swift; sourceTree = "<group>"; };
-		58DA1D491FD5E30500C3DA3B /* ERegisterTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterTwoViewController.swift; sourceTree = "<group>"; };
-		58DA1D4B1FD5E30F00C3DA3B /* ERegisterThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterThreeViewController.swift; sourceTree = "<group>"; };
-		58DA1D4D1FD5E31D00C3DA3B /* ERegisterFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterFourthViewController.swift; sourceTree = "<group>"; };
-		58DA1D4F1FD5E32900C3DA3B /* EMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMainViewController.swift; sourceTree = "<group>"; };
-		58DA1D511FD5E33200C3DA3B /* ELoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELoginViewController.swift; sourceTree = "<group>"; };
-		58DA1D531FD5E33A00C3DA3B /* ELoginEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELoginEmailViewController.swift; sourceTree = "<group>"; };
-		58DA1D551FD5E38700C3DA3B /* Brown-Bold-Alt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Bold-Alt.otf"; sourceTree = "<group>"; };
-		58DA1D561FD5E38700C3DA3B /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
-		58DA1D571FD5E38700C3DA3B /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		58DA1D581FD5E38700C3DA3B /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
-		58DA1D591FD5E38800C3DA3B /* Brown-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Regular.otf"; sourceTree = "<group>"; };
-		58DA1D5A1FD5E38800C3DA3B /* Brown-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Bold.otf"; sourceTree = "<group>"; };
-		58DA1D5B1FD5E38800C3DA3B /* Brown Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown Bold.ttf"; sourceTree = "<group>"; };
-		58DA1D5C1FD5E38800C3DA3B /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
-		58DA1D5D1FD5E38800C3DA3B /* source-sans-pro.semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "source-sans-pro.semibold.ttf"; sourceTree = "<group>"; };
-		58DA1D5E1FD5E38800C3DA3B /* Brown Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown Regular.ttf"; sourceTree = "<group>"; };
-		58DA1D5F1FD5E38800C3DA3B /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
-		58DA1D601FD5E38900C3DA3B /* Brown-Regular-Alt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Regular-Alt.otf"; sourceTree = "<group>"; };
-		58DA1D611FD5E38900C3DA3B /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
-		58DA1D621FD5E38900C3DA3B /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
-		58DA1D631FD5E38900C3DA3B /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
-		58DA1D641FD5E38900C3DA3B /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
-		58DA1D651FD5E38A00C3DA3B /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
-		58DA1D661FD5E38A00C3DA3B /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
-		973F37259CCFBB07077E5611 /* Pods_EyesOnCropsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EyesOnCropsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E0D8CC0FCBFBE06F1BAF062 /* Pods-EyesOnCropsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCropsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCropsTests/Pods-EyesOnCropsTests.release.xcconfig"; sourceTree = "<group>"; };
-		B49F68EDD33EE8B44F924B4E /* Pods_EyesOnCropsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EyesOnCropsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CBFDEA5F43B4D8B4184D5A32 /* Pods_EyesOnCrops.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EyesOnCrops.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7413BD9067B66DC8CF7796F /* Pods-EyesOnCropsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCropsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCropsUITests/Pods-EyesOnCropsUITests.release.xcconfig"; sourceTree = "<group>"; };
-		F0D3DEFFEA8C2B1752F699E0 /* Pods-EyesOnCrops.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCrops.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCrops/Pods-EyesOnCrops.debug.xcconfig"; sourceTree = "<group>"; };
+		58AE76E21FD4BABB002CAADC /* Brown-Bold-Alt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Bold-Alt.otf"; sourceTree = "<group>"; };
+		58AE76E31FD4BABB002CAADC /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		58AE76E41FD4BABB002CAADC /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		58AE76E51FD4BABB002CAADC /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		58AE76E61FD4BABC002CAADC /* Brown-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Regular.otf"; sourceTree = "<group>"; };
+		58AE76E71FD4BABC002CAADC /* Brown-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Bold.otf"; sourceTree = "<group>"; };
+		58AE76E81FD4BABC002CAADC /* Brown Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown Bold.ttf"; sourceTree = "<group>"; };
+		58AE76E91FD4BABC002CAADC /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		58AE76EA1FD4BABD002CAADC /* source-sans-pro.semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "source-sans-pro.semibold.ttf"; sourceTree = "<group>"; };
+		58AE76EB1FD4BABD002CAADC /* Brown Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown Regular.ttf"; sourceTree = "<group>"; };
+		58AE76EC1FD4BABD002CAADC /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		58AE76ED1FD4BABD002CAADC /* Brown-Regular-Alt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Regular-Alt.otf"; sourceTree = "<group>"; };
+		58AE76EE1FD4BABE002CAADC /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		58AE76EF1FD4BABE002CAADC /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		58AE76F01FD4BABE002CAADC /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		58AE76F11FD4BABE002CAADC /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
+		58AE76F21FD4BABE002CAADC /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		58AE76F31FD4BABF002CAADC /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		58AE77081FD4BC8B002CAADC /* EMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMainViewController.swift; sourceTree = "<group>"; };
+		58AE770C1FD4C07D002CAADC /* ELoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELoginViewController.swift; sourceTree = "<group>"; };
+		58AE770E1FD4C091002CAADC /* ERegisterFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterFirstViewController.swift; sourceTree = "<group>"; };
+		58AE77101FD4C6B7002CAADC /* ELoginEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELoginEmailViewController.swift; sourceTree = "<group>"; };
+		58AE77121FD4C957002CAADC /* ERegisterSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterSecondViewController.swift; sourceTree = "<group>"; };
+		58AE77141FD4C973002CAADC /* ERegisterThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterThreeViewController.swift; sourceTree = "<group>"; };
+		58AE77161FD4C97E002CAADC /* ERegisterFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterFourthViewController.swift; sourceTree = "<group>"; };
+		58DA1D791FD5EBBC00C3DA3B /* EConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EConstant.swift; sourceTree = "<group>"; };
+		58DA1D7B1FD5F18900C3DA3B /* ECustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECustomTextField.swift; sourceTree = "<group>"; };
+		58DA1D7D1FD5F19C00C3DA3B /* ECustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECustomView.swift; sourceTree = "<group>"; };
+		58DA1D801FD5FF2F00C3DA3B /* EHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EHomeViewController.swift; sourceTree = "<group>"; };
+		76E51D9A0D275515AED6B941 /* Pods_EyesOnCrops.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EyesOnCrops.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A7FB9DD5850CA61B13EBD16 /* Pods-EyesOnCrops.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCrops.release.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCrops/Pods-EyesOnCrops.release.xcconfig"; sourceTree = "<group>"; };
+		7D423EE5736A075AF1038FD1 /* Pods-EyesOnCrops.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCrops.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCrops/Pods-EyesOnCrops.debug.xcconfig"; sourceTree = "<group>"; };
+		D3B0F3F6DB5D31388A515E6E /* Pods-EyesOnCropsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCropsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCropsUITests/Pods-EyesOnCropsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E35795CC02C730BE08139FF4 /* Pods-EyesOnCropsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCropsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCropsTests/Pods-EyesOnCropsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E49F3A1C555EE7E8BE89AA6C /* Pods-EyesOnCropsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyesOnCropsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EyesOnCropsUITests/Pods-EyesOnCropsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FCE20B05B2FF17501FEC8F0B /* Pods_EyesOnCropsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EyesOnCropsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC159583AB74C4F832A0CE23 /* Pods_EyesOnCrops.framework in Frameworks */,
+				FEEDB3E412263C8C258EB0CD /* Pods_EyesOnCrops.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E06721583ECD71DAAB563379 /* Pods_EyesOnCropsTests.framework in Frameworks */,
+				70605C364C1A8286CBCA00DC /* Pods_EyesOnCropsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,26 +140,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				647D2CB8DC779C81B09DC95D /* Pods_EyesOnCropsUITests.framework in Frameworks */,
+				F59B00C8B8547D5215F2FD6A /* Pods_EyesOnCropsUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		52D660AD045B5C6DF6A6C662 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F0D3DEFFEA8C2B1752F699E0 /* Pods-EyesOnCrops.debug.xcconfig */,
-				30AC19978EAA6D7619177BD1 /* Pods-EyesOnCrops.release.xcconfig */,
-				07055488FAA9F49352E7448A /* Pods-EyesOnCropsTests.debug.xcconfig */,
-				9E0D8CC0FCBFBE06F1BAF062 /* Pods-EyesOnCropsTests.release.xcconfig */,
-				3659D45EB28ED1502956CBDF /* Pods-EyesOnCropsUITests.debug.xcconfig */,
-				E7413BD9067B66DC8CF7796F /* Pods-EyesOnCropsUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		585D942F1FD49C7A00F076A4 = {
 			isa = PBXGroup;
 			children = (
@@ -159,8 +154,8 @@
 				585D94521FD49C7A00F076A4 /* EyesOnCropsTests */,
 				585D945D1FD49C7B00F076A4 /* EyesOnCropsUITests */,
 				585D94391FD49C7A00F076A4 /* Products */,
-				52D660AD045B5C6DF6A6C662 /* Pods */,
-				E9283DABE9B5CB3FC2913F82 /* Frameworks */,
+				E7ADBF7A29121D4B860732A5 /* Pods */,
+				6EAA10883EFD0BB473699740 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -177,15 +172,14 @@
 		585D943A1FD49C7A00F076A4 /* EyesOnCrops */ = {
 			isa = PBXGroup;
 			children = (
-				58DA1D3F1FD5E2C700C3DA3B /* AppDelegate */,
-				58DA1D3B1FD5E2C700C3DA3B /* Assets */,
-				58DA1D371FD5E2C700C3DA3B /* ConstantFiles */,
-				58DA1D431FD5E2C700C3DA3B /* Controller */,
-				58DA1D421FD5E2C700C3DA3B /* CustomClasses */,
-				58DA1D411FD5E2C700C3DA3B /* Model */,
-				58DA1D381FD5E2C700C3DA3B /* Resources */,
-				58DA1D401FD5E2C700C3DA3B /* Storyboard */,
-				58DA1D3C1FD5E2C700C3DA3B /* View */,
+				58AE76D81FD4A5A1002CAADC /* AppDelegate */,
+				58AE76E01FD4A5A1002CAADC /* ConstantFiles */,
+				58AE76D11FD4A5A1002CAADC /* Controller */,
+				58AE76DB1FD4A5A1002CAADC /* CustomClasses */,
+				58AE76DA1FD4A5A1002CAADC /* Model */,
+				58AE76D51FD4A5A1002CAADC /* View */,
+				58AE76D91FD4A5A1002CAADC /* Storyboard&Assets */,
+				58AE76D21FD4A5A1002CAADC /* Resources */,
 			);
 			path = EyesOnCrops;
 			sourceTree = "<group>";
@@ -208,88 +202,66 @@
 			path = EyesOnCropsUITests;
 			sourceTree = "<group>";
 		};
-		58DA1D371FD5E2C700C3DA3B /* ConstantFiles */ = {
+		58AE76D11FD4A5A1002CAADC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				58DA1D7F1FD5FF2300C3DA3B /* HomeViewController */,
+				58AE770B1FD4C05E002CAADC /* LoginViewController */,
+				58AE770A1FD4C05E002CAADC /* RegisterViewController */,
+				58AE77061FD4BB3B002CAADC /* BaseViewController */,
+				58AE77071FD4BB3B002CAADC /* MainViewController */,
 			);
-			path = ConstantFiles;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		58DA1D381FD5E2C700C3DA3B /* Resources */ = {
+		58AE76D21FD4A5A1002CAADC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				58DA1D391FD5E2C700C3DA3B /* Library */,
-				58DA1D3A1FD5E2C700C3DA3B /* Fonts */,
+				58AE76E11FD4BA95002CAADC /* Fonts */,
+				58AE76D31FD4A5A1002CAADC /* Library */,
+				58AE76D41FD4A5A1002CAADC /* Reachability */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		58DA1D391FD5E2C700C3DA3B /* Library */ = {
+		58AE76D31FD4A5A1002CAADC /* Library */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Library;
 			sourceTree = "<group>";
 		};
-		58DA1D3A1FD5E2C700C3DA3B /* Fonts */ = {
+		58AE76D41FD4A5A1002CAADC /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				58DA1D5B1FD5E38800C3DA3B /* Brown Bold.ttf */,
-				58DA1D5E1FD5E38800C3DA3B /* Brown Regular.ttf */,
-				58DA1D551FD5E38700C3DA3B /* Brown-Bold-Alt.otf */,
-				58DA1D5A1FD5E38800C3DA3B /* Brown-Bold.otf */,
-				58DA1D601FD5E38900C3DA3B /* Brown-Regular-Alt.otf */,
-				58DA1D591FD5E38800C3DA3B /* Brown-Regular.otf */,
-				58DA1D5F1FD5E38800C3DA3B /* OpenSans-Bold.ttf */,
-				58DA1D611FD5E38900C3DA3B /* OpenSans-BoldItalic.ttf */,
-				58DA1D561FD5E38700C3DA3B /* OpenSans-ExtraBold.ttf */,
-				58DA1D571FD5E38700C3DA3B /* OpenSans-ExtraBoldItalic.ttf */,
-				58DA1D651FD5E38A00C3DA3B /* OpenSans-Italic.ttf */,
-				58DA1D581FD5E38700C3DA3B /* OpenSans-Light.ttf */,
-				58DA1D621FD5E38900C3DA3B /* OpenSans-LightItalic.ttf */,
-				58DA1D5C1FD5E38800C3DA3B /* OpenSans-Regular.ttf */,
-				58DA1D631FD5E38900C3DA3B /* OpenSans-Semibold.ttf */,
-				58DA1D661FD5E38A00C3DA3B /* OpenSans-SemiboldItalic.ttf */,
-				58DA1D5D1FD5E38800C3DA3B /* source-sans-pro.semibold.ttf */,
-				58DA1D641FD5E38900C3DA3B /* SourceSansPro-Bold.otf */,
 			);
-			path = Fonts;
+			path = Reachability;
 			sourceTree = "<group>";
 		};
-		58DA1D3B1FD5E2C700C3DA3B /* Assets */ = {
+		58AE76D51FD4A5A1002CAADC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				585D94451FD49C7A00F076A4 /* Assets.xcassets */,
-				585D944A1FD49C7A00F076A4 /* Info.plist */,
-				585D94421FD49C7A00F076A4 /* EyesOnCrops.xcdatamodeld */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
-		58DA1D3C1FD5E2C700C3DA3B /* View */ = {
-			isa = PBXGroup;
-			children = (
-				58DA1D3D1FD5E2C700C3DA3B /* TableViewCells */,
-				58DA1D3E1FD5E2C700C3DA3B /* CollectionViewCells */,
+				58AE76D61FD4A5A1002CAADC /* CollectionViewCells */,
+				58AE76D71FD4A5A1002CAADC /* TableVieCells */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		58DA1D3D1FD5E2C700C3DA3B /* TableViewCells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TableViewCells;
-			sourceTree = "<group>";
-		};
-		58DA1D3E1FD5E2C700C3DA3B /* CollectionViewCells */ = {
+		58AE76D61FD4A5A1002CAADC /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
-		58DA1D3F1FD5E2C700C3DA3B /* AppDelegate */ = {
+		58AE76D71FD4A5A1002CAADC /* TableVieCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TableVieCells;
+			sourceTree = "<group>";
+		};
+		58AE76D81FD4A5A1002CAADC /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
 				585D943B1FD49C7A00F076A4 /* AppDelegate.swift */,
@@ -297,75 +269,163 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
-		58DA1D401FD5E2C700C3DA3B /* Storyboard */ = {
+		58AE76D91FD4A5A1002CAADC /* Storyboard&Assets */ = {
 			isa = PBXGroup;
 			children = (
 				585D943F1FD49C7A00F076A4 /* Main.storyboard */,
+				585D94451FD49C7A00F076A4 /* Assets.xcassets */,
 				585D94471FD49C7A00F076A4 /* LaunchScreen.storyboard */,
+				585D944A1FD49C7A00F076A4 /* Info.plist */,
+				585D94421FD49C7A00F076A4 /* EyesOnCrops.xcdatamodeld */,
 			);
-			path = Storyboard;
+			path = "Storyboard&Assets";
 			sourceTree = "<group>";
 		};
-		58DA1D411FD5E2C700C3DA3B /* Model */ = {
+		58AE76DA1FD4A5A1002CAADC /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		58DA1D421FD5E2C700C3DA3B /* CustomClasses */ = {
+		58AE76DB1FD4A5A1002CAADC /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
+				58AE76DC1FD4A5A1002CAADC /* TextFieldClasses */,
+				58AE76DD1FD4A5A1002CAADC /* ButtonClasses */,
+				58AE76DE1FD4A5A1002CAADC /* LabelClasses */,
+				58AE76DF1FD4A5A1002CAADC /* ViewClasses */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
 		};
-		58DA1D431FD5E2C700C3DA3B /* Controller */ = {
+		58AE76DC1FD4A5A1002CAADC /* TextFieldClasses */ = {
 			isa = PBXGroup;
 			children = (
-				58DA1D441FD5E2C700C3DA3B /* RegisterViewController */,
-				58DA1D451FD5E2C700C3DA3B /* MainViewController */,
-				58DA1D461FD5E2C700C3DA3B /* LoginViewController */,
+				58DA1D7B1FD5F18900C3DA3B /* ECustomTextField.swift */,
 			);
-			path = Controller;
+			path = TextFieldClasses;
 			sourceTree = "<group>";
 		};
-		58DA1D441FD5E2C700C3DA3B /* RegisterViewController */ = {
+		58AE76DD1FD4A5A1002CAADC /* ButtonClasses */ = {
 			isa = PBXGroup;
 			children = (
-				58DA1D471FD5E2F900C3DA3B /* ERegisterOneViewController.swift */,
-				58DA1D491FD5E30500C3DA3B /* ERegisterTwoViewController.swift */,
-				58DA1D4B1FD5E30F00C3DA3B /* ERegisterThreeViewController.swift */,
-				58DA1D4D1FD5E31D00C3DA3B /* ERegisterFourthViewController.swift */,
 			);
-			path = RegisterViewController;
+			path = ButtonClasses;
 			sourceTree = "<group>";
 		};
-		58DA1D451FD5E2C700C3DA3B /* MainViewController */ = {
+		58AE76DE1FD4A5A1002CAADC /* LabelClasses */ = {
 			isa = PBXGroup;
 			children = (
-				58DA1D4F1FD5E32900C3DA3B /* EMainViewController.swift */,
+			);
+			path = LabelClasses;
+			sourceTree = "<group>";
+		};
+		58AE76DF1FD4A5A1002CAADC /* ViewClasses */ = {
+			isa = PBXGroup;
+			children = (
+				58DA1D7D1FD5F19C00C3DA3B /* ECustomView.swift */,
+			);
+			path = ViewClasses;
+			sourceTree = "<group>";
+		};
+		58AE76E01FD4A5A1002CAADC /* ConstantFiles */ = {
+			isa = PBXGroup;
+			children = (
+				58DA1D791FD5EBBC00C3DA3B /* EConstant.swift */,
+			);
+			path = ConstantFiles;
+			sourceTree = "<group>";
+		};
+		58AE76E11FD4BA95002CAADC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				58AE76E81FD4BABC002CAADC /* Brown Bold.ttf */,
+				58AE76EB1FD4BABD002CAADC /* Brown Regular.ttf */,
+				58AE76E21FD4BABB002CAADC /* Brown-Bold-Alt.otf */,
+				58AE76E71FD4BABC002CAADC /* Brown-Bold.otf */,
+				58AE76ED1FD4BABD002CAADC /* Brown-Regular-Alt.otf */,
+				58AE76E61FD4BABC002CAADC /* Brown-Regular.otf */,
+				58AE76EC1FD4BABD002CAADC /* OpenSans-Bold.ttf */,
+				58AE76EE1FD4BABE002CAADC /* OpenSans-BoldItalic.ttf */,
+				58AE76E31FD4BABB002CAADC /* OpenSans-ExtraBold.ttf */,
+				58AE76E41FD4BABB002CAADC /* OpenSans-ExtraBoldItalic.ttf */,
+				58AE76F21FD4BABE002CAADC /* OpenSans-Italic.ttf */,
+				58AE76E51FD4BABB002CAADC /* OpenSans-Light.ttf */,
+				58AE76EF1FD4BABE002CAADC /* OpenSans-LightItalic.ttf */,
+				58AE76E91FD4BABC002CAADC /* OpenSans-Regular.ttf */,
+				58AE76F01FD4BABE002CAADC /* OpenSans-Semibold.ttf */,
+				58AE76F31FD4BABF002CAADC /* OpenSans-SemiboldItalic.ttf */,
+				58AE76EA1FD4BABD002CAADC /* source-sans-pro.semibold.ttf */,
+				58AE76F11FD4BABE002CAADC /* SourceSansPro-Bold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		58AE77061FD4BB3B002CAADC /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		58AE77071FD4BB3B002CAADC /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				58AE77081FD4BC8B002CAADC /* EMainViewController.swift */,
 			);
 			path = MainViewController;
 			sourceTree = "<group>";
 		};
-		58DA1D461FD5E2C700C3DA3B /* LoginViewController */ = {
+		58AE770A1FD4C05E002CAADC /* RegisterViewController */ = {
 			isa = PBXGroup;
 			children = (
-				58DA1D511FD5E33200C3DA3B /* ELoginViewController.swift */,
-				58DA1D531FD5E33A00C3DA3B /* ELoginEmailViewController.swift */,
+				58AE770E1FD4C091002CAADC /* ERegisterFirstViewController.swift */,
+				58AE77121FD4C957002CAADC /* ERegisterSecondViewController.swift */,
+				58AE77141FD4C973002CAADC /* ERegisterThreeViewController.swift */,
+				58AE77161FD4C97E002CAADC /* ERegisterFourthViewController.swift */,
+			);
+			path = RegisterViewController;
+			sourceTree = "<group>";
+		};
+		58AE770B1FD4C05E002CAADC /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				58AE770C1FD4C07D002CAADC /* ELoginViewController.swift */,
+				58AE77101FD4C6B7002CAADC /* ELoginEmailViewController.swift */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
 		};
-		E9283DABE9B5CB3FC2913F82 /* Frameworks */ = {
+		58DA1D7F1FD5FF2300C3DA3B /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CBFDEA5F43B4D8B4184D5A32 /* Pods_EyesOnCrops.framework */,
-				B49F68EDD33EE8B44F924B4E /* Pods_EyesOnCropsTests.framework */,
-				973F37259CCFBB07077E5611 /* Pods_EyesOnCropsUITests.framework */,
+				58DA1D801FD5FF2F00C3DA3B /* EHomeViewController.swift */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		6EAA10883EFD0BB473699740 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76E51D9A0D275515AED6B941 /* Pods_EyesOnCrops.framework */,
+				299D95EE3ADD58A2C1E5BA06 /* Pods_EyesOnCropsTests.framework */,
+				FCE20B05B2FF17501FEC8F0B /* Pods_EyesOnCropsUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E7ADBF7A29121D4B860732A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7D423EE5736A075AF1038FD1 /* Pods-EyesOnCrops.debug.xcconfig */,
+				7A7FB9DD5850CA61B13EBD16 /* Pods-EyesOnCrops.release.xcconfig */,
+				E35795CC02C730BE08139FF4 /* Pods-EyesOnCropsTests.debug.xcconfig */,
+				41E8739AABCDAAB198843575 /* Pods-EyesOnCropsTests.release.xcconfig */,
+				D3B0F3F6DB5D31388A515E6E /* Pods-EyesOnCropsUITests.debug.xcconfig */,
+				E49F3A1C555EE7E8BE89AA6C /* Pods-EyesOnCropsUITests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,12 +435,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 585D94631FD49C7B00F076A4 /* Build configuration list for PBXNativeTarget "EyesOnCrops" */;
 			buildPhases = (
-				F6A8C3520824382D84F4103F /* [CP] Check Pods Manifest.lock */,
+				2E9DAC4737D554CEC1B97D1F /* [CP] Check Pods Manifest.lock */,
 				585D94341FD49C7A00F076A4 /* Sources */,
 				585D94351FD49C7A00F076A4 /* Frameworks */,
 				585D94361FD49C7A00F076A4 /* Resources */,
-				86E3BA805C3BC743C606EC4B /* [CP] Embed Pods Frameworks */,
-				5C16421ABCCEE55C48C51DDB /* [CP] Copy Pods Resources */,
+				7890350D5FAFF306E6287B47 /* [CP] Embed Pods Frameworks */,
+				99E8D5F8D77860C87891D170 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -395,12 +455,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 585D94661FD49C7B00F076A4 /* Build configuration list for PBXNativeTarget "EyesOnCropsTests" */;
 			buildPhases = (
-				4247B055F707368D82DF3521 /* [CP] Check Pods Manifest.lock */,
+				F3C153A0C1BD57C02C9AE675 /* [CP] Check Pods Manifest.lock */,
 				585D944B1FD49C7A00F076A4 /* Sources */,
 				585D944C1FD49C7A00F076A4 /* Frameworks */,
 				585D944D1FD49C7A00F076A4 /* Resources */,
-				134EA410FDE41D31F6E53DB2 /* [CP] Embed Pods Frameworks */,
-				8C6BB54056E62DBE9AF4D62E /* [CP] Copy Pods Resources */,
+				C63D14B64EA87779B40E478A /* [CP] Embed Pods Frameworks */,
+				479E6FB1B68A39272EE82D07 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -416,12 +476,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 585D94691FD49C7B00F076A4 /* Build configuration list for PBXNativeTarget "EyesOnCropsUITests" */;
 			buildPhases = (
-				46B4E742780D0E45E571612A /* [CP] Check Pods Manifest.lock */,
+				D12D7EDE1DFA6678DC6CDC6C /* [CP] Check Pods Manifest.lock */,
 				585D94561FD49C7B00F076A4 /* Sources */,
 				585D94571FD49C7B00F076A4 /* Frameworks */,
 				585D94581FD49C7B00F076A4 /* Resources */,
-				B8BAE761256490C5EAF806CA /* [CP] Embed Pods Frameworks */,
-				8AF66C82119F9CF90AF4850F /* [CP] Copy Pods Resources */,
+				D424E0AE2D4C63E01414C68D /* [CP] Embed Pods Frameworks */,
+				80528D20DC6DA70907D2799E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -485,26 +545,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				585D94491FD49C7A00F076A4 /* LaunchScreen.storyboard in Resources */,
-				58DA1D6E1FD5E38A00C3DA3B /* OpenSans-Regular.ttf in Resources */,
-				58DA1D6C1FD5E38A00C3DA3B /* Brown-Bold.otf in Resources */,
-				58DA1D691FD5E38A00C3DA3B /* OpenSans-ExtraBoldItalic.ttf in Resources */,
-				58DA1D721FD5E38A00C3DA3B /* Brown-Regular-Alt.otf in Resources */,
-				58DA1D6A1FD5E38A00C3DA3B /* OpenSans-Light.ttf in Resources */,
-				58DA1D671FD5E38A00C3DA3B /* Brown-Bold-Alt.otf in Resources */,
-				58DA1D6D1FD5E38A00C3DA3B /* Brown Bold.ttf in Resources */,
-				58DA1D741FD5E38A00C3DA3B /* OpenSans-LightItalic.ttf in Resources */,
+				58AE76FB1FD4BABF002CAADC /* OpenSans-Regular.ttf in Resources */,
+				58AE76F91FD4BABF002CAADC /* Brown-Bold.otf in Resources */,
+				58AE76F61FD4BABF002CAADC /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				58AE76FF1FD4BABF002CAADC /* Brown-Regular-Alt.otf in Resources */,
+				58AE76F71FD4BABF002CAADC /* OpenSans-Light.ttf in Resources */,
+				58AE76F41FD4BABF002CAADC /* Brown-Bold-Alt.otf in Resources */,
+				58AE76FA1FD4BABF002CAADC /* Brown Bold.ttf in Resources */,
+				58AE77011FD4BABF002CAADC /* OpenSans-LightItalic.ttf in Resources */,
 				585D94461FD49C7A00F076A4 /* Assets.xcassets in Resources */,
-				58DA1D781FD5E38A00C3DA3B /* OpenSans-SemiboldItalic.ttf in Resources */,
-				58DA1D711FD5E38A00C3DA3B /* OpenSans-Bold.ttf in Resources */,
+				58AE77051FD4BABF002CAADC /* OpenSans-SemiboldItalic.ttf in Resources */,
+				58AE76FE1FD4BABF002CAADC /* OpenSans-Bold.ttf in Resources */,
 				585D94411FD49C7A00F076A4 /* Main.storyboard in Resources */,
-				58DA1D751FD5E38A00C3DA3B /* OpenSans-Semibold.ttf in Resources */,
-				58DA1D771FD5E38A00C3DA3B /* OpenSans-Italic.ttf in Resources */,
-				58DA1D681FD5E38A00C3DA3B /* OpenSans-ExtraBold.ttf in Resources */,
-				58DA1D701FD5E38A00C3DA3B /* Brown Regular.ttf in Resources */,
-				58DA1D6F1FD5E38A00C3DA3B /* source-sans-pro.semibold.ttf in Resources */,
-				58DA1D731FD5E38A00C3DA3B /* OpenSans-BoldItalic.ttf in Resources */,
-				58DA1D6B1FD5E38A00C3DA3B /* Brown-Regular.otf in Resources */,
-				58DA1D761FD5E38A00C3DA3B /* SourceSansPro-Bold.otf in Resources */,
+				58AE77021FD4BABF002CAADC /* OpenSans-Semibold.ttf in Resources */,
+				58AE77041FD4BABF002CAADC /* OpenSans-Italic.ttf in Resources */,
+				58AE76F51FD4BABF002CAADC /* OpenSans-ExtraBold.ttf in Resources */,
+				58AE76FD1FD4BABF002CAADC /* Brown Regular.ttf in Resources */,
+				58AE76FC1FD4BABF002CAADC /* source-sans-pro.semibold.ttf in Resources */,
+				58AE77001FD4BABF002CAADC /* OpenSans-BoldItalic.ttf in Resources */,
+				58AE76F81FD4BABF002CAADC /* Brown-Regular.otf in Resources */,
+				58AE77031FD4BABF002CAADC /* SourceSansPro-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,22 +585,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		134EA410FDE41D31F6E53DB2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EyesOnCropsTests/Pods-EyesOnCropsTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4247B055F707368D82DF3521 /* [CP] Check Pods Manifest.lock */ = {
+		2E9DAC4737D554CEC1B97D1F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -551,50 +596,29 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EyesOnCropsTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-EyesOnCrops-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		46B4E742780D0E45E571612A /* [CP] Check Pods Manifest.lock */ = {
+		479E6FB1B68A39272EE82D07 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EyesOnCropsUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5C16421ABCCEE55C48C51DDB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-EyesOnCrops/Pods-EyesOnCrops-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EyesOnCrops/Pods-EyesOnCrops-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EyesOnCropsTests/Pods-EyesOnCropsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		86E3BA805C3BC743C606EC4B /* [CP] Embed Pods Frameworks */ = {
+		7890350D5FAFF306E6287B47 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -640,7 +664,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EyesOnCrops/Pods-EyesOnCrops-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8AF66C82119F9CF90AF4850F /* [CP] Copy Pods Resources */ = {
+		80528D20DC6DA70907D2799E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -655,22 +679,58 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EyesOnCropsUITests/Pods-EyesOnCropsUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8C6BB54056E62DBE9AF4D62E /* [CP] Copy Pods Resources */ = {
+		99E8D5F8D77860C87891D170 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EyesOnCrops/Pods-EyesOnCrops-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EyesOnCrops/Pods-EyesOnCrops-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C63D14B64EA87779B40E478A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EyesOnCropsTests/Pods-EyesOnCropsTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EyesOnCropsTests/Pods-EyesOnCropsTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B8BAE761256490C5EAF806CA /* [CP] Embed Pods Frameworks */ = {
+		D12D7EDE1DFA6678DC6CDC6C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EyesOnCropsUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D424E0AE2D4C63E01414C68D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -685,7 +745,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EyesOnCropsUITests/Pods-EyesOnCropsUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F6A8C3520824382D84F4103F /* [CP] Check Pods Manifest.lock */ = {
+		F3C153A0C1BD57C02C9AE675 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -696,7 +756,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EyesOnCrops-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-EyesOnCropsTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -710,15 +770,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58DA1D521FD5E33200C3DA3B /* ELoginViewController.swift in Sources */,
-				58DA1D481FD5E2F900C3DA3B /* ERegisterOneViewController.swift in Sources */,
-				58DA1D4A1FD5E30500C3DA3B /* ERegisterTwoViewController.swift in Sources */,
-				58DA1D541FD5E33A00C3DA3B /* ELoginEmailViewController.swift in Sources */,
+				58DA1D7C1FD5F18900C3DA3B /* ECustomTextField.swift in Sources */,
+				58AE77171FD4C97E002CAADC /* ERegisterFourthViewController.swift in Sources */,
+				58DA1D7A1FD5EBBC00C3DA3B /* EConstant.swift in Sources */,
 				585D94441FD49C7A00F076A4 /* EyesOnCrops.xcdatamodeld in Sources */,
-				58DA1D4E1FD5E31D00C3DA3B /* ERegisterFourthViewController.swift in Sources */,
-				58DA1D501FD5E32900C3DA3B /* EMainViewController.swift in Sources */,
-				58DA1D4C1FD5E30F00C3DA3B /* ERegisterThreeViewController.swift in Sources */,
+				58AE77091FD4BC8B002CAADC /* EMainViewController.swift in Sources */,
+				58AE77131FD4C957002CAADC /* ERegisterSecondViewController.swift in Sources */,
+				58AE770D1FD4C07D002CAADC /* ELoginViewController.swift in Sources */,
 				585D943C1FD49C7A00F076A4 /* AppDelegate.swift in Sources */,
+				58AE770F1FD4C091002CAADC /* ERegisterFirstViewController.swift in Sources */,
+				58AE77151FD4C973002CAADC /* ERegisterThreeViewController.swift in Sources */,
+				58DA1D811FD5FF2F00C3DA3B /* EHomeViewController.swift in Sources */,
+				58AE77111FD4C6B7002CAADC /* ELoginEmailViewController.swift in Sources */,
+				58DA1D7E1FD5F19C00C3DA3B /* ECustomView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,11 +946,12 @@
 		};
 		585D94641FD49C7B00F076A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0D3DEFFEA8C2B1752F699E0 /* Pods-EyesOnCrops.debug.xcconfig */;
+			baseConfigurationReference = 7D423EE5736A075AF1038FD1 /* Pods-EyesOnCrops.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = EyesOnCrops/Info.plist;
+				DEVELOPMENT_TEAM = U7U729472V;
+				INFOPLIST_FILE = "$(SRCROOT)/EyesOnCrops/Storyboard&Assets/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Yogesh.EyesOnCrops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -897,11 +962,12 @@
 		};
 		585D94651FD49C7B00F076A4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30AC19978EAA6D7619177BD1 /* Pods-EyesOnCrops.release.xcconfig */;
+			baseConfigurationReference = 7A7FB9DD5850CA61B13EBD16 /* Pods-EyesOnCrops.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = EyesOnCrops/Info.plist;
+				DEVELOPMENT_TEAM = U7U729472V;
+				INFOPLIST_FILE = "$(SRCROOT)/EyesOnCrops/Storyboard&Assets/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Yogesh.EyesOnCrops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -912,7 +978,7 @@
 		};
 		585D94671FD49C7B00F076A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07055488FAA9F49352E7448A /* Pods-EyesOnCropsTests.debug.xcconfig */;
+			baseConfigurationReference = E35795CC02C730BE08139FF4 /* Pods-EyesOnCropsTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -929,7 +995,7 @@
 		};
 		585D94681FD49C7B00F076A4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E0D8CC0FCBFBE06F1BAF062 /* Pods-EyesOnCropsTests.release.xcconfig */;
+			baseConfigurationReference = 41E8739AABCDAAB198843575 /* Pods-EyesOnCropsTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -946,7 +1012,7 @@
 		};
 		585D946A1FD49C7B00F076A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3659D45EB28ED1502956CBDF /* Pods-EyesOnCropsUITests.debug.xcconfig */;
+			baseConfigurationReference = D3B0F3F6DB5D31388A515E6E /* Pods-EyesOnCropsUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -962,7 +1028,7 @@
 		};
 		585D946B1FD49C7B00F076A4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7413BD9067B66DC8CF7796F /* Pods-EyesOnCropsUITests.release.xcconfig */;
+			baseConfigurationReference = E49F3A1C555EE7E8BE89AA6C /* Pods-EyesOnCropsUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,5 +1,5 @@
 //
-//  ELoginViewController.swift
+//  ERegisterFirstViewController.swift
 //  EyesOnCrops
 //
 //  Created by Yogesh Kohli on 12/3/17.
@@ -8,31 +8,23 @@
 
 import UIKit
 
-class ELoginViewController: UIViewController {
+class ERegisterFirstViewController: UIViewController {
 
-    @IBOutlet weak var buttonLoginEmail: UIButton!
-    @IBOutlet weak var buttonGoogleLogin: UIButton!
-    @IBOutlet weak var buttonFacebookLogin: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         customiseUI()
         // Do any additional setup after loading the view.
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
     //MARK: Private Methods
     func customiseUI() {
         self.navigationController?.isNavigationBarHidden = false
     }
-    //MARK: UIButton Actions
-    @IBAction func buttonGoogleLoginPressed(_ sender: Any) {
-    }
-    @IBAction func buttonFacebookLoginPressed(_ sender: Any) {
-    }
-    @IBAction func buttonLoginEmailPressed(_ sender: Any) {
-        performSegue(withIdentifier: LOGINTOEMAIL_SEGUE_VC, sender: nil)
-    }
+
 }
