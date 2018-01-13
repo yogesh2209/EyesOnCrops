@@ -7,7 +7,25 @@
 		<key>EyesOnCrops.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>19</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>585D94371FD49C7A00F076A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>585D944E1FD49C7A00F076A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>585D94591FD49C7B00F076A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

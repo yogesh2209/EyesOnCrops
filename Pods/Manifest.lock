@@ -1,11 +1,44 @@
 PODS:
-  - Alamofire (4.5.1)
+  - ActiveLabel (0.8.1)
+  - AFNetworking (2.4.1):
+    - AFNetworking/NSURLConnection (= 2.4.1)
+    - AFNetworking/NSURLSession (= 2.4.1)
+    - AFNetworking/Reachability (= 2.4.1)
+    - AFNetworking/Security (= 2.4.1)
+    - AFNetworking/Serialization (= 2.4.1)
+    - AFNetworking/UIKit (= 2.4.1)
+  - AFNetworking/NSURLConnection (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Alamofire (4.6.0)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - boost/graph-includes (1.51.0)
+  - boost/math-includes (1.51.0)
+  - boost/pointer_cast-includes (1.51.0)
+  - boost/shared_ptr-includes (1.51.0)
+  - boost/string_algorithms-includes (1.51.0)
+  - clipper (6.1.3a)
+  - CorePlot (2.0)
+  - Crashlytics (3.9.3):
+    - Fabric (~> 1.7.2)
+  - eigen (3.2.10)
+  - Fabric (1.7.2)
   - FacebookCore (0.3.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.27)
@@ -14,22 +47,38 @@ PODS:
     - FacebookCore (~> 0.3)
     - FBSDKCoreKit (~> 4.27)
     - FBSDKLoginKit (~> 4.27)
-  - FBSDKCoreKit (4.28.0):
+  - FBSDKCoreKit (4.29.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.28.0):
+  - FBSDKLoginKit (4.29.0):
     - FBSDKCoreKit
-  - Firebase/Core (4.5.0):
-    - FirebaseAnalytics (= 4.0.4)
-    - FirebaseCore (= 4.0.10)
-  - FirebaseAnalytics (4.0.4):
+  - Firebase/Auth (4.7.0):
+    - Firebase/Core
+    - FirebaseAuth (= 4.4.0)
+  - Firebase/Core (4.7.0):
+    - FirebaseAnalytics (= 4.0.5)
+    - FirebaseCore (= 4.0.12)
+  - Firebase/Database (4.7.0):
+    - Firebase/Core
+    - FirebaseDatabase (= 4.1.2)
+  - FirebaseAnalytics (4.0.5):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseCore (4.0.10):
+  - FirebaseAuth (4.4.0):
+    - FirebaseAnalytics (~> 4.0)
+    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseCore (4.0.12):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-    - nanopb (~> 0.3)
-  - FirebaseInstanceID (2.0.5)
+  - FirebaseDatabase (4.1.2):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
+    - leveldb-library (~> 1.18)
+  - FirebaseInstanceID (2.0.7)
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
   - GoogleSignIn (4.1.1):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
@@ -45,60 +94,138 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.3)
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
-  - GTMOAuth2 (1.1.5):
+  - GTMOAuth2 (1.1.6):
     - GTMSessionFetcher (~> 1.1)
   - GTMSessionFetcher (1.1.12):
     - GTMSessionFetcher/Full (= 1.1.12)
   - GTMSessionFetcher/Core (1.1.12)
   - GTMSessionFetcher/Full (1.1.12):
     - GTMSessionFetcher/Core (= 1.1.12)
-  - IQKeyboardManagerSwift (5.0.6)
+  - IQKeyboardManagerSwift (5.0.7)
   - JSONModel (1.7.0)
+  - leveldb-library (1.20)
+  - libjson (7.6.1)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - PKHUD (5.0.0)
+  - PopupDialog (0.6.2)
+  - proj4 (4.8.0)
   - SDWebImage (4.2.2):
     - SDWebImage/Core (= 4.2.2)
   - SDWebImage/Core (4.2.2)
-  - SideMenu (3.1.4)
-  - SVProgressHUD (2.2.2)
+  - SideMenu (3.1.5)
+  - SMCalloutView (2.1.5)
+  - tinyxml (2.1.0)
+  - WhirlyGlobe (2.4):
+    - WhirlyGlobe/MaplyComponent (= 2.4)
+  - WhirlyGlobe/aaplus (2.4)
+  - WhirlyGlobe/glues-wg (2.4)
+  - WhirlyGlobe/kissxml (2.4)
+  - WhirlyGlobe/Lib (2.4):
+    - clipper (~> 6.1.3a)
+    - libjson (~> 7.6.0)
+    - proj4 (~> 4.8.0)
+    - tinyxml (~> 2.1.0)
+    - WhirlyGlobe/glues-wg
+    - WhirlyGlobe/Lib-Headers
+    - WhirlyGlobe/octencoding
+    - WhirlyGlobe/shapefile
+  - WhirlyGlobe/Lib-Headers (2.4):
+    - boost/graph-includes (<= 1.51.0)
+    - boost/math-includes (<= 1.51.0)
+    - boost/pointer_cast-includes (<= 1.51.0)
+    - boost/shared_ptr-includes (<= 1.51.0)
+    - boost/string_algorithms-includes (<= 1.51.0)
+    - eigen (~> 3.2.4)
+  - WhirlyGlobe/MaplyComponent (2.4):
+    - AFNetworking (~> 2.4.0)
+    - FMDB
+    - SMCalloutView
+    - WhirlyGlobe/aaplus
+    - WhirlyGlobe/kissxml
+    - WhirlyGlobe/Lib
+    - WhirlyGlobe/MaplyComponent-Headers
+  - WhirlyGlobe/MaplyComponent-Headers (2.4):
+    - WhirlyGlobe/Lib-Headers
+  - WhirlyGlobe/octencoding (2.4)
+  - WhirlyGlobe/shapefile (2.4)
+  - WhirlyGlobeResources (2.3)
 
 DEPENDENCIES:
+  - ActiveLabel
   - Alamofire (~> 4.5)
+  - CorePlot (from `https://github.com/core-plot/core-plot.git`, branch `release-2.0`)
+  - Crashlytics (~> 3.9.3)
+  - Fabric (~> 1.7.2)
   - FacebookCore
   - FacebookLogin
+  - Firebase/Auth
   - Firebase/Core
+  - Firebase/Database
   - GoogleSignIn
   - IQKeyboardManagerSwift
   - JSONModel
+  - PKHUD (~> 5.0)
+  - PopupDialog (~> 0.6)
   - SDWebImage (~> 4.0)
   - SideMenu
-  - SVProgressHUD
+  - WhirlyGlobe (= 2.4)
+  - WhirlyGlobeResources
+
+EXTERNAL SOURCES:
+  CorePlot:
+    :branch: release-2.0
+    :git: https://github.com/core-plot/core-plot.git
+
+CHECKOUT OPTIONS:
+  CorePlot:
+    :commit: c1f585d7cc89dcbdafe1e3966654a6c96f0fae0a
+    :git: https://github.com/core-plot/core-plot.git
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  ActiveLabel: e361127c355b911a467db3d5a897b3d7f902e568
+  AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  boost: 6c5c8d8daef26ac83c1e1c00ad14de62b80161d7
+  clipper: b009ea56c501e756299e6999e2c73eef6e1ed218
+  CorePlot: 18eb2e5fa6e56d53d0716203620580baba50f67c
+  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  eigen: e2d5ffb7be5a884d4608ebe35a97b6f65e13ed8b
+  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
   FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
-  FBSDKCoreKit: ca961e279113f691fd83dc634c0bbad9d4e3f370
-  FBSDKLoginKit: b077381c27d800f21661757e8140cf2c80a91e4a
-  Firebase: d83d287bdb6b1c78320561482706d1fcfc8ddfc1
-  FirebaseAnalytics: 722b53c7b32bfc7806b06e0093a2f5180d4f2c5a
-  FirebaseCore: da5e8e372cb6046212739a4d81e42d32c22907cc
-  FirebaseInstanceID: f2b688c66b972f30d7fa9f5f9f91455454a03b47
+  FBSDKCoreKit: 6f139173dc63a1deaff4430a55f2fe5bb222d2af
+  FBSDKLoginKit: 56a057ca6822535ea0faa25f57a7c41edb697fd4
+  Firebase: dbfb98ccec2dcfcd21ab9cc1b4981a3f3c8c5e26
+  FirebaseAnalytics: 5b02a63ead2c3f0259cfc7f15e053e440587ecf8
+  FirebaseAuth: cdeee95b528958dbb7dcf220ad0fb804d3a284b0
+  FirebaseCore: 6cf108b63997bc08c04a1ffa55a3ac0d71a59ffc
+  FirebaseDatabase: 18ecb23e15c7f58bb0c4527e9cace06897cc40ca
+  FirebaseInstanceID: 148c25c986c8699e67304b114e365713dce467f2
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   GoogleSignIn: 3fdaa34a2ba04dbd7a25d7db39aecb0da98d5bdc
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  GTMOAuth2: be83fd28d63ae3087e7d351b1f39c1a7e24ab6e7
+  GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
-  IQKeyboardManagerSwift: 02bfbb0dff71c66d0ab77d80d25dfce0c3717735
+  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  libjson: 1a065ca64704a5d1b51c3754268998942d57ac6f
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
+  PopupDialog: d4336d7274a6aa3af4cb26d8b6691510eba90cc3
+  proj4: 234525105d05a33b2ae9a90a6fe3935f7a246f7e
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
-  SideMenu: 99021e70b3f2eee65b5dd88e4274d09031b1221e
-  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
+  SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481
+  tinyxml: 41d718babd106ac5d39d4e98b43c835d3b9080d8
+  WhirlyGlobe: 2849f458220be42d92d814ba04377586cadbf7f1
+  WhirlyGlobeResources: d7b3e929e828f958a8477ff6797f962fdb165472
 
-PODFILE CHECKSUM: 4307bec6bea4de029940dceca2e41b99df8677fd
+PODFILE CHECKSUM: 3da5533772f1fb53190c5e14f7011fe7ea3a28b2
 
 COCOAPODS: 1.3.1

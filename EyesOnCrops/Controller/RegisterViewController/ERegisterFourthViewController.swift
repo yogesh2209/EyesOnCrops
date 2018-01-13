@@ -8,8 +8,11 @@
 
 import UIKit
 
-class ERegisterFourthViewController: UIViewController {
+class ERegisterFourthViewController: EBaseViewController {
 
+    @IBOutlet weak var textViewPurpose: UITextView!
+    @IBOutlet weak var buttonDone: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +24,13 @@ class ERegisterFourthViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupFirebaseAnalytics(title: "ERegisterFourthViewController")
+    }
 
+    @IBAction func buttonDonePressed(_ sender: UIButton) {
+    }
     /*
     // MARK: - Navigation
 

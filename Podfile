@@ -4,16 +4,26 @@
 target 'EyesOnCrops' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
+pod 'ActiveLabel'
 pod 'IQKeyboardManagerSwift'
 pod 'Alamofire', '~> 4.5'
 pod 'JSONModel'
-pod 'SVProgressHUD'
 pod 'SideMenu'
 pod 'SDWebImage', '~> 4.0'
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'GoogleSignIn'
 pod 'Firebase/Core'
+pod 'Firebase/Database'
+pod 'Fabric', '~> 1.7.2'
+pod 'Crashlytics', '~> 3.9.3'
+pod 'Firebase/Auth'
+pod 'PKHUD', '~> 5.0'
+pod 'PopupDialog', '~> 0.6'
+pod 'CorePlot', :git => 'https://github.com/core-plot/core-plot.git', :branch => 'release-2.0'
+pod 'WhirlyGlobe', '2.4'
+pod 'WhirlyGlobeResources'
+
 
   # Pods for EyesOnCrops
 

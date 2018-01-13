@@ -16,3 +16,24 @@ let REGISTER_1_SEGUE_VC                                 = "mainToRegisterOneSegu
 let REGISTER_1_TO_2_SEGUE_VC                            = "register1To2SegueVC"
 let REGISTER_2_TO_3_SEGUE_VC                            = "register2To3SegueVC"
 let REGISTER_3_TO_4_SEGUE_VC                            = "register3To4SegueVC"
+let LOGIN_TO_HOME_SEGUE_VC                              = "loginToHomeSegueVC"
+let SOCIAL_LOGIN_TO_REG_SEGUE_VC                        = "socialLoginToRegister4thSegueVC"
+let LOGOUT_SEGUE_VC                                     = "logoutSegueVC"
+let ABOUT_SEGUE_VC                                      = "sidMenuToAboutSegueVC"
+let HELP_SEGUE_VC                                       = "sidMenuToHelpSegueVC"
+let SIDEMENU_TO_HOME_SEGUE_VC                           = "sideMenuToHomeSegueVC"
+let CHANGE_PASS_SEGUE_VC                                = "changePasswordSegueVC"
+let PASSEORD_RECOVERY_1_SEGUE_VC                        = "passwordRecovery1SegueVC"
+
+
+/* ---------- STORYBOARD IDs -------------------- */
+let TERMS_PRIVACY_STORYBOARD_ID                         = "termsPrivacyStoryboardId"
+
+/* ---------- TABLEVIEW CELLS --------------------- */
+
+let SIDE_MENU_OPTIONS_CUSTOM_CELL                       = "sideMenuOptionCustomCell"
+let SIDE_MENU_SPACING_CUSTOM_CELL                       = "sideMenuSpacingCustomCell"
+let SIDE_MENU_PROFILE_CUSTOM_CELL                       = "sideMenuProfileCustomCell"
+
+
+

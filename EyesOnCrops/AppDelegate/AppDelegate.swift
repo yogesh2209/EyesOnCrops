@@ -9,18 +9,49 @@
 import UIKit
 import CoreData
 import IQKeyboardManagerSwift
+import Firebase
+import GoogleSignIn
+import GoogleToolboxForMac
+import FacebookLogin
+import FacebookCore
+import FBSDKLoginKit
+import FBSDKCoreKit
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+    }
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+       //Changing color of navigation bar
         UINavigationBar.appearance().tintColor = UIColor.black
+        //For managing space on keyboards
         IQKeyboardManager.sharedManager().enable = true
-
+        //Enabling Firebase
+        FirebaseApp.configure()
+        //Enabling Google Sign-in
+        GIDSignIn.sharedInstance().clientID = "561223289942-ilnt3lp4ugh4gju691upofeiuo8qhraq.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().delegate = self
         return true
+    }
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        //Checking if user has done Facebook login or Google Login
+        //Facebook Sign in
+        if(url.scheme!.isEqual("fb743752659152371")) {
+            return FBSDKApplicationDelegate.sharedInstance().application(
+                application,
+                open: url,
+                sourceApplication: sourceApplication,
+                annotation: annotation)
+        }
+        //Google Sign in
+        else {
+            return GIDSignIn.sharedInstance().handle(url,
+                                                     sourceApplication: sourceApplication,
+                                                     annotation: annotation)
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
