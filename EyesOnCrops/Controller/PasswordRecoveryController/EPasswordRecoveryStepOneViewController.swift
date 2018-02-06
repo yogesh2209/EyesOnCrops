@@ -8,37 +8,44 @@
 
 import UIKit
 
-class EPasswordRecoveryStepOneViewController: UIViewController {
+class EPasswordRecoveryStepOneViewController: EBaseViewController {
 
     @IBOutlet weak var buttonNext: UIBarButtonItem!
-    
     @IBOutlet weak var textFieldEmailPhone: ECustomTextField!
-    
     @IBOutlet weak var viewEmailPhone: ECustomView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    @IBAction func buttonNextPressed(_ sender: Any) {
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setupFirebaseAnalytics(title: "EPasswordRecoveryStepOneViewController")
     }
-    */
-
+    //MARK: Private Methods
+    func getEmailOrPhone() -> String {
+        if let emailOrPhone = self.textFieldEmailPhone.text {
+            return emailOrPhone
+        }
+        else {
+            return ""
+        }
+    }
+    func nextButtonAction() {
+        if getEmailOrPhone().count != 0 {
+            //Service Calling here
+        }
+        else{
+            alertMessage(title: "Error", message: "Email/Phone cannot be empty!")
+        }
+    }
+    //MARK: UIButton Actions
+    @IBAction func buttonNextPressed(_ sender: Any) {
+        nextButtonAction()
+    }
 }

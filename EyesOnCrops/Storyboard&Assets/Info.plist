@@ -28,7 +28,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb743752659152371</string>
+				<string>fb980551128763013</string>
 			</array>
 		</dict>
 		<dict>
@@ -43,7 +43,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>743752659152371</string>
+	<string>980551128763013</string>
 	<key>FacebookDisplayName</key>
 	<string>EyesOnCrops</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -95,5 +95,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationUsageDescription</key>
+	<string>Wants to access location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Wants to access location</string>
 </dict>
 </plist>

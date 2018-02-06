@@ -24,6 +24,7 @@ let HELP_SEGUE_VC                                       = "sidMenuToHelpSegueVC"
 let SIDEMENU_TO_HOME_SEGUE_VC                           = "sideMenuToHomeSegueVC"
 let CHANGE_PASS_SEGUE_VC                                = "changePasswordSegueVC"
 let PASSEORD_RECOVERY_1_SEGUE_VC                        = "passwordRecovery1SegueVC"
+let HOME_TO_FILTER_CATEGORY_LIST_SEGUE_VC               = "homeToFilterCategoryListSegueVC"
 
 
 /* ---------- STORYBOARD IDs -------------------- */
@@ -34,6 +35,13 @@ let TERMS_PRIVACY_STORYBOARD_ID                         = "termsPrivacyStoryboar
 let SIDE_MENU_OPTIONS_CUSTOM_CELL                       = "sideMenuOptionCustomCell"
 let SIDE_MENU_SPACING_CUSTOM_CELL                       = "sideMenuSpacingCustomCell"
 let SIDE_MENU_PROFILE_CUSTOM_CELL                       = "sideMenuProfileCustomCell"
+let FILTER_CATEGORY_LIST_OPTION_CUSTOM_CELL             = "filterCategoryOptionCustomCell"
+let FILTER_CATEGORY_LIST_SPACING_CUSTOM_CELL            = "filterCategoryPlainSpaceCustomCell"
+
+
+/* -------- STATIC ARRAYS / DATA ---------------- */
+
+let FilterCategoryArray = ["Satellite","Layer","Year : Date","Level", "Color Scheme"]
 
 
 

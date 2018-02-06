@@ -70,7 +70,7 @@ class EMainViewController: EBaseViewController, ActiveLabelDelegate {
         }
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController =
-            storyBoard.instantiateViewController(withIdentifier: "filterScreenStoryboardID") as! ETermsPrivacyConmonViewController
+            storyBoard.instantiateViewController(withIdentifier: TERMS_PRIVACY_STORYBOARD_ID) as! ETermsPrivacyConmonViewController
         nextViewController.indicatorVariable = variableToSend
         self.present(nextViewController, animated:true, completion:nil)
     }

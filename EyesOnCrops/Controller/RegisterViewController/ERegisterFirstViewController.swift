@@ -51,14 +51,16 @@ class ERegisterFirstViewController: EBaseViewController, UIPickerViewDataSource,
         else if textField == self.textFieldMiddleName {
            textFieldLastName.becomeFirstResponder()
         }
+        else if textField == self.textFieldLastName {
+            textFieldDOB.becomeFirstResponder()
+        }
         else {
-          textFieldLastName.resignFirstResponder()
+          textField.resignFirstResponder()
         }
     }
-
     //MARK: Private Methods
     func customiseUI() {
-        self.pickerView.isHidden = true
+         self.pickerView.reloadAllComponents()
         self.navigationController?.isNavigationBarHidden = false
     }
     func getFirstName() -> String {
@@ -105,10 +107,9 @@ class ERegisterFirstViewController: EBaseViewController, UIPickerViewDataSource,
             self.performSegue(withIdentifier: REGISTER_1_TO_2_SEGUE_VC, sender: nil)
         }
         else{
-            self.alertMessage(title: "ALERT", message: "Mandatory fields cannot be empty!")
+            self.alertMessage(title: "ALERT", message: "Required fields cannot be empty!")
         }
     }
-    
     func addToolBar() {
         let numberToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
         numberToolbar.barStyle = UIBarStyle.default
@@ -155,7 +156,7 @@ class ERegisterFirstViewController: EBaseViewController, UIPickerViewDataSource,
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         guard yearArray.count != 0  else { return nil }
-        return String(describing: yearArray.object(at: row))
+        return yearArray[row] as? String
     }
     //MARK: UIPickerView Delegate
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

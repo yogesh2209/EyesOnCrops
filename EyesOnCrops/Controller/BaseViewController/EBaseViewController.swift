@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import PopupDialog
 import SideMenu
+import PKHUD
 
 class EBaseViewController: UIViewController {
 
@@ -39,5 +40,15 @@ class EBaseViewController: UIViewController {
         let popup = PopupDialog(title: title, message: message)
         // Present dialog
         self.present(popup, animated: true, completion: nil)
+    }
+    func setupProgressBar() {
+        HUD.dimsBackground = false
+        HUD.allowsInteraction = false
+    }
+    func showAnimatedProgressBar(title: String, subTitle: String) {
+        HUD.show(.labeledProgress(title: title, subtitle: subTitle))
+    }
+    func hideAnimatedProgressBar() {
+        HUD.hide(animated: true)
     }
 }

@@ -23,6 +23,8 @@ pod 'PopupDialog', '~> 0.6'
 pod 'CorePlot', :git => 'https://github.com/core-plot/core-plot.git', :branch => 'release-2.0'
 pod 'WhirlyGlobe', '2.4'
 pod 'WhirlyGlobeResources'
+pod 'Google-Mobile-Ads-SDK'
+
 
 
   # Pods for EyesOnCrops

@@ -51,6 +51,9 @@
 		58AE77131FD4C957002CAADC /* ERegisterSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77121FD4C957002CAADC /* ERegisterSecondViewController.swift */; };
 		58AE77151FD4C973002CAADC /* ERegisterThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77141FD4C973002CAADC /* ERegisterThreeViewController.swift */; };
 		58AE77171FD4C97E002CAADC /* ERegisterFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77161FD4C97E002CAADC /* ERegisterFourthViewController.swift */; };
+		58BBB6522028D368005F9E5A /* EFilterCategoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */; };
+		58BBB6562028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */; };
+		58BBB6582028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6572028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift */; };
 		58DA1D7A1FD5EBBC00C3DA3B /* EConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D791FD5EBBC00C3DA3B /* EConstant.swift */; };
 		58DA1D7C1FD5F18900C3DA3B /* ECustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D7B1FD5F18900C3DA3B /* ECustomTextField.swift */; };
 		58DA1D7E1FD5F19C00C3DA3B /* ECustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D7D1FD5F19C00C3DA3B /* ECustomView.swift */; };
@@ -135,6 +138,9 @@
 		58AE77121FD4C957002CAADC /* ERegisterSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterSecondViewController.swift; sourceTree = "<group>"; };
 		58AE77141FD4C973002CAADC /* ERegisterThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterThreeViewController.swift; sourceTree = "<group>"; };
 		58AE77161FD4C97E002CAADC /* ERegisterFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterFourthViewController.swift; sourceTree = "<group>"; };
+		58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoriesListViewController.swift; sourceTree = "<group>"; };
+		58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryListOptionTableViewCell.swift; sourceTree = "<group>"; };
+		58BBB6572028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryListPlainSpaceTableViewCell.swift; sourceTree = "<group>"; };
 		58DA1D791FD5EBBC00C3DA3B /* EConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EConstant.swift; sourceTree = "<group>"; };
 		58DA1D7B1FD5F18900C3DA3B /* ECustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECustomTextField.swift; sourceTree = "<group>"; };
 		58DA1D7D1FD5F19C00C3DA3B /* ECustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECustomView.swift; sourceTree = "<group>"; };
@@ -312,6 +318,7 @@
 		58AE76D11FD4A5A1002CAADC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				58BBB6502028D307005F9E5A /* FilterViewController */,
 				58E635DF20080F30008B5069 /* PasswordRecoveryController */,
 				5821B9552006B675001D9D82 /* MiscController */,
 				5852557E1FE7C37B00D509F3 /* SideMenuController */,
@@ -367,6 +374,7 @@
 		58AE76D71FD4A5A1002CAADC /* TableVieCells */ = {
 			isa = PBXGroup;
 			children = (
+				58BBB6532028D37A005F9E5A /* FilterCells */,
 				583EB47E1FEAFF0E003CEC57 /* SideMenuCells */,
 			);
 			path = TableVieCells;
@@ -507,6 +515,31 @@
 				58AE77101FD4C6B7002CAADC /* ELoginEmailViewController.swift */,
 			);
 			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		58BBB6502028D307005F9E5A /* FilterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */,
+			);
+			path = FilterViewController;
+			sourceTree = "<group>";
+		};
+		58BBB6532028D37A005F9E5A /* FilterCells */ = {
+			isa = PBXGroup;
+			children = (
+				58BBB6542028D3D3005F9E5A /* CategoryListCells */,
+			);
+			path = FilterCells;
+			sourceTree = "<group>";
+		};
+		58BBB6542028D3D3005F9E5A /* CategoryListCells */ = {
+			isa = PBXGroup;
+			children = (
+				58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */,
+				58BBB6572028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift */,
+			);
+			path = CategoryListCells;
 			sourceTree = "<group>";
 		};
 		58DA1D7F1FD5FF2300C3DA3B /* HomeViewController */ = {
@@ -1337,6 +1370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				583EB4821FEAFF37003CEC57 /* ESideMenuSpacingTableViewCell.swift in Sources */,
+				58BBB6522028D368005F9E5A /* EFilterCategoriesListViewController.swift in Sources */,
 				58DA1D7C1FD5F18900C3DA3B /* ECustomTextField.swift in Sources */,
 				583EB4841FEAFFCB003CEC57 /* ESideMenuProfileTableViewCell.swift in Sources */,
 				58AE77171FD4C97E002CAADC /* ERegisterFourthViewController.swift in Sources */,
@@ -1347,9 +1381,11 @@
 				58AE77131FD4C957002CAADC /* ERegisterSecondViewController.swift in Sources */,
 				58E635DB20073E81008B5069 /* ETermsPrivacyConmonViewController.swift in Sources */,
 				58E635DE20080F19008B5069 /* EChangePasswordViewController.swift in Sources */,
+				58BBB6562028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift in Sources */,
 				584C22C02009E54C0093BF8B /* EPasswordRecoveryStepThreeViewController.swift in Sources */,
 				583EB48A1FEB03FA003CEC57 /* ESideMenuViewController.swift in Sources */,
 				583EB4801FEAFF28003CEC57 /* ESideMenuOptionTableViewCell.swift in Sources */,
+				58BBB6582028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift in Sources */,
 				583EB48C1FEB0414003CEC57 /* EAboutUsViewController.swift in Sources */,
 				58AE770D1FD4C07D002CAADC /* ELoginViewController.swift in Sources */,
 				583EB48E1FEB041E003CEC57 /* EHelpViewController.swift in Sources */,

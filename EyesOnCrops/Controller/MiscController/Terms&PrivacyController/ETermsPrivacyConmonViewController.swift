@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class ETermsPrivacyConmonViewController: UIViewController {
+class ETermsPrivacyConmonViewController: EBaseViewController {
     @IBOutlet weak var webView: WKWebView!
     
     @IBOutlet weak var buttonBack: UIButton!
@@ -27,6 +27,7 @@ class ETermsPrivacyConmonViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setup()
+        setupFirebaseAnalytics(title: "ETermsPrivacyConmonViewController")
     }
     
     //MARK: Private Methods

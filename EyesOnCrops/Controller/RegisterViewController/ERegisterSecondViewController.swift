@@ -70,12 +70,33 @@ class ERegisterSecondViewController: EBaseViewController, UITextFieldDelegate {
     }
     func nextButtonAction() {
         if getEmail().count != 0 && getPhone().count != 0 && getFirstName.count != 0 && getLastName.count != 0 && getDOB.count != 0 {
-            //Take him to next screen and pass data to next screen
-            self.performSegue(withIdentifier: REGISTER_2_TO_3_SEGUE_VC, sender: nil)
+            if isValidEmail(testStr: getEmail()) == true {
+                if isValidPhone(value: getPhone()) == true {
+                    //Take him to next screen and pass data to next screen
+                    self.performSegue(withIdentifier: REGISTER_2_TO_3_SEGUE_VC, sender: nil)
+                }
+                else {
+                    self.alertMessage(title: "ALERT", message: "Please enter a valid phone!")
+                }
+            }
+            else {
+                 self.alertMessage(title: "ALERT", message: "Please enter a valid email!")
+            }
         }
         else{
-            self.alertMessage(title: "ALERT", message: "Mandatory fields cannot be empty!")
+            self.alertMessage(title: "ALERT", message: "Email and Phone cannot be empty!")
         }
+    }
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
+    func isValidPhone(value: String) -> Bool {
+        let PHONE_REGEX = "^\\d{3}\\d{3}\\d{4}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        let result =  phoneTest.evaluate(with: value)
+        return result
     }
     
     //MARK: UIButton Actions
