@@ -1,19 +1,17 @@
 //
-//  EFilterCategoriesListViewController.swift
+//  EFilterLevelListViewController.swift
 //  EyesOnCrops
 //
-//  Created by Yogesh Kohli on 2/5/18.
+//  Created by Yogesh Kohli on 2/7/18.
 //  Copyright © 2018 Yogesh Kohli. All rights reserved.
 //
 
 import UIKit
 
-class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataSource, UITableViewDelegate {
+class EFilterLevelListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var barButtonApply: UIBarButtonItem!
-    @IBOutlet weak var barButtonReset: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         customiseUI()
@@ -25,43 +23,45 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        setupFirebaseAnalytics(title: "EFilterCategoriesListViewController")
-        self.tableView.reloadData()
+        reloadTableView()
     }
     //MARK: Private Methods
-    func  customiseUI() {
+    func customiseUI() {
         tableView.separatorColor = UIColor.clear
         tableView.tableFooterView = UIView()
     }
-    
-    //MARK: UIButton Actions
-    @IBAction func barButtonResetPressed(_ sender: Any) {
+    func reloadTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
+    //MARK: UIButton Actions
     @IBAction func barButtonApplyPressed(_ sender: Any) {
     }
-    
     //MARK: UITableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(FilterCategoryArray.count)
-        return 2*FilterCategoryArray.count
+        return 2*LevelListArray.count+1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //LEVEL LIST OPTIONS HERE
         if indexPath.row % 2 != 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_CATEGORY_LIST_OPTION_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterCategoryListOptionTableViewCell
-           cell.labelOption.text = FilterCategoryArray[indexPath.row/2]
-           
+            let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_LEVEL_LIST_OPTION_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterLevelListOptionTableViewCell
+            cell.labelOption.text = FilterCategoryArray[indexPath.row/2]
             return cell
         }
+        //SPACING CELL HERE
         else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_CATEGORY_LIST_SPACING_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterCategoryListPlainSpaceTableViewCell
-           
+            let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_LEVEL_LIST_PLAIN_SPACE_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterLevelListPlainSpaceTableViewCell
+            cell.backgroundColor = UIColor.init(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 1.0)
             return cell
         }
     }
-    //UITableView Delegate
+    //MARK: UITableView Delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row % 2 != 0 {
-            return 65.0
+            return 44.0
         }
         else {
             return 12.0

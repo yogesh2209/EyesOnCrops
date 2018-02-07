@@ -16,7 +16,7 @@ import FacebookLogin
 import FacebookCore
 import FBSDKLoginKit
 import FBSDKCoreKit
-
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -34,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         //Enabling Google Sign-in
         GIDSignIn.sharedInstance().clientID = "561223289942-ilnt3lp4ugh4gju691upofeiuo8qhraq.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
+        
+        // Initialize the Google Mobile Ads SDK.
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-8984057949233397~6318253117")
+        
         return true
     }
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {

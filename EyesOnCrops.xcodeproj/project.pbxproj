@@ -26,6 +26,10 @@
 		585D94541FD49C7A00F076A4 /* EyesOnCropsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585D94531FD49C7A00F076A4 /* EyesOnCropsTests.swift */; };
 		585D945F1FD49C7B00F076A4 /* EyesOnCropsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585D945E1FD49C7B00F076A4 /* EyesOnCropsUITests.swift */; };
 		588826181FE7AE06001A9C3F /* EBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588826171FE7AE06001A9C3F /* EBaseViewController.swift */; };
+		589AD410202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AD40F202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift */; };
+		589AD414202B911700C300D4 /* EFilterLevelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AD413202B911700C300D4 /* EFilterLevelListViewController.swift */; };
+		589AD417202B944800C300D4 /* EFilterLevelListOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AD416202B944800C300D4 /* EFilterLevelListOptionTableViewCell.swift */; };
+		589AD419202B945500C300D4 /* EFilterLevelListPlainSpaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AD418202B945500C300D4 /* EFilterLevelListPlainSpaceTableViewCell.swift */; };
 		58AE76F41FD4BABF002CAADC /* Brown-Bold-Alt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76E21FD4BABB002CAADC /* Brown-Bold-Alt.otf */; };
 		58AE76F51FD4BABF002CAADC /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76E31FD4BABB002CAADC /* OpenSans-ExtraBold.ttf */; };
 		58AE76F61FD4BABF002CAADC /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58AE76E41FD4BABB002CAADC /* OpenSans-ExtraBoldItalic.ttf */; };
@@ -113,6 +117,10 @@
 		585D945E1FD49C7B00F076A4 /* EyesOnCropsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyesOnCropsUITests.swift; sourceTree = "<group>"; };
 		585D94601FD49C7B00F076A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		588826171FE7AE06001A9C3F /* EBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBaseViewController.swift; sourceTree = "<group>"; };
+		589AD40F202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategorySatelliteTypeTableViewCell.swift; sourceTree = "<group>"; };
+		589AD413202B911700C300D4 /* EFilterLevelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterLevelListViewController.swift; sourceTree = "<group>"; };
+		589AD416202B944800C300D4 /* EFilterLevelListOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterLevelListOptionTableViewCell.swift; sourceTree = "<group>"; };
+		589AD418202B945500C300D4 /* EFilterLevelListPlainSpaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterLevelListPlainSpaceTableViewCell.swift; sourceTree = "<group>"; };
 		58AE76E21FD4BABB002CAADC /* Brown-Bold-Alt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Bold-Alt.otf"; sourceTree = "<group>"; };
 		58AE76E31FD4BABB002CAADC /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		58AE76E41FD4BABB002CAADC /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -313,6 +321,31 @@
 				585D94601FD49C7B00F076A4 /* Info.plist */,
 			);
 			path = EyesOnCropsUITests;
+			sourceTree = "<group>";
+		};
+		589AD411202B90FA00C300D4 /* LevelController */ = {
+			isa = PBXGroup;
+			children = (
+				589AD413202B911700C300D4 /* EFilterLevelListViewController.swift */,
+			);
+			path = LevelController;
+			sourceTree = "<group>";
+		};
+		589AD412202B90FA00C300D4 /* CategoryListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */,
+			);
+			path = CategoryListViewController;
+			sourceTree = "<group>";
+		};
+		589AD415202B942500C300D4 /* LevelListCells */ = {
+			isa = PBXGroup;
+			children = (
+				589AD416202B944800C300D4 /* EFilterLevelListOptionTableViewCell.swift */,
+				589AD418202B945500C300D4 /* EFilterLevelListPlainSpaceTableViewCell.swift */,
+			);
+			path = LevelListCells;
 			sourceTree = "<group>";
 		};
 		58AE76D11FD4A5A1002CAADC /* Controller */ = {
@@ -520,7 +553,8 @@
 		58BBB6502028D307005F9E5A /* FilterViewController */ = {
 			isa = PBXGroup;
 			children = (
-				58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */,
+				589AD412202B90FA00C300D4 /* CategoryListViewController */,
+				589AD411202B90FA00C300D4 /* LevelController */,
 			);
 			path = FilterViewController;
 			sourceTree = "<group>";
@@ -528,6 +562,7 @@
 		58BBB6532028D37A005F9E5A /* FilterCells */ = {
 			isa = PBXGroup;
 			children = (
+				589AD415202B942500C300D4 /* LevelListCells */,
 				58BBB6542028D3D3005F9E5A /* CategoryListCells */,
 			);
 			path = FilterCells;
@@ -538,6 +573,7 @@
 			children = (
 				58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */,
 				58BBB6572028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift */,
+				589AD40F202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift */,
 			);
 			path = CategoryListCells;
 			sourceTree = "<group>";
@@ -1371,6 +1407,7 @@
 			files = (
 				583EB4821FEAFF37003CEC57 /* ESideMenuSpacingTableViewCell.swift in Sources */,
 				58BBB6522028D368005F9E5A /* EFilterCategoriesListViewController.swift in Sources */,
+				589AD419202B945500C300D4 /* EFilterLevelListPlainSpaceTableViewCell.swift in Sources */,
 				58DA1D7C1FD5F18900C3DA3B /* ECustomTextField.swift in Sources */,
 				583EB4841FEAFFCB003CEC57 /* ESideMenuProfileTableViewCell.swift in Sources */,
 				58AE77171FD4C97E002CAADC /* ERegisterFourthViewController.swift in Sources */,
@@ -1392,12 +1429,15 @@
 				585D943C1FD49C7A00F076A4 /* AppDelegate.swift in Sources */,
 				58AE770F1FD4C091002CAADC /* ERegisterFirstViewController.swift in Sources */,
 				58AE77151FD4C973002CAADC /* ERegisterThreeViewController.swift in Sources */,
+				589AD410202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift in Sources */,
 				58E635E120081307008B5069 /* EPasswordRecoveryStepOneViewController.swift in Sources */,
 				58DA1D811FD5FF2F00C3DA3B /* EHomeViewController.swift in Sources */,
 				5821B9572006B683001D9D82 /* EMiscGlobeViewController.swift in Sources */,
+				589AD414202B911700C300D4 /* EFilterLevelListViewController.swift in Sources */,
 				58AE77111FD4C6B7002CAADC /* ELoginEmailViewController.swift in Sources */,
 				58E635E320081315008B5069 /* EPasswordRecoveryStepTwoViewController.swift in Sources */,
 				58DA1D7E1FD5F19C00C3DA3B /* ECustomView.swift in Sources */,
+				589AD417202B944800C300D4 /* EFilterLevelListOptionTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

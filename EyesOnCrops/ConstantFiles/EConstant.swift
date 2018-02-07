@@ -25,7 +25,7 @@ let SIDEMENU_TO_HOME_SEGUE_VC                           = "sideMenuToHomeSegueVC
 let CHANGE_PASS_SEGUE_VC                                = "changePasswordSegueVC"
 let PASSEORD_RECOVERY_1_SEGUE_VC                        = "passwordRecovery1SegueVC"
 let HOME_TO_FILTER_CATEGORY_LIST_SEGUE_VC               = "homeToFilterCategoryListSegueVC"
-
+let CATEGORY_LIST_TO_LEVEL_LIST_SEGUE_VC                = "categoryListToLevelListSegueVC"
 
 /* ---------- STORYBOARD IDs -------------------- */
 let TERMS_PRIVACY_STORYBOARD_ID                         = "termsPrivacyStoryboardId"
@@ -37,11 +37,24 @@ let SIDE_MENU_SPACING_CUSTOM_CELL                       = "sideMenuSpacingCustom
 let SIDE_MENU_PROFILE_CUSTOM_CELL                       = "sideMenuProfileCustomCell"
 let FILTER_CATEGORY_LIST_OPTION_CUSTOM_CELL             = "filterCategoryOptionCustomCell"
 let FILTER_CATEGORY_LIST_SPACING_CUSTOM_CELL            = "filterCategoryPlainSpaceCustomCell"
+let FILTER_CATEGORY_SATELLITE_TYPE_CUSTOM_CELL          = "filterCategorySatelliteTypeCustomCell"
+let FILTER_LEVEL_LIST_OPTION_CUSTOM_CELL                = "levelListOptionCustomCell"
+let FILTER_LEVEL_LIST_PLAIN_SPACE_CUSTOM_CELL           = "levelListPlainSpaceCustomCell"
+
+
+
+
+
+
+
+
+
 
 
 /* -------- STATIC ARRAYS / DATA ---------------- */
 
-let FilterCategoryArray = ["Satellite","Layer","Year : Date","Level", "Color Scheme"]
+let FilterCategoryArray = ["Layer","Year : Date","Level", "Color Scheme"]
+let LevelListArray = ["Admin Level 0","Admin Level 1","250 metre resolution"]
 
 
 
