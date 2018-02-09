@@ -12,6 +12,9 @@ class EFilterLevelListViewController: UIViewController, UITableViewDataSource, U
     
     @IBOutlet weak var barButtonApply: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
+    
+    var lastSelected : IndexPath? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         customiseUI()
@@ -46,7 +49,7 @@ class EFilterLevelListViewController: UIViewController, UITableViewDataSource, U
         //LEVEL LIST OPTIONS HERE
         if indexPath.row % 2 != 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_LEVEL_LIST_OPTION_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterLevelListOptionTableViewCell
-            cell.labelOption.text = FilterCategoryArray[indexPath.row/2]
+            cell.labelOption.text = LevelListArray[indexPath.row/2]
             return cell
         }
         //SPACING CELL HERE
@@ -58,6 +61,28 @@ class EFilterLevelListViewController: UIViewController, UITableViewDataSource, U
     }
     //MARK: UITableView Delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row % 2 != 0 {
+            if let lastSelected = lastSelected {
+                print(lastSelected)
+                let cell = self.tableView.cellForRow(at: lastSelected) as! EFilterLevelListOptionTableViewCell
+                DispatchQueue.main.async {
+                    cell.imageViewCheckMark.isHidden = true
+                }
+                let cell1 = self.tableView.cellForRow(at: indexPath) as! EFilterLevelListOptionTableViewCell
+                DispatchQueue.main.async {
+                    cell1.imageViewCheckMark.isHidden = false
+                    cell1.imageViewCheckMark.image = UIImage.init(named: "tick.png")
+                }
+            }
+            else{
+                let cell = self.tableView.cellForRow(at: indexPath) as! EFilterLevelListOptionTableViewCell
+                DispatchQueue.main.async {
+                    cell.imageViewCheckMark.isHidden = false
+                    cell.imageViewCheckMark.image = UIImage.init(named: "tick.png")
+                }
+            }
+             lastSelected = indexPath
+        }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row % 2 != 0 {
