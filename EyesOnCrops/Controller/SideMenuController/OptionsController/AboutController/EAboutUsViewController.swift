@@ -9,7 +9,7 @@
 import UIKit
 
 
-class EAboutUsViewController: UIViewController {
+class EAboutUsViewController: EBaseViewController {
 
     @IBOutlet weak var textViewAboutUs: UITextView!
     override func viewDidLoad() {
@@ -22,6 +22,12 @@ class EAboutUsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupFirebaseAnalytics(title: "EAboutUsViewController")
+    }
+    
     
     //MARK: PrivateMethods
     func setTextView() {

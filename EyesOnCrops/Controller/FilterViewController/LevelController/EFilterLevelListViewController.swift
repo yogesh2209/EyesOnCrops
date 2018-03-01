@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EFilterLevelListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class EFilterLevelListViewController: EBaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var barButtonApply: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -26,6 +26,7 @@ class EFilterLevelListViewController: UIViewController, UITableViewDataSource, U
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        setupFirebaseAnalytics(title: "EFilterLevelListViewController")
         reloadTableView()
     }
     //MARK: Private Methods

@@ -37,7 +37,9 @@ class ESideMenuViewController: EBaseViewController, UITableViewDataSource, UITab
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        setupFirebaseAnalytics(title: "ESideMenuViewController")
         self.tableView.reloadData()
+        
     }
     //Getting data from NSUserDefaults
     func getStoredData() -> [String : Any]? {

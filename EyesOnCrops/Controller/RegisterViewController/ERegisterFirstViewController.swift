@@ -43,21 +43,21 @@ class ERegisterFirstViewController: EBaseViewController, UIPickerViewDataSource,
         self.view.endEditing(true)
     }
     
-    //MARK: UITextfield Delegate
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == self.textFieldFirstName {
-          textFieldMiddleName.becomeFirstResponder()
-        }
-        else if textField == self.textFieldMiddleName {
-           textFieldLastName.becomeFirstResponder()
-        }
-        else if textField == self.textFieldLastName {
-            textFieldDOB.becomeFirstResponder()
-        }
-        else {
-          textField.resignFirstResponder()
-        }
-    }
+//    //MARK: UITextfield Delegate
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        if textField == self.textFieldFirstName {
+//          textFieldMiddleName.becomeFirstResponder()
+//        }
+//        else if textField == self.textFieldMiddleName {
+//           textFieldLastName.becomeFirstResponder()
+//        }
+//        else if textField == self.textFieldLastName {
+//            textFieldDOB.becomeFirstResponder()
+//        }
+//        else {
+//          textField.resignFirstResponder()
+//        }
+//    }
     //MARK: Private Methods
     func customiseUI() {
          self.pickerView.reloadAllComponents()

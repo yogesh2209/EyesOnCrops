@@ -15,8 +15,6 @@ class EMainViewController: EBaseViewController, ActiveLabelDelegate {
     @IBOutlet weak var buttonRegister: UIButton!
     @IBOutlet weak var buttonLogin: UIButton!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         customiseUI()
@@ -59,7 +57,6 @@ class EMainViewController: EBaseViewController, ActiveLabelDelegate {
         print(text)
         print(type)
         var variableToSend = ""
-        
         if text == "TermsOfUse" {
             //Take him to terms of use screen
             variableToSend = "TERMS"

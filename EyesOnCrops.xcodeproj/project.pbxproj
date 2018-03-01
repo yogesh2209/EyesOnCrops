@@ -18,6 +18,7 @@
 		583EB48E1FEB041E003CEC57 /* EHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583EB48D1FEB041E003CEC57 /* EHelpViewController.swift */; };
 		584A0F581FE7B6E700CC2AF4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 584A0F571FE7B6E700CC2AF4 /* GoogleService-Info.plist */; };
 		584C22C02009E54C0093BF8B /* EPasswordRecoveryStepThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C22BF2009E54C0093BF8B /* EPasswordRecoveryStepThreeViewController.swift */; };
+		5853E7982047C4FD00FF611F /* ECustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5853E7972047C4FD00FF611F /* ECustomTextView.swift */; };
 		585D943C1FD49C7A00F076A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585D943B1FD49C7A00F076A4 /* AppDelegate.swift */; };
 		585D94411FD49C7A00F076A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 585D943F1FD49C7A00F076A4 /* Main.storyboard */; };
 		585D94441FD49C7A00F076A4 /* EyesOnCrops.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 585D94421FD49C7A00F076A4 /* EyesOnCrops.xcdatamodeld */; };
@@ -103,6 +104,7 @@
 		583EB48D1FEB041E003CEC57 /* EHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EHelpViewController.swift; sourceTree = "<group>"; };
 		584A0F571FE7B6E700CC2AF4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		584C22BF2009E54C0093BF8B /* EPasswordRecoveryStepThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPasswordRecoveryStepThreeViewController.swift; sourceTree = "<group>"; };
+		5853E7972047C4FD00FF611F /* ECustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECustomTextView.swift; sourceTree = "<group>"; };
 		585D94381FD49C7A00F076A4 /* EyesOnCrops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EyesOnCrops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		585D943B1FD49C7A00F076A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		585D94401FD49C7A00F076A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -262,6 +264,14 @@
 				583EB4851FEB03FA003CEC57 /* SideMenu */,
 			);
 			path = SideMenuController;
+			sourceTree = "<group>";
+		};
+		5853E7932047BEA100FF611F /* TextViewClasses */ = {
+			isa = PBXGroup;
+			children = (
+				5853E7972047C4FD00FF611F /* ECustomTextView.swift */,
+			);
+			path = TextViewClasses;
 			sourceTree = "<group>";
 		};
 		585D942F1FD49C7A00F076A4 = {
@@ -443,6 +453,7 @@
 		58AE76DB1FD4A5A1002CAADC /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
+				5853E7932047BEA100FF611F /* TextViewClasses */,
 				58AE76DC1FD4A5A1002CAADC /* TextFieldClasses */,
 				58AE76DD1FD4A5A1002CAADC /* ButtonClasses */,
 				58AE76DE1FD4A5A1002CAADC /* LabelClasses */,
@@ -1423,6 +1434,7 @@
 				583EB48A1FEB03FA003CEC57 /* ESideMenuViewController.swift in Sources */,
 				583EB4801FEAFF28003CEC57 /* ESideMenuOptionTableViewCell.swift in Sources */,
 				58BBB6582028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift in Sources */,
+				5853E7982047C4FD00FF611F /* ECustomTextView.swift in Sources */,
 				583EB48C1FEB0414003CEC57 /* EAboutUsViewController.swift in Sources */,
 				58AE770D1FD4C07D002CAADC /* ELoginViewController.swift in Sources */,
 				583EB48E1FEB041E003CEC57 /* EHelpViewController.swift in Sources */,
