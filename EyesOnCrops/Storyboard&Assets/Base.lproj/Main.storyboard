@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -536,7 +535,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghh-8f-roe" customClass="ECustomView" customModule="EyesOnCrops" customModuleProvider="target">
-                                <rect key="frame" x="16" y="88" width="343" height="48"/>
+                                <rect key="frame" x="16" y="132" width="343" height="48"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rnI-hw-a3j" customClass="ECustomTextField" customModule="EyesOnCrops" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="327" height="48"/>
@@ -556,7 +555,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter New Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mP8-2Z-CXW">
-                                <rect key="frame" x="16" y="36" width="343" height="40"/>
+                                <rect key="frame" x="16" y="80" width="343" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="uJ8-bt-2QR"/>
                                 </constraints>
@@ -565,7 +564,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wlu-i9-6Vr" customClass="ECustomView" customModule="EyesOnCrops" customModuleProvider="target">
-                                <rect key="frame" x="16" y="148" width="343" height="48"/>
+                                <rect key="frame" x="16" y="192" width="343" height="48"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0fw-O0-LpM" customClass="ECustomTextField" customModule="EyesOnCrops" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="327" height="48"/>
@@ -1752,12 +1751,115 @@
                         <outlet property="buttonNext" destination="nKB-NQ-bS4" id="Q2S-7y-PLF"/>
                         <outlet property="buttonPickupCurrentLocation" destination="W3X-aG-BF8" id="mjr-Nu-Uau"/>
                         <outlet property="textViewLocation" destination="2aP-ng-wgC" id="C8E-oM-gY0"/>
-                        <segue destination="GdT-cp-Za4" kind="show" identifier="register3To4SegueVC" id="SdP-8i-Tzj"/>
+                        <segue destination="euF-Yg-uzB" kind="show" identifier="registerThreeToPswdSetupSegueVC" id="du0-4K-3Kf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qMy-Nh-1bE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2765.5999999999999" y="931.48425787106453"/>
+            <point key="canvasLocation" x="2966" y="931"/>
+        </scene>
+        <!--Register Password Setup View Controller-->
+        <scene sceneID="Xdw-3q-Cf7">
+            <objects>
+                <viewController id="euF-Yg-uzB" customClass="ERegisterPasswordSetupViewController" customModule="EyesOnCrops" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QCl-tw-ZxM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alE-bV-y20">
+                                <rect key="frame" x="0.0" y="611" width="375" height="56"/>
+                                <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="PZc-xl-zCN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="22"/>
+                                <state key="normal" title="NEXT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonNextPressed:" destination="euF-Yg-uzB" eventType="touchUpInside" id="Hhe-ql-U9e"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setup Credentials" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8D-YF-xBs">
+                                <rect key="frame" x="16" y="80" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="OgV-qp-YA4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Brown-RegularAlt" family="Brown" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntC-QQ-RQO" customClass="ECustomView" customModule="EyesOnCrops" customModuleProvider="target">
+                                <rect key="frame" x="16" y="132" width="343" height="48"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SlV-pi-dl3" customClass="ECustomTextField" customModule="EyesOnCrops" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="0.0" width="327" height="48"/>
+                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" secureTextEntry="YES"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="SlV-pi-dl3" secondAttribute="trailing" id="EOK-v4-owN"/>
+                                    <constraint firstAttribute="height" constant="48" id="Ov6-Hv-zgA"/>
+                                    <constraint firstItem="SlV-pi-dl3" firstAttribute="top" secondItem="ntC-QQ-RQO" secondAttribute="top" id="hlb-jU-Fx0"/>
+                                    <constraint firstAttribute="bottom" secondItem="SlV-pi-dl3" secondAttribute="bottom" id="l3X-zs-1cm"/>
+                                    <constraint firstItem="SlV-pi-dl3" firstAttribute="leading" secondItem="ntC-QQ-RQO" secondAttribute="leading" constant="16" id="uwn-aD-eor"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dlt-u2-W4t" customClass="ECustomView" customModule="EyesOnCrops" customModuleProvider="target">
+                                <rect key="frame" x="16" y="192" width="343" height="48"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Osk-Jg-Tfv" customClass="ECustomTextField" customModule="EyesOnCrops" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="0.0" width="327" height="48"/>
+                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" secureTextEntry="YES"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Osk-Jg-Tfv" secondAttribute="bottom" id="ERJ-V4-JlA"/>
+                                    <constraint firstAttribute="trailing" secondItem="Osk-Jg-Tfv" secondAttribute="trailing" id="GuX-h7-eYt"/>
+                                    <constraint firstItem="Osk-Jg-Tfv" firstAttribute="leading" secondItem="Dlt-u2-W4t" secondAttribute="leading" constant="16" id="N21-FM-6qY"/>
+                                    <constraint firstAttribute="height" constant="48" id="XTh-BJ-qCm"/>
+                                    <constraint firstItem="Osk-Jg-Tfv" firstAttribute="top" secondItem="Dlt-u2-W4t" secondAttribute="top" id="tDl-RA-SZD"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lPv-WC-8Cw" firstAttribute="trailing" secondItem="ntC-QQ-RQO" secondAttribute="trailing" constant="16" id="2pc-Q3-u6Z"/>
+                            <constraint firstItem="Dlt-u2-W4t" firstAttribute="top" secondItem="ntC-QQ-RQO" secondAttribute="bottom" constant="12" id="HSE-5a-f53"/>
+                            <constraint firstItem="lPv-WC-8Cw" firstAttribute="trailing" secondItem="Dlt-u2-W4t" secondAttribute="trailing" constant="16" id="JHB-w6-EY5"/>
+                            <constraint firstItem="M8D-YF-xBs" firstAttribute="leading" secondItem="lPv-WC-8Cw" secondAttribute="leading" constant="16" id="OIH-bX-kZJ"/>
+                            <constraint firstItem="alE-bV-y20" firstAttribute="trailing" secondItem="lPv-WC-8Cw" secondAttribute="trailing" id="PAm-IM-SOM"/>
+                            <constraint firstItem="alE-bV-y20" firstAttribute="bottom" secondItem="lPv-WC-8Cw" secondAttribute="bottom" id="Qge-VO-u7D"/>
+                            <constraint firstItem="alE-bV-y20" firstAttribute="leading" secondItem="lPv-WC-8Cw" secondAttribute="leading" id="Uwh-so-97I"/>
+                            <constraint firstItem="ntC-QQ-RQO" firstAttribute="top" secondItem="M8D-YF-xBs" secondAttribute="bottom" constant="12" id="VrR-zt-KmW"/>
+                            <constraint firstItem="ntC-QQ-RQO" firstAttribute="leading" secondItem="lPv-WC-8Cw" secondAttribute="leading" constant="16" id="XPp-JH-Kkz"/>
+                            <constraint firstItem="lPv-WC-8Cw" firstAttribute="trailing" secondItem="M8D-YF-xBs" secondAttribute="trailing" constant="16" id="fbd-2i-UeE"/>
+                            <constraint firstItem="M8D-YF-xBs" firstAttribute="top" secondItem="lPv-WC-8Cw" secondAttribute="top" constant="16" id="oXj-gC-RKi"/>
+                            <constraint firstItem="Dlt-u2-W4t" firstAttribute="leading" secondItem="lPv-WC-8Cw" secondAttribute="leading" constant="16" id="sBX-Gd-Pt7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lPv-WC-8Cw"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonNext" destination="alE-bV-y20" id="3DS-6r-6s3"/>
+                        <outlet property="textFieldConfirmPassword" destination="Osk-Jg-Tfv" id="hFP-ve-k6z"/>
+                        <outlet property="textFieldPassword" destination="SlV-pi-dl3" id="dOL-Tz-ocC"/>
+                        <outlet property="viewConfirmPassword" destination="Dlt-u2-W4t" id="cmO-j9-9yM"/>
+                        <outlet property="viewPassword" destination="ntC-QQ-RQO" id="ucU-ne-4s2"/>
+                        <segue destination="GdT-cp-Za4" kind="show" identifier="pswdSetupToRegisterFourSegueVC" id="gAA-bn-F2i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mi9-Gk-bIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3924" y="932"/>
         </scene>
         <!--Register Fourth View Controller-->
         <scene sceneID="vwd-sL-DgC">
@@ -1871,7 +1973,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHm-gK-iof" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3568.8000000000002" y="930.58470764617698"/>
+            <point key="canvasLocation" x="4945" y="931"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hyp-mm-RkE">
@@ -1897,8 +1999,7 @@
         <image name="or_line" width="203" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IU4-BK-ZtQ"/>
-        <segue reference="SdP-8i-Tzj"/>
+        <segue reference="gAA-bn-F2i"/>
         <segue reference="FPz-P6-rdw"/>
         <segue reference="O9E-x9-tgg"/>
         <segue reference="4nh-qY-DYx"/>

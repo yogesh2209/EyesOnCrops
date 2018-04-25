@@ -112,7 +112,7 @@ class ERegisterThreeViewController: EBaseViewController, CLLocationManagerDelega
                     let annotation = MKPlacemark(placemark: placemarks.first!)
                     self.getLatitude = String(annotation.coordinate.latitude)
                     self.getLongitude = String(annotation.coordinate.longitude)
-                    self.performSegue(withIdentifier: REGISTER_3_TO_4_SEGUE_VC, sender: nil)
+                    self.performSegue(withIdentifier: REGISTER_3_TO_PSWD_SETUP_SEGUE_VC, sender: nil)
                 }
                 else {
                     self.alertMessage(title: ALERT_ERROR_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
@@ -185,16 +185,16 @@ class ERegisterThreeViewController: EBaseViewController, CLLocationManagerDelega
     }
     //MARK: UINavigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == REGISTER_3_TO_4_SEGUE_VC) {
+        if (segue.identifier == REGISTER_3_TO_PSWD_SETUP_SEGUE_VC) {
             // pass data to next view
-            let secondVC = segue.destination as! ERegisterFourthViewController
+            let secondVC = segue.destination as! ERegisterPasswordSetupViewController
             secondVC.getFirstName = getFirstName
             secondVC.getLastName = getLastName
             secondVC.getDOB = getDOB
             secondVC.getEmail = getEmail
             secondVC.getPhone = getPhone
-            secondVC.getLatitude = getLatitude
-            secondVC.getLongitude = getLongitude
+            secondVC.getLatitude = self.getLatitude
+            secondVC.getLongitude = self.getLongitude
             secondVC.locationString = getLocation()
             if getMiddleName.count == 0 {
                 secondVC.getMiddleName = ""

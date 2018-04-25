@@ -27,6 +27,7 @@
 		585D94541FD49C7A00F076A4 /* EyesOnCropsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585D94531FD49C7A00F076A4 /* EyesOnCropsTests.swift */; };
 		585D945F1FD49C7B00F076A4 /* EyesOnCropsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585D945E1FD49C7B00F076A4 /* EyesOnCropsUITests.swift */; };
 		588826181FE7AE06001A9C3F /* EBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588826171FE7AE06001A9C3F /* EBaseViewController.swift */; };
+		5888C213209037CD00EBC33F /* ERegisterPasswordSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5888C212209037CD00EBC33F /* ERegisterPasswordSetupViewController.swift */; };
 		589AD410202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AD40F202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift */; };
 		589AD414202B911700C300D4 /* EFilterLevelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AD413202B911700C300D4 /* EFilterLevelListViewController.swift */; };
 		589AD417202B944800C300D4 /* EFilterLevelListOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AD416202B944800C300D4 /* EFilterLevelListOptionTableViewCell.swift */; };
@@ -119,6 +120,7 @@
 		585D945E1FD49C7B00F076A4 /* EyesOnCropsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyesOnCropsUITests.swift; sourceTree = "<group>"; };
 		585D94601FD49C7B00F076A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		588826171FE7AE06001A9C3F /* EBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EBaseViewController.swift; sourceTree = "<group>"; };
+		5888C212209037CD00EBC33F /* ERegisterPasswordSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterPasswordSetupViewController.swift; sourceTree = "<group>"; };
 		589AD40F202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategorySatelliteTypeTableViewCell.swift; sourceTree = "<group>"; };
 		589AD413202B911700C300D4 /* EFilterLevelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterLevelListViewController.swift; sourceTree = "<group>"; };
 		589AD416202B944800C300D4 /* EFilterLevelListOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterLevelListOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				58AE77121FD4C957002CAADC /* ERegisterSecondViewController.swift */,
 				58AE77141FD4C973002CAADC /* ERegisterThreeViewController.swift */,
 				58AE77161FD4C97E002CAADC /* ERegisterFourthViewController.swift */,
+				5888C212209037CD00EBC33F /* ERegisterPasswordSetupViewController.swift */,
 			);
 			path = RegisterViewController;
 			sourceTree = "<group>";
@@ -1421,6 +1424,7 @@
 				583EB4821FEAFF37003CEC57 /* ESideMenuSpacingTableViewCell.swift in Sources */,
 				58BBB6522028D368005F9E5A /* EFilterCategoriesListViewController.swift in Sources */,
 				589AD419202B945500C300D4 /* EFilterLevelListPlainSpaceTableViewCell.swift in Sources */,
+				5888C213209037CD00EBC33F /* ERegisterPasswordSetupViewController.swift in Sources */,
 				58DA1D7C1FD5F18900C3DA3B /* ECustomTextField.swift in Sources */,
 				583EB4841FEAFFCB003CEC57 /* ESideMenuProfileTableViewCell.swift in Sources */,
 				58AE77171FD4C97E002CAADC /* ERegisterFourthViewController.swift in Sources */,

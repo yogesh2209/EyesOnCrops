@@ -8,6 +8,14 @@
 
 import Foundation
 
+
+
+/* URLs */
+
+let MAIN_URL                                            = "http://72.27.225.62:220/yogesh/"
+let POST_REGISTER                                       = "credentials.php"
+
+
 /* ------------ SEGUE IDENTIFIERS ---------------- */
 
 let LOGINSCREEN_SEGUE_VC                                = "mainToLoginSegueVC"
@@ -15,7 +23,8 @@ let LOGINTOEMAIL_SEGUE_VC                               = "loginToLoginEmailSegu
 let REGISTER_1_SEGUE_VC                                 = "mainToRegisterOneSegueVC"
 let REGISTER_1_TO_2_SEGUE_VC                            = "register1To2SegueVC"
 let REGISTER_2_TO_3_SEGUE_VC                            = "register2To3SegueVC"
-let REGISTER_3_TO_4_SEGUE_VC                            = "register3To4SegueVC"
+let REGISTER_3_TO_PSWD_SETUP_SEGUE_VC                   = "registerThreeToPswdSetupSegueVC"
+let REGISTER_PSWD_SETUP_TO_4_SEGUE_VC                   = "pswdSetupToRegisterFourSegueVC"
 let LOGIN_TO_HOME_SEGUE_VC                              = "loginToHomeSegueVC"
 let SOCIAL_LOGIN_TO_REG_SEGUE_VC                        = "socialLoginToRegister4thSegueVC"
 let LOGOUT_SEGUE_VC                                     = "logoutSegueVC"
@@ -65,13 +74,20 @@ let LOCATION_FAILED_GET_ERROR                           = "Failed to Get Your Lo
 let INVALID_LOCATION_ENTERED_ERROR                      = "Please enter a valid location!"
 let DISAGREE_CONDITIONS_TERMS_USE_ERROR                 = "You must agree to terms and conditions!"
 let MISSING_PURPOSE_APP_USE_ERROR                       = "Please type purpose of using the app"
+let EMPTY_PASSWORD_ERROR                                = "Password cannot be empty"
+let PSWD_CONFIRM_PSWD_NOT_MATCHED_ERROR                 = "Password does not match"
+let INVALID_PASSWORD_ERROR                              = "Please must be greater than 6 characters"
+let USER_ALREADY_REGISTERED                             = "User already exist!"
 
 
 /* -------- PLACEHOLDER STRINGS ---------------- */
+
 let LOCATION_NOT_PICKED_TEXTVIEW                        = "You haven't picked any location yet! Enter it!"
 let LOCATION_TEXTVIEW                                   = "Enter your location here"
 
 
-
+/* ------- ACTION_FOR - WEB SERVICES URLs --------- */
+let ACTION_FOR_REGISTER                                 = "register_user"
+let ACTION_FOR_GET_USER_WHOLE_DATA                      = "user_data"
 
 
