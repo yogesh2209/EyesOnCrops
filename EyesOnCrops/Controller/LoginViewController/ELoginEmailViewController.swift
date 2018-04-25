@@ -51,7 +51,7 @@ class ELoginEmailViewController: EBaseViewController {
             //Service hitting for login
         }
         else{
-            alertMessage(title: "Error", message: "Email/Phone or Password cannot be empty!")
+            alertMessage(title: ALERT_TITLE, message: EMAIL_PHONE_EMPTY_ERROR)
         }
     }
     //MARK: UIButton Actions

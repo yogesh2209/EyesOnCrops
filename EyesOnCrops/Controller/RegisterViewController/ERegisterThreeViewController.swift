@@ -45,7 +45,7 @@ class ERegisterThreeViewController: EBaseViewController, CLLocationManagerDelega
     }
     //MARK: Private Methods
     func customiseUI() {
-        textViewLocation.placeholder = "Enter your location here"
+        textViewLocation.placeholder = LOCATION_TEXTVIEW
         textViewLocation.layer.cornerRadius = 5.0
         textViewLocation.layer.masksToBounds = true
         textViewLocation.layer.borderColor = UIColor.lightGray.cgColor
@@ -67,7 +67,7 @@ class ERegisterThreeViewController: EBaseViewController, CLLocationManagerDelega
         }
         //Error
         else{
-             self.alertMessage(title: "ALERT", message: "Either pick current location or enter location manually!")
+             self.alertMessage(title: ALERT_TITLE, message: LOCATION_NOT_PICK_ERROR)
         }
     }
     func locationChecking() {
@@ -89,8 +89,7 @@ class ERegisterThreeViewController: EBaseViewController, CLLocationManagerDelega
             }
         } else {
             self.hideAnimatedProgressBar()
-            self.alertMessage(title: "ALERT", message: "Location services not enabled!")
-            print("Location services are not enabled")
+            self.alertMessage(title: ALERT_TITLE, message: LOCATION_SERVICES_DISABLED_ERROR)
         }
     }
     //Code to convert lat long to address string and show it to user in textview
@@ -100,7 +99,7 @@ class ERegisterThreeViewController: EBaseViewController, CLLocationManagerDelega
             if let place = placemarks?[0] {
                 self.setTextView(placemark: place)
             } else {
-                self.alertMessage(title: "ERROR", message: "Failed to Get Your Location! Try again!")
+                self.alertMessage(title: ALERT_ERROR_TITLE, message: LOCATION_FAILED_GET_ERROR)
             }
         })
     }
@@ -116,11 +115,11 @@ class ERegisterThreeViewController: EBaseViewController, CLLocationManagerDelega
                     self.performSegue(withIdentifier: REGISTER_3_TO_4_SEGUE_VC, sender: nil)
                 }
                 else {
-                    self.alertMessage(title: "ERROR", message: "Something went wrong, please try again later!")
+                    self.alertMessage(title: ALERT_ERROR_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
                 }
             }
             else {
-                self.alertMessage(title: "ERROR", message: "Please enter a valid location!")
+                self.alertMessage(title: ALERT_TITLE, message: INVALID_LOCATION_ENTERED_ERROR)
             }
         })
     }
@@ -162,7 +161,7 @@ class ERegisterThreeViewController: EBaseViewController, CLLocationManagerDelega
         else{
             DispatchQueue.main.async {
                 self.textViewLocation.placeholder = ""
-                self.textViewLocation.text = "You haven't picked any location yet! Enter it!"
+                self.textViewLocation.text = LOCATION_NOT_PICKED_TEXTVIEW
             }
         }
     }

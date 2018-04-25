@@ -91,11 +91,11 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
                  //SERVICE CALL FINALLY
             }
             else{
-                self.alertMessage(title: "ERROR", message: "You must agree to terms and conditions!")
+                self.alertMessage(title: ALERT_TITLE, message: DISAGREE_CONDITIONS_TERMS_USE_ERROR)
             }
         }
         else {
-            self.alertMessage(title: "ERROR", message: "Please type purpose of using the app")
+            self.alertMessage(title: ALERT_TITLE, message: MISSING_PURPOSE_APP_USE_ERROR)
         }
     }
     @IBAction func buttonCheckmarkTermsPressed(_ sender: Any) {

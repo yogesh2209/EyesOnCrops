@@ -21,13 +21,13 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Alamofire (4.6.0)
-  - Bolts (1.8.4):
-    - Bolts/AppLinks (= 1.8.4)
-    - Bolts/Tasks (= 1.8.4)
-  - Bolts/AppLinks (1.8.4):
+  - Alamofire (4.7.1)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.8.4)
+  - Bolts/Tasks (1.9.0)
   - boost/graph-includes (1.51.0)
   - boost/math-includes (1.51.0)
   - boost/pointer_cast-includes (1.51.0)
@@ -37,8 +37,9 @@ PODS:
   - CorePlot (2.0)
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
+  - DynamicBlurView (2.0.2)
   - eigen (3.2.10)
-  - Fabric (1.7.2)
+  - Fabric (1.7.6)
   - FacebookCore (0.3.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.27)
@@ -47,40 +48,41 @@ PODS:
     - FacebookCore (~> 0.3)
     - FBSDKCoreKit (~> 4.27)
     - FBSDKLoginKit (~> 4.27)
-  - FBSDKCoreKit (4.29.0):
+  - FBSDKCoreKit (4.32.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.29.0):
+  - FBSDKLoginKit (4.32.0):
     - FBSDKCoreKit
-  - Firebase/Auth (4.7.0):
+  - Firebase/Auth (4.12.0):
     - Firebase/Core
-    - FirebaseAuth (= 4.4.0)
-  - Firebase/Core (4.7.0):
-    - FirebaseAnalytics (= 4.0.5)
-    - FirebaseCore (= 4.0.12)
-  - Firebase/Database (4.7.0):
+    - FirebaseAuth (= 4.6.0)
+  - Firebase/Core (4.12.0):
+    - FirebaseAnalytics (= 4.1.0)
+    - FirebaseCore (= 4.0.19)
+  - Firebase/Database (4.12.0):
     - Firebase/Core
-    - FirebaseDatabase (= 4.1.2)
-  - FirebaseAnalytics (4.0.5):
+    - FirebaseDatabase (= 4.1.5)
+  - FirebaseAnalytics (4.1.0):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseAuth (4.4.0):
-    - FirebaseAnalytics (~> 4.0)
+  - FirebaseAuth (4.6.0):
+    - FirebaseAnalytics (~> 4.1)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (4.0.12):
+  - FirebaseCore (4.0.19):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseDatabase (4.1.2):
-    - FirebaseAnalytics (~> 4.0)
+  - FirebaseDatabase (4.1.5):
+    - FirebaseAnalytics (~> 4.1)
     - FirebaseCore (~> 4.0)
     - leveldb-library (~> 1.18)
-  - FirebaseInstanceID (2.0.7)
+  - FirebaseInstanceID (2.0.10):
+    - FirebaseCore (~> 4.0)
   - FMDB (2.7.2):
     - FMDB/standard (= 2.7.2)
   - FMDB/standard (2.7.2)
-  - Google-Mobile-Ads-SDK (7.27.0)
-  - GoogleSignIn (4.1.1):
+  - Google-Mobile-Ads-SDK (7.30.0)
+  - GoogleSignIn (4.1.2):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
     - GTMOAuth2 (~> 1.0)
@@ -97,12 +99,12 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
   - GTMOAuth2 (1.1.6):
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.1.12):
-    - GTMSessionFetcher/Full (= 1.1.12)
-  - GTMSessionFetcher/Core (1.1.12)
-  - GTMSessionFetcher/Full (1.1.12):
-    - GTMSessionFetcher/Core (= 1.1.12)
-  - IQKeyboardManagerSwift (5.0.7)
+  - GTMSessionFetcher (1.1.15):
+    - GTMSessionFetcher/Full (= 1.1.15)
+  - GTMSessionFetcher/Core (1.1.15)
+  - GTMSessionFetcher/Full (1.1.15):
+    - GTMSessionFetcher/Core (= 1.1.15)
+  - IQKeyboardManagerSwift (5.0.0)
   - JSONModel (1.7.0)
   - leveldb-library (1.20)
   - libjson (7.6.1)
@@ -112,11 +114,12 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - PKHUD (5.0.0)
-  - PopupDialog (0.6.2)
+  - PopupDialog (0.7.1):
+    - DynamicBlurView (~> 2.0)
   - proj4 (4.8.0)
-  - SDWebImage (4.2.2):
-    - SDWebImage/Core (= 4.2.2)
-  - SDWebImage/Core (4.2.2)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
   - SideMenu (3.1.5)
   - SMCalloutView (2.1.5)
   - tinyxml (2.1.0)
@@ -168,7 +171,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Google-Mobile-Ads-SDK
   - GoogleSignIn
-  - IQKeyboardManagerSwift
+  - IQKeyboardManagerSwift (= 5.0.0)
   - JSONModel
   - PKHUD (~> 5.0)
   - PopupDialog (~> 0.6)
@@ -190,45 +193,46 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ActiveLabel: e361127c355b911a467db3d5a897b3d7f902e568
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   boost: 6c5c8d8daef26ac83c1e1c00ad14de62b80161d7
   clipper: b009ea56c501e756299e6999e2c73eef6e1ed218
   CorePlot: 18eb2e5fa6e56d53d0716203620580baba50f67c
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
   eigen: e2d5ffb7be5a884d4608ebe35a97b6f65e13ed8b
-  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
   FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
-  FBSDKCoreKit: 6f139173dc63a1deaff4430a55f2fe5bb222d2af
-  FBSDKLoginKit: 56a057ca6822535ea0faa25f57a7c41edb697fd4
-  Firebase: dbfb98ccec2dcfcd21ab9cc1b4981a3f3c8c5e26
-  FirebaseAnalytics: 5b02a63ead2c3f0259cfc7f15e053e440587ecf8
-  FirebaseAuth: cdeee95b528958dbb7dcf220ad0fb804d3a284b0
-  FirebaseCore: 6cf108b63997bc08c04a1ffa55a3ac0d71a59ffc
-  FirebaseDatabase: 18ecb23e15c7f58bb0c4527e9cace06897cc40ca
-  FirebaseInstanceID: 148c25c986c8699e67304b114e365713dce467f2
+  FBSDKCoreKit: 55d7f2ac45d9c4b9b6119f4e43900fe84b9b7b1b
+  FBSDKLoginKit: 32ac05c2a59952c363c2e85aafa8f73ba93bcbad
+  Firebase: d7fdf40e4d6c841849c52919f437fd3a0009ded0
+  FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
+  FirebaseAuth: 85a1b118a89838efc6f6ab3f2b1f94747d72a915
+  FirebaseCore: ff49ebb37e0f63a570d78c4f1c1c0befe8659d5c
+  FirebaseDatabase: 5f0bc6134c5c237cf55f9e1249d406770a75eafd
+  FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
-  Google-Mobile-Ads-SDK: 83f7f890e638ce8f1debd440ea363338c9f6be3b
-  GoogleSignIn: 3fdaa34a2ba04dbd7a25d7db39aecb0da98d5bdc
+  Google-Mobile-Ads-SDK: 7404f68120ae8682afeb5af001fbf4aad731c78e
+  GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
-  GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
-  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
+  GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
+  IQKeyboardManagerSwift: 3f340202ebe1a7076279b9b9b3c817243ddb3aab
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   libjson: 1a065ca64704a5d1b51c3754268998942d57ac6f
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
-  PopupDialog: d4336d7274a6aa3af4cb26d8b6691510eba90cc3
+  PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
   proj4: 234525105d05a33b2ae9a90a6fe3935f7a246f7e
-  SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
   SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481
   tinyxml: 41d718babd106ac5d39d4e98b43c835d3b9080d8
   WhirlyGlobe: 2849f458220be42d92d814ba04377586cadbf7f1
   WhirlyGlobeResources: d7b3e929e828f958a8477ff6797f962fdb165472
 
-PODFILE CHECKSUM: 47cf3705b96c80695de03ed396fa5c56fd2b0f37
+PODFILE CHECKSUM: 253f00ead2cf96d830aeda3cd289f452e9a9c834
 
 COCOAPODS: 1.3.1

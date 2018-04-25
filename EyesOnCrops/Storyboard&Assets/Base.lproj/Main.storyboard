@@ -536,7 +536,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghh-8f-roe" customClass="ECustomView" customModule="EyesOnCrops" customModuleProvider="target">
-                                <rect key="frame" x="16" y="132" width="343" height="48"/>
+                                <rect key="frame" x="16" y="88" width="343" height="48"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rnI-hw-a3j" customClass="ECustomTextField" customModule="EyesOnCrops" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="327" height="48"/>
@@ -556,7 +556,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter New Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mP8-2Z-CXW">
-                                <rect key="frame" x="16" y="80" width="343" height="40"/>
+                                <rect key="frame" x="16" y="36" width="343" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="uJ8-bt-2QR"/>
                                 </constraints>
@@ -565,7 +565,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wlu-i9-6Vr" customClass="ECustomView" customModule="EyesOnCrops" customModuleProvider="target">
-                                <rect key="frame" x="16" y="192" width="343" height="48"/>
+                                <rect key="frame" x="16" y="148" width="343" height="48"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0fw-O0-LpM" customClass="ECustomTextField" customModule="EyesOnCrops" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="327" height="48"/>
@@ -1376,7 +1376,6 @@
                     </view>
                     <connections>
                         <outlet property="buttonBack" destination="HId-wG-yd6" id="U5I-1N-UKx"/>
-                        <outlet property="webView" destination="xSZ-nq-5cG" id="egH-7E-gkC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5k-OQ-Ars" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1898,6 +1897,7 @@
         <image name="or_line" width="203" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="IU4-BK-ZtQ"/>
         <segue reference="SdP-8i-Tzj"/>
         <segue reference="FPz-P6-rdw"/>
         <segue reference="O9E-x9-tgg"/>

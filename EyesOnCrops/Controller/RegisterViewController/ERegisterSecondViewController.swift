@@ -76,15 +76,15 @@ class ERegisterSecondViewController: EBaseViewController, UITextFieldDelegate {
                     self.performSegue(withIdentifier: REGISTER_2_TO_3_SEGUE_VC, sender: nil)
                 }
                 else {
-                    self.alertMessage(title: "ALERT", message: "Please enter a valid phone!")
+                    self.alertMessage(title: ALERT_TITLE, message: INVALID_PHONE_ERROR)
                 }
             }
             else {
-                 self.alertMessage(title: "ALERT", message: "Please enter a valid email!")
+                 self.alertMessage(title: ALERT_TITLE, message: INVALID_EMAIL_ERROR)
             }
         }
         else{
-            self.alertMessage(title: "ALERT", message: "Email and Phone cannot be empty!")
+            self.alertMessage(title: ALERT_TITLE, message: EMAIL_PHONE_EMPTY_ERROR)
         }
     }
     func isValidEmail(testStr:String) -> Bool {

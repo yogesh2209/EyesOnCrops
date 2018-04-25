@@ -43,21 +43,6 @@ class ERegisterFirstViewController: EBaseViewController, UIPickerViewDataSource,
         self.view.endEditing(true)
     }
     
-//    //MARK: UITextfield Delegate
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        if textField == self.textFieldFirstName {
-//          textFieldMiddleName.becomeFirstResponder()
-//        }
-//        else if textField == self.textFieldMiddleName {
-//           textFieldLastName.becomeFirstResponder()
-//        }
-//        else if textField == self.textFieldLastName {
-//            textFieldDOB.becomeFirstResponder()
-//        }
-//        else {
-//          textField.resignFirstResponder()
-//        }
-//    }
     //MARK: Private Methods
     func customiseUI() {
          self.pickerView.reloadAllComponents()
@@ -107,7 +92,7 @@ class ERegisterFirstViewController: EBaseViewController, UIPickerViewDataSource,
             self.performSegue(withIdentifier: REGISTER_1_TO_2_SEGUE_VC, sender: nil)
         }
         else{
-            self.alertMessage(title: "ALERT", message: "Required fields cannot be empty!")
+            self.alertMessage(title: ALERT_TITLE, message: EMPTY_FIELD_ERROR)
         }
     }
     func addToolBar() {
@@ -119,6 +104,7 @@ class ERegisterFirstViewController: EBaseViewController, UIPickerViewDataSource,
         numberToolbar.sizeToFit()
         self.textFieldDOB.inputAccessoryView = numberToolbar
     }
+    
     //done tool bar button action
     @objc func doneToolBarButton() {
         resignResponsers()
@@ -128,7 +114,7 @@ class ERegisterFirstViewController: EBaseViewController, UIPickerViewDataSource,
             }
         }
         else {
-            self.alertMessage(title: "ALERT", message: "Something went wrong, please try again later")
+            self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
         }
     }
     func setupPickerView() {

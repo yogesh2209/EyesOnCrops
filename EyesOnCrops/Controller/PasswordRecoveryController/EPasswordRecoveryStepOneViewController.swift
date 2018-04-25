@@ -38,7 +38,8 @@ class EPasswordRecoveryStepOneViewController: EBaseViewController {
     }
     func nextButtonAction() {
         if getEmailOrPhone().count != 0 {
-            //Service Calling here
+            //send him to next screen
+            self.performSegue(withIdentifier: PSWD_RECOVERY_EMAIL_TO_DOB_SEGUE_VC, sender: nil)
         }
         else{
             alertMessage(title: "Error", message: "Email/Phone cannot be empty!")
