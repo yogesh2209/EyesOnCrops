@@ -122,7 +122,7 @@ class ERegisterFirstViewController: EBaseViewController, UIPickerViewDataSource,
         self.pickerView.dataSource = self
         self.pickerView.showsSelectionIndicator = true
         self.textFieldDOB.inputView = self.pickerView
-        for index in 1970...2017 {
+        for index in 1920...2018 {
             yearArray.add(String(index))
         }
     }

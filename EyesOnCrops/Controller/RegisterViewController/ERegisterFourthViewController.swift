@@ -12,7 +12,7 @@ import Alamofire
 import PopupDialog
 
 class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
-
+    
     @IBOutlet weak var textViewPurpose: ECustomTextView!
     @IBOutlet weak var labelTermsCondition: ActiveLabel!
     @IBOutlet weak var buttonCheckmarkTerms: UIButton!
@@ -33,7 +33,7 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
     var socialLoginId: String!
     var password: String!
     var isTermsConditionChecked = Bool()
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         customiseUI()
@@ -75,6 +75,13 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
             return ""
         }
     }
+    
+    //Storing data in NSUserDefaults
+    func storeDataInUserDefaults(param : [String : String]) {
+        let defaults = UserDefaults.standard
+        defaults.set(param, forKey: "LOGIN_DATA")
+    }
+    
     //MARK: ActiveLabel Delegate
     func didSelect(_ text: String, type: ActiveType) {
         print(text)
@@ -98,7 +105,7 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
     @IBAction func buttonDonePressed(_ sender: UIButton) {
         if getPurpose().count != 0 {
             if isTermsConditionChecked == true {
-                 //SERVICE CALL FINALLY
+                //SERVICE CALL FINALLY
                 sendDataToServer()
             }
             else{
@@ -123,7 +130,7 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
             }
         }
     }
-   
+    
     func showStandardDialog(animated: Bool = true, title: String, message: String) {
         
         // Create the dialog
@@ -149,7 +156,7 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
     }
     
     func sendDataToServer() {
-
+        
         if getLatitude.count == 0 { getLatitude = "0" }
         if getLongitude.count == 0 { getLongitude = "0" }
         if imageString.count == 0 { imageString = "0" }
@@ -171,23 +178,36 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
                 "social_login_id"   : socialLoginId    as Any,
                 "password"          : password         as Any,
                 "user_purpose"      : getPurpose()     as Any,
+                "status"            : "2"              as Any,
                 "action_for"        : actionFor()      as Any,
                 "location"          : locationString   as Any
-               
+                
                 ] as Dictionary<String, Any>
         
         registerServiceCall(param: param)
     }
     
+    func getUserData() {
+        
+        let param: Dictionary<String, Any> =
+            [
+                "user_email"        : getEmail                          as Any,
+                "action_for"        : ACTION_FOR_GET_USER_WHOLE_DATA    as Any
+                
+                ] as Dictionary<String, Any>
+        
+        getUserDataFromServerServiceCall(param: param)
+    }
+    
     //MARK: Service Calling
     func registerServiceCall(param : Dictionary<String, Any>) {
         self.showAnimatedProgressBar(title: "Wait..", subTitle: "Registering User")
-        let urL = MAIN_URL + POST_REGISTER
+        let urL = MAIN_URL + POST_CREDENTIALS
         Alamofire.request(urL, method: .get, parameters: param).responseJSON{ response in
-           
+            
             switch response.result {
             case .success:
-                 self.hideAnimatedProgressBar()
+                self.hideAnimatedProgressBar()
                 if let jsonResponse = response.result.value as? [String : String] {
                     print(jsonResponse)
                     if let status = jsonResponse["messageResponse"] {
@@ -196,7 +216,7 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
                             self.getUserData()
                         }
                         else if status == "2" {
-                             self.alertMessage(title: ALERT_TITLE, message: USER_ALREADY_REGISTERED)
+                            self.alertMessage(title: ALERT_TITLE, message: USER_ALREADY_REGISTERED)
                         }
                         else{
                             self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
@@ -206,42 +226,39 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
                         self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
                     }
                 }
-               
+                
             case .failure(_ ):
-                 self.hideAnimatedProgressBar()
-                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                self.hideAnimatedProgressBar()
+                self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
             }
         }
     }
     
-    func getUserData() {
-        
-        let param: Dictionary<String, Any> =
-            [
-                "user_email"        : getEmail                          as Any,
-                "action_for"        : ACTION_FOR_GET_USER_WHOLE_DATA    as Any
-            
-                ] as Dictionary<String, Any>
-        
-        print(param)
-        getUserDataFromServerServiceCall(param: param)
-    }
-    
     func getUserDataFromServerServiceCall(param : Dictionary<String, Any>) {
         self.showAnimatedProgressBar(title: "Almost there..", subTitle: "Fetching user info")
-        let urL = MAIN_URL + POST_REGISTER
+        let urL = MAIN_URL + POST_CREDENTIALS
         Alamofire.request(urL, method: .get, parameters: param).responseJSON{ response in
-            
-            print(response)
-            
+          
             switch response.result {
             case .success:
-                if let jsonResponse = response.result.value as? [String : String] {
-                        print(jsonResponse)
-                    if let firstName = jsonResponse["first_name"] {
-                        
-                    }
+                if let jsonResponse = response.result.value as? NSDictionary {
                     
+                    if let _ = jsonResponse["messageResponse"] {
+                        self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                    }
+                    else{
+                        if let result = jsonResponse["responseArray"]! as? NSArray {
+                            
+                            if  let finalResult = result[0] as? [String : String] {
+                                self.storeDataInUserDefaults(param: finalResult)
+                                //take him to home screen with proper registration done
+                                self.performSegue(withIdentifier: PURPOSE_TO_HOME_SEGUE_VC, sender: nil)
+                            }
+                            else{
+                                self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                            }
+                        }
+                    }
                 }
                 self.hideAnimatedProgressBar()
             case .failure(_ ):

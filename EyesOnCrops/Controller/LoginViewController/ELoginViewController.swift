@@ -11,6 +11,8 @@ import FacebookLogin
 import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
+import Alamofire
+import PopupDialog
 
 class ELoginViewController: EBaseViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
@@ -59,7 +61,7 @@ class ELoginViewController: EBaseViewController, GIDSignInDelegate, GIDSignInUID
         GIDSignIn.sharedInstance().signIn()
     }
     //Storing data in NSUserDefaults
-    func storeDataInUserDefaults(param : [String : Any]) {
+    func storeDataInUserDefaults(param : [String : String]) {
         let defaults = UserDefaults.standard
         defaults.set(param, forKey: "LOGIN_DATA")
     }
@@ -68,13 +70,14 @@ class ELoginViewController: EBaseViewController, GIDSignInDelegate, GIDSignInUID
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), gender,birthday,email"]).start(completionHandler: { (connection, result, error) -> Void in
                 if ((error) != nil)
                 {
+                    self.alertMessage(title: ALERT_ERROR_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
                 }
                 else
                 {
                     let data:[String : Any] = result as! [String : Any]
-                    var tempData : [String : Any] = [:]
-                    tempData["first_name"] = data["first_name"]
-                    tempData["last_name"] = data["last_name"]
+                    var tempData : [String : String] = [:]
+                    tempData["first_name"] = data["first_name"] as! String
+                    tempData["last_name"] = data["last_name"] as! String
                     if let picture = data["picture"] as? NSDictionary, let data = picture["data"] as? NSDictionary, case let url = data["url"] as? String {
                         tempData["image"] = url
                     }
@@ -93,7 +96,6 @@ class ELoginViewController: EBaseViewController, GIDSignInDelegate, GIDSignInUID
     func sign(_ signIn: GIDSignIn!,
               present viewController: UIViewController!) {
         self.present(viewController, animated: true, completion: nil)
-        
     }
     // Dismiss the "Sign in with Google" view
     func sign(_ signIn: GIDSignIn!,
@@ -104,13 +106,15 @@ class ELoginViewController: EBaseViewController, GIDSignInDelegate, GIDSignInUID
         if (error == nil) {
             let imageUrl = user.profile.imageURL(withDimension: 200) as NSURL
             let imageUrlFinalString  = imageUrl.absoluteString!
-            var data:[String : Any] = [ : ]
+            var data:[String : String] = [ : ]
             let fullNameArr = user.profile.name.components(separatedBy: " ")
             data["first_name"] = fullNameArr[0]
             data["last_name"] = fullNameArr[1]
             data["image"] = imageUrlFinalString
             self.storeDataInUserDefaults(param: data)
-        } else {
+        }
+        else{
+            self.alertMessage(title: ALERT_ERROR_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
         }
     }
     //MARK: UIButton Actions
@@ -122,5 +126,9 @@ class ELoginViewController: EBaseViewController, GIDSignInDelegate, GIDSignInUID
     }
     @IBAction func buttonLoginEmailPressed(_ sender: Any) {
         performSegue(withIdentifier: LOGINTOEMAIL_SEGUE_VC, sender: nil)
+    }
+    
+    func loginSocialServiceCall() {
+        
     }
 }

@@ -13,7 +13,7 @@ import Foundation
 /* URLs */
 
 let MAIN_URL                                            = "http://72.27.225.62:220/yogesh/"
-let POST_REGISTER                                       = "credentials.php"
+let POST_CREDENTIALS                                    = "credentials.php"
 
 
 /* ------------ SEGUE IDENTIFIERS ---------------- */
@@ -37,6 +37,7 @@ let HOME_TO_FILTER_CATEGORY_LIST_SEGUE_VC               = "homeToFilterCategoryL
 let CATEGORY_LIST_TO_LEVEL_LIST_SEGUE_VC                = "categoryListToLevelListSegueVC"
 let PSWD_RECOVERY_EMAIL_TO_DOB_SEGUE_VC                 = "passwordRecovery2SegueVC"
 let PSWD_RECOVERY_DOB_TO_FINAL_SEGUE_VC                 = "passwordRecovery3SegueVC"
+let PURPOSE_TO_HOME_SEGUE_VC                            = "registerToHomeSegueVC"
 
 /* ---------- STORYBOARD IDs -------------------- */
 let TERMS_PRIVACY_STORYBOARD_ID                         = "termsPrivacyStoryboardId"
@@ -78,6 +79,7 @@ let EMPTY_PASSWORD_ERROR                                = "Password cannot be em
 let PSWD_CONFIRM_PSWD_NOT_MATCHED_ERROR                 = "Password does not match"
 let INVALID_PASSWORD_ERROR                              = "Please must be greater than 6 characters"
 let USER_ALREADY_REGISTERED                             = "User already exist!"
+let INVALID_CREDENTIALS_LOGIN                           = "Please check your credentials"
 
 
 /* -------- PLACEHOLDER STRINGS ---------------- */
@@ -89,5 +91,6 @@ let LOCATION_TEXTVIEW                                   = "Enter your location h
 /* ------- ACTION_FOR - WEB SERVICES URLs --------- */
 let ACTION_FOR_REGISTER                                 = "register_user"
 let ACTION_FOR_GET_USER_WHOLE_DATA                      = "user_data"
+let ACTION_FOR_LOGIN                                    = "login"
 
 

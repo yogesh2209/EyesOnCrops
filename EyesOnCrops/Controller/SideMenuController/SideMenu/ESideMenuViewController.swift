@@ -51,6 +51,7 @@ class ESideMenuViewController: EBaseViewController, UITableViewDataSource, UITab
             return nil
         }
     }
+    
     //MARK: UIButton Actions
     @IBAction func buttonLogoutPressed(_ sender: Any) {
         let loginManager = FBSDKLoginManager()
@@ -78,7 +79,6 @@ class ESideMenuViewController: EBaseViewController, UITableViewDataSource, UITab
             
             if getStoredData() != nil {
                 if let firstName = self.getStoredData()!["first_name"] {
-                    
                     if let lastName = self.getStoredData()!["last_name"] {
                         cell.labelName.text = "\(firstName) \(lastName)"
                     }
@@ -88,6 +88,9 @@ class ESideMenuViewController: EBaseViewController, UITableViewDataSource, UITab
                 }
                 if let picture = getStoredData()!["image"] {
                     cell.imageViewProfilePic.sd_setImage(with: URL(string: picture as! String), placeholderImage: UIImage(named: "placeholder.png"))
+                }
+                if let registrationDate = getStoredData()!["registration_date"] {
+                    cell.labelMemberSince.text = registrationDate as? String
                 }
             }
             return cell
