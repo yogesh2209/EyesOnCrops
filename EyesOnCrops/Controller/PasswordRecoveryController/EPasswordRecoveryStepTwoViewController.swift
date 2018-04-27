@@ -9,7 +9,7 @@
 import UIKit
 
 class EPasswordRecoveryStepTwoViewController: EBaseViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
+    
     @IBOutlet weak var buttonNext: UIBarButtonItem!
     @IBOutlet weak var viewDOB: ECustomView!
     @IBOutlet weak var textFieldDOB: ECustomTextField!
@@ -17,6 +17,9 @@ class EPasswordRecoveryStepTwoViewController: EBaseViewController, UIPickerViewD
     var pickerView = UIPickerView()
     var yearArray = NSMutableArray()
     var index : Int = 0
+    
+    var dob: String!
+    var getUserEmail: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,16 +44,27 @@ class EPasswordRecoveryStepTwoViewController: EBaseViewController, UIPickerViewD
             return ""
         }
     }
+    func isDOBMatched() -> Bool {
+        if dob == getDOB() {
+            return true
+        }
+        return false
+    }
     func nextButtonAction() {
-        if getDOB().count != 0 {
-            //send him to next screen
+        
+        if getDOB().count == 0 {
+            alertMessage(title: ALERT_TITLE, message: EMPTY_DATE_OF_BIRTH_ERROR)
+            return
+        }
+
+        if isDOBMatched() {
             self.performSegue(withIdentifier: PSWD_RECOVERY_DOB_TO_FINAL_SEGUE_VC, sender: nil)
         }
         else{
-            alertMessage(title: "Error", message: "Date of birth cannot be empty!")
+            alertMessage(title: ALERT_TITLE, message: DATE_OF_BIRTH_MISMATCH_ERROR)
         }
     }
-   
+    
     func resignResponsers() {
         self.textFieldDOB.resignFirstResponder()
     }
@@ -107,5 +121,14 @@ class EPasswordRecoveryStepTwoViewController: EBaseViewController, UIPickerViewD
     //MARK: UIPickerView Delegate
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         index = row
+    }
+    
+    //MARK: UINavigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == PSWD_RECOVERY_DOB_TO_FINAL_SEGUE_VC) {
+            // pass data to next view
+            let secondVC = segue.destination as! EPasswordRecoveryStepThreeViewController
+            secondVC.getUserEmail = getUserEmail
+        }
     }
 }

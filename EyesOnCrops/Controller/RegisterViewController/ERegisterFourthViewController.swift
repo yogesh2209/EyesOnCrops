@@ -51,7 +51,7 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
     //MARK: Private Methods
     func actionFor() -> String {
         if loginType == "email" { return ACTION_FOR_REGISTER }
-        return ""
+        return ACTION_UPDATE_USER_STATUS
     }
     
     func customiseUI() {
@@ -106,7 +106,13 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
         if getPurpose().count != 0 {
             if isTermsConditionChecked == true {
                 //SERVICE CALL FINALLY
-                sendDataToServer()
+                
+                if loginType == "email" {
+                     sendDataToServer()
+                }
+                else{
+                    updateSocialUserDataService()
+                }
             }
             else{
                 self.alertMessage(title: ALERT_TITLE, message: DISAGREE_CONDITIONS_TERMS_USE_ERROR)
@@ -184,11 +190,22 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
                 
                 ] as Dictionary<String, Any>
         
-        registerServiceCall(param: param)
+            registerServiceCall(param: param)
+    }
+    func updateSocialUserDataService() {
+        let param: Dictionary<String, Any> =
+            [
+                "user_email"        : getEmail       as Any,
+                "user_purpose"      : getPurpose()   as Any,
+                "action_for"        : actionFor()    as Any
+                
+                ] as Dictionary<String, Any>
+        
+        print(param)
+        getUserDataFromServerServiceCall(param: param)
     }
     
     func getUserData() {
-        
         let param: Dictionary<String, Any> =
             [
                 "user_email"        : getEmail                          as Any,
@@ -239,8 +256,10 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
         let urL = MAIN_URL + POST_CREDENTIALS
         Alamofire.request(urL, method: .get, parameters: param).responseJSON{ response in
           
+            print(response)
             switch response.result {
             case .success:
+                self.hideAnimatedProgressBar()
                 if let jsonResponse = response.result.value as? NSDictionary {
                     
                     if let _ = jsonResponse["messageResponse"] {
@@ -260,7 +279,7 @@ class ERegisterFourthViewController: EBaseViewController, ActiveLabelDelegate {
                         }
                     }
                 }
-                self.hideAnimatedProgressBar()
+                
             case .failure(_ ):
                 self.hideAnimatedProgressBar()
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)

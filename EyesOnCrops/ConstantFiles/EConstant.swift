@@ -27,6 +27,7 @@ let REGISTER_3_TO_PSWD_SETUP_SEGUE_VC                   = "registerThreeToPswdSe
 let REGISTER_PSWD_SETUP_TO_4_SEGUE_VC                   = "pswdSetupToRegisterFourSegueVC"
 let LOGIN_TO_HOME_SEGUE_VC                              = "loginToHomeSegueVC"
 let SOCIAL_LOGIN_TO_REG_SEGUE_VC                        = "socialLoginToRegister4thSegueVC"
+let SOCIAL_LOGIN_TO_HOME_SEGUE_VC                       = "socialLoginToHomeSegueVC"
 let LOGOUT_SEGUE_VC                                     = "logoutSegueVC"
 let ABOUT_SEGUE_VC                                      = "sidMenuToAboutSegueVC"
 let HELP_SEGUE_VC                                       = "sidMenuToHelpSegueVC"
@@ -80,6 +81,8 @@ let PSWD_CONFIRM_PSWD_NOT_MATCHED_ERROR                 = "Password does not mat
 let INVALID_PASSWORD_ERROR                              = "Please must be greater than 6 characters"
 let USER_ALREADY_REGISTERED                             = "User already exist!"
 let INVALID_CREDENTIALS_LOGIN                           = "Please check your credentials"
+let EMPTY_DATE_OF_BIRTH_ERROR                           = "Year of birth cannot be empty"
+let DATE_OF_BIRTH_MISMATCH_ERROR                        = "Year of Birth does not match"
 
 
 /* -------- PLACEHOLDER STRINGS ---------------- */
@@ -92,5 +95,9 @@ let LOCATION_TEXTVIEW                                   = "Enter your location h
 let ACTION_FOR_REGISTER                                 = "register_user"
 let ACTION_FOR_GET_USER_WHOLE_DATA                      = "user_data"
 let ACTION_FOR_LOGIN                                    = "login"
+let ACTION_FOR_LOGIN_SOCIAL                             = "login_social"
+let ACTION_UPDATE_USER_STATUS                           = "update_user_status"
+let ACTION_PSWD_RECOVERY_USER_DATA                      = "pswd_recovery_fetch_user_data"
+let ACTION_FOR_UPDATE_PASSWORD                          = "update_user_password"
 
 

@@ -273,11 +273,12 @@
                         <outlet property="buttonLoginEmail" destination="MZA-4H-Pc9" id="QhX-l1-Nmx"/>
                         <segue destination="tVd-ew-0If" kind="show" identifier="loginToLoginEmailSegueVC" id="uTI-GX-MkV"/>
                         <segue destination="GdT-cp-Za4" kind="show" identifier="socialLoginToRegister4thSegueVC" id="a50-FB-7qu"/>
+                        <segue destination="uPS-PS-QYO" kind="show" identifier="socialLoginToHomeSegueVC" id="yvM-W4-G3j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Cd-8R-j59" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1666" y="-1494"/>
+            <point key="canvasLocation" x="1828" y="-1496"/>
         </scene>
         <!--Login Email View Controller-->
         <scene sceneID="FYm-c9-3s0">
@@ -389,7 +390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RNh-ry-3Xc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3240.8000000000002" y="-1496.4017991004498"/>
+            <point key="canvasLocation" x="3292" y="-2207"/>
         </scene>
         <!--Password Recovery Step One View Controller-->
         <scene sceneID="ME4-co-UtL">
@@ -402,7 +403,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83I-iX-RX9" customClass="ECustomView" customModule="EyesOnCrops" customModuleProvider="target">
                                 <rect key="frame" x="16" y="132" width="343" height="48"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email or Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zwZ-52-BB5" customClass="ECustomTextField" customModule="EyesOnCrops" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zwZ-52-BB5" customClass="ECustomTextField" customModule="EyesOnCrops" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="327" height="48"/>
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="textColor"/>
@@ -419,7 +420,7 @@
                                     <constraint firstItem="zwZ-52-BB5" firstAttribute="leading" secondItem="83I-iX-RX9" secondAttribute="leading" constant="16" id="lNs-kc-DOS"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Email or Phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fng-Xq-mnU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fng-Xq-mnU">
                                 <rect key="frame" x="16" y="80" width="343" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Okf-SW-33I"/>
@@ -457,7 +458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lkS-Gr-9lo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4770" y="-2339"/>
+            <point key="canvasLocation" x="4716" y="-2760"/>
         </scene>
         <!--Password Recovery Step Two View Controller-->
         <scene sceneID="D21-Ix-ZeI">
@@ -542,7 +543,7 @@
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -571,7 +572,7 @@
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -837,7 +838,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7X-Ep-btU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4655" y="-155"/>
+            <point key="canvasLocation" x="4263" y="-620"/>
         </scene>
         <!--About Us View Controller-->
         <scene sceneID="MJb-Gm-GbQ">
@@ -1999,8 +2000,8 @@
         <image name="or_line" width="203" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gAA-bn-F2i"/>
-        <segue reference="V3c-1w-5eG"/>
+        <segue reference="a50-FB-7qu"/>
+        <segue reference="yvM-W4-G3j"/>
         <segue reference="O9E-x9-tgg"/>
         <segue reference="4nh-qY-DYx"/>
     </inferredMetricsTieBreakers>

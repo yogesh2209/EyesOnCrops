@@ -68,7 +68,8 @@ class ERegisterPasswordSetupViewController: EBaseViewController {
     }
     func nextButtonAction() {
         if getPassword().count == 0 || getConfirmPassword().count == 0 {
-             self.alertMessage(title: ALERT_TITLE, message: EMPTY_PASSWORD_ERROR)
+            self.alertMessage(title: ALERT_TITLE, message: EMPTY_PASSWORD_ERROR)
+            return
         }
         
         if isPasswordValid() {

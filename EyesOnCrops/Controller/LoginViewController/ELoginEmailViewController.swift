@@ -88,6 +88,7 @@ class ELoginEmailViewController: EBaseViewController {
          
             switch response.result {
             case .success:
+                self.hideAnimatedProgressBar()
                 if let jsonResponse = response.result.value as? NSDictionary {
                     
                     if let _ = jsonResponse["messageResponse"] {
@@ -96,7 +97,7 @@ class ELoginEmailViewController: EBaseViewController {
                     else{
                         if let result = jsonResponse["responseArray"]! as? NSArray {
                             
-                            if  let finalResult = result[0] as? [String : String] {
+                            if let finalResult = result[0] as? [String : String] {
                                 self.storeDataInUserDefaults(param: finalResult)
                                 //take him to home screen
                                 self.performSegue(withIdentifier: LOGIN_TO_HOME_SEGUE_VC, sender: nil)
@@ -107,7 +108,7 @@ class ELoginEmailViewController: EBaseViewController {
                         }
                     }
                 }
-                self.hideAnimatedProgressBar()
+                
             case .failure(_ ):
                 self.hideAnimatedProgressBar()
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
