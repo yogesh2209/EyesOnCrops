@@ -14,6 +14,7 @@ import Foundation
 
 let MAIN_URL                                            = "http://72.27.225.62:220/yogesh/"
 let POST_CREDENTIALS                                    = "credentials.php"
+let POST_GET_DATA                                       = "get_data.php"
 
 
 /* ------------ SEGUE IDENTIFIERS ---------------- */
@@ -39,6 +40,8 @@ let CATEGORY_LIST_TO_LEVEL_LIST_SEGUE_VC                = "categoryListToLevelLi
 let PSWD_RECOVERY_EMAIL_TO_DOB_SEGUE_VC                 = "passwordRecovery2SegueVC"
 let PSWD_RECOVERY_DOB_TO_FINAL_SEGUE_VC                 = "passwordRecovery3SegueVC"
 let PURPOSE_TO_HOME_SEGUE_VC                            = "registerToHomeSegueVC"
+let FILTER_TO_YEAR_LIST_SEGUE_VC                        = "filterOptionsToYearsListSegueVC"
+let YEAR_LIST_TO_DATES_SEGUE_VC                         = "yearListToDatesListSegueVC"
 
 /* ---------- STORYBOARD IDs -------------------- */
 let TERMS_PRIVACY_STORYBOARD_ID                         = "termsPrivacyStoryboardId"
@@ -53,6 +56,8 @@ let FILTER_CATEGORY_LIST_SPACING_CUSTOM_CELL            = "filterCategoryPlainSp
 let FILTER_CATEGORY_SATELLITE_TYPE_CUSTOM_CELL          = "filterCategorySatelliteTypeCustomCell"
 let FILTER_LEVEL_LIST_OPTION_CUSTOM_CELL                = "levelListOptionCustomCell"
 let FILTER_LEVEL_LIST_PLAIN_SPACE_CUSTOM_CELL           = "levelListPlainSpaceCustomCell"
+let YEAR_LIST_CUSTOM_CELL                               = "yearListCustomCell"
+let DATES_LIST_CUSTOM_CELL                              = "datesListCustomCell"
 
 
 /* -------- STATIC ARRAYS / DATA ---------------- */
@@ -99,5 +104,7 @@ let ACTION_FOR_LOGIN_SOCIAL                             = "login_social"
 let ACTION_UPDATE_USER_STATUS                           = "update_user_status"
 let ACTION_PSWD_RECOVERY_USER_DATA                      = "pswd_recovery_fetch_user_data"
 let ACTION_FOR_UPDATE_PASSWORD                          = "update_user_password"
+let ACTION_FOR_YEARS_LIST                               = "years_list"
+let ACTION_FOR_DATES_IN_YEAR                            = "dates_in_year"
 
 

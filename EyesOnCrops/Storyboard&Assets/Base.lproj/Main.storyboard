@@ -1053,11 +1053,131 @@
                         <outlet property="barButtonReset" destination="2tZ-J1-5O2" id="NRc-Iz-blc"/>
                         <outlet property="tableView" destination="E7b-mu-tjh" id="Lqw-g4-zdr"/>
                         <segue destination="iji-7U-eHd" kind="show" identifier="categoryListToLevelListSegueVC" id="hjI-6e-yRg"/>
+                        <segue destination="aZX-0f-O9S" kind="show" identifier="filterOptionsToYearsListSegueVC" id="iHp-68-TTo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6h1-Zz-Z0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7702" y="-1496"/>
+            <point key="canvasLocation" x="7694" y="-1467"/>
+        </scene>
+        <!--Years List View Controller-->
+        <scene sceneID="luN-yW-glG">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="aZX-0f-O9S" customClass="EYearsListViewController" customModule="EyesOnCrops" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3oJ-xP-d2T">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xSg-OC-oUF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="yearListCustomCell" id="ANU-1J-Iag" customClass="EYearListTableViewCell" customModule="EyesOnCrops" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ANU-1J-Iag" id="XqH-zt-xLj">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2FQ-uX-JmC">
+                                                    <rect key="frame" x="15" y="11" width="319" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2FQ-uX-JmC" firstAttribute="leading" secondItem="XqH-zt-xLj" secondAttribute="leading" constant="15" id="26r-Ej-RGk"/>
+                                                <constraint firstAttribute="bottom" secondItem="2FQ-uX-JmC" secondAttribute="bottom" constant="11.5" id="TQL-6I-Sxa"/>
+                                                <constraint firstItem="2FQ-uX-JmC" firstAttribute="top" secondItem="XqH-zt-xLj" secondAttribute="top" constant="11" id="UiJ-85-dNu"/>
+                                                <constraint firstAttribute="trailing" secondItem="2FQ-uX-JmC" secondAttribute="trailing" constant="8" id="Vkp-R2-YLr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="labelYear" destination="2FQ-uX-JmC" id="gcT-hY-Zb4"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="aZX-0f-O9S" id="K1f-9p-c7U"/>
+                                    <outlet property="delegate" destination="aZX-0f-O9S" id="0lI-Vv-lun"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xSg-OC-oUF" firstAttribute="top" secondItem="YeT-p9-I0f" secondAttribute="top" id="FGR-Mw-dvi"/>
+                            <constraint firstItem="xSg-OC-oUF" firstAttribute="leading" secondItem="YeT-p9-I0f" secondAttribute="leading" id="Wfh-rt-kfg"/>
+                            <constraint firstItem="xSg-OC-oUF" firstAttribute="bottom" secondItem="YeT-p9-I0f" secondAttribute="bottom" id="X5t-vp-x5V"/>
+                            <constraint firstItem="xSg-OC-oUF" firstAttribute="trailing" secondItem="YeT-p9-I0f" secondAttribute="trailing" id="irg-Ra-P65"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YeT-p9-I0f"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="xSg-OC-oUF" id="qbX-kq-o1i"/>
+                        <segue destination="mbL-Qv-HCQ" kind="show" identifier="yearListToDatesListSegueVC" id="xz2-aX-ULS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hjH-rB-DrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8629.6000000000004" y="-1468.5157421289357"/>
+        </scene>
+        <!--Dates-->
+        <scene sceneID="D49-ph-MCO">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="mbL-Qv-HCQ" customClass="EDatesForYearListViewController" customModule="EyesOnCrops" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="G0c-2R-coX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mhv-8J-xNY">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="datesListCustomCell" id="0j9-Xe-z6a" customClass="EDatesForYearListTableViewCell" customModule="EyesOnCrops" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0j9-Xe-z6a" id="SdI-TS-ahZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWv-y1-6xB">
+                                                    <rect key="frame" x="15" y="11" width="312" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="uWv-y1-6xB" secondAttribute="trailing" constant="15" id="0qm-5G-a2W"/>
+                                                <constraint firstItem="uWv-y1-6xB" firstAttribute="leading" secondItem="SdI-TS-ahZ" secondAttribute="leading" constant="15" id="1X6-W8-wsh"/>
+                                                <constraint firstAttribute="bottom" secondItem="uWv-y1-6xB" secondAttribute="bottom" constant="11.5" id="NTM-ht-j4i"/>
+                                                <constraint firstItem="uWv-y1-6xB" firstAttribute="top" secondItem="SdI-TS-ahZ" secondAttribute="top" constant="11" id="kDS-e6-Zzs"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="labelDate" destination="uWv-y1-6xB" id="4F3-HS-8PW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mbL-Qv-HCQ" id="lLl-aj-gE3"/>
+                                    <outlet property="delegate" destination="mbL-Qv-HCQ" id="UyA-EU-NQl"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ZZU-Uh-Jgx"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dates" id="fbN-sk-G6A"/>
+                    <connections>
+                        <outlet property="tableViewDatesList" destination="mhv-8J-xNY" id="9pu-gk-1Rv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J4A-lU-RlY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9381.6000000000004" y="-1468.5157421289357"/>
         </scene>
         <!--Levels-->
         <scene sceneID="OK1-xe-rGO">
@@ -1144,7 +1264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qb6-nK-Mh3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8534" y="-1496"/>
+            <point key="canvasLocation" x="8630" y="-2290"/>
         </scene>
         <!--Change Password View Controller-->
         <scene sceneID="ucf-eT-inQ">

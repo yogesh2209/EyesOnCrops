@@ -60,6 +60,12 @@
 		58BBB6522028D368005F9E5A /* EFilterCategoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */; };
 		58BBB6562028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */; };
 		58BBB6582028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6572028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift */; };
+		58C2355420B35B3E00237A0B /* EYearsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C2355320B35B3E00237A0B /* EYearsListViewController.swift */; };
+		58C2355620B35B4D00237A0B /* EDatesForYearListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C2355520B35B4D00237A0B /* EDatesForYearListViewController.swift */; };
+		58C2355920B35C8B00237A0B /* EYearListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C2355820B35C8B00237A0B /* EYearListTableViewCell.swift */; };
+		58C2355B20B35C9900237A0B /* EDatesForYearListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C2355A20B35C9900237A0B /* EDatesForYearListTableViewCell.swift */; };
+		58C2356720B5119A00237A0B /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C2356620B5119A00237A0B /* DateFormatterExtension.swift */; };
+		58C2356920B5121C00237A0B /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C2356820B5121C00237A0B /* StringExtensions.swift */; };
 		58DA1D7A1FD5EBBC00C3DA3B /* EConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D791FD5EBBC00C3DA3B /* EConstant.swift */; };
 		58DA1D7C1FD5F18900C3DA3B /* ECustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D7B1FD5F18900C3DA3B /* ECustomTextField.swift */; };
 		58DA1D7E1FD5F19C00C3DA3B /* ECustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D7D1FD5F19C00C3DA3B /* ECustomView.swift */; };
@@ -153,6 +159,12 @@
 		58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoriesListViewController.swift; sourceTree = "<group>"; };
 		58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryListOptionTableViewCell.swift; sourceTree = "<group>"; };
 		58BBB6572028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryListPlainSpaceTableViewCell.swift; sourceTree = "<group>"; };
+		58C2355320B35B3E00237A0B /* EYearsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EYearsListViewController.swift; sourceTree = "<group>"; };
+		58C2355520B35B4D00237A0B /* EDatesForYearListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDatesForYearListViewController.swift; sourceTree = "<group>"; };
+		58C2355820B35C8B00237A0B /* EYearListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EYearListTableViewCell.swift; sourceTree = "<group>"; };
+		58C2355A20B35C9900237A0B /* EDatesForYearListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDatesForYearListTableViewCell.swift; sourceTree = "<group>"; };
+		58C2356620B5119A00237A0B /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		58C2356820B5121C00237A0B /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		58DA1D791FD5EBBC00C3DA3B /* EConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EConstant.swift; sourceTree = "<group>"; };
 		58DA1D7B1FD5F18900C3DA3B /* ECustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECustomTextField.swift; sourceTree = "<group>"; };
 		58DA1D7D1FD5F19C00C3DA3B /* ECustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECustomView.swift; sourceTree = "<group>"; };
@@ -448,6 +460,8 @@
 		58AE76DA1FD4A5A1002CAADC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				58C2356520B5117D00237A0B /* Extensions */,
+				58C2356020B4A4C000237A0B /* Protocols */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -567,6 +581,7 @@
 		58BBB6502028D307005F9E5A /* FilterViewController */ = {
 			isa = PBXGroup;
 			children = (
+				58C2355220B35B2A00237A0B /* YearDateSelectionController */,
 				589AD412202B90FA00C300D4 /* CategoryListViewController */,
 				589AD411202B90FA00C300D4 /* LevelController */,
 			);
@@ -576,6 +591,7 @@
 		58BBB6532028D37A005F9E5A /* FilterCells */ = {
 			isa = PBXGroup;
 			children = (
+				58C2355720B35C7A00237A0B /* YearDatesCells */,
 				589AD415202B942500C300D4 /* LevelListCells */,
 				58BBB6542028D3D3005F9E5A /* CategoryListCells */,
 			);
@@ -590,6 +606,40 @@
 				589AD40F202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift */,
 			);
 			path = CategoryListCells;
+			sourceTree = "<group>";
+		};
+		58C2355220B35B2A00237A0B /* YearDateSelectionController */ = {
+			isa = PBXGroup;
+			children = (
+				58C2355320B35B3E00237A0B /* EYearsListViewController.swift */,
+				58C2355520B35B4D00237A0B /* EDatesForYearListViewController.swift */,
+			);
+			path = YearDateSelectionController;
+			sourceTree = "<group>";
+		};
+		58C2355720B35C7A00237A0B /* YearDatesCells */ = {
+			isa = PBXGroup;
+			children = (
+				58C2355820B35C8B00237A0B /* EYearListTableViewCell.swift */,
+				58C2355A20B35C9900237A0B /* EDatesForYearListTableViewCell.swift */,
+			);
+			path = YearDatesCells;
+			sourceTree = "<group>";
+		};
+		58C2356020B4A4C000237A0B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		58C2356520B5117D00237A0B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				58C2356620B5119A00237A0B /* DateFormatterExtension.swift */,
+				58C2356820B5121C00237A0B /* StringExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		58DA1D7F1FD5FF2300C3DA3B /* HomeViewController */ = {
@@ -1423,9 +1473,12 @@
 			files = (
 				583EB4821FEAFF37003CEC57 /* ESideMenuSpacingTableViewCell.swift in Sources */,
 				58BBB6522028D368005F9E5A /* EFilterCategoriesListViewController.swift in Sources */,
+				58C2355620B35B4D00237A0B /* EDatesForYearListViewController.swift in Sources */,
 				589AD419202B945500C300D4 /* EFilterLevelListPlainSpaceTableViewCell.swift in Sources */,
+				58C2355B20B35C9900237A0B /* EDatesForYearListTableViewCell.swift in Sources */,
 				5888C213209037CD00EBC33F /* ERegisterPasswordSetupViewController.swift in Sources */,
 				58DA1D7C1FD5F18900C3DA3B /* ECustomTextField.swift in Sources */,
+				58C2356920B5121C00237A0B /* StringExtensions.swift in Sources */,
 				583EB4841FEAFFCB003CEC57 /* ESideMenuProfileTableViewCell.swift in Sources */,
 				58AE77171FD4C97E002CAADC /* ERegisterFourthViewController.swift in Sources */,
 				58DA1D7A1FD5EBBC00C3DA3B /* EConstant.swift in Sources */,
@@ -1434,13 +1487,16 @@
 				58AE77091FD4BC8B002CAADC /* EMainViewController.swift in Sources */,
 				58AE77131FD4C957002CAADC /* ERegisterSecondViewController.swift in Sources */,
 				58E635DB20073E81008B5069 /* ETermsPrivacyConmonViewController.swift in Sources */,
+				58C2355420B35B3E00237A0B /* EYearsListViewController.swift in Sources */,
 				58E635DE20080F19008B5069 /* EChangePasswordViewController.swift in Sources */,
 				58BBB6562028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift in Sources */,
 				584C22C02009E54C0093BF8B /* EPasswordRecoveryStepThreeViewController.swift in Sources */,
 				583EB48A1FEB03FA003CEC57 /* ESideMenuViewController.swift in Sources */,
 				583EB4801FEAFF28003CEC57 /* ESideMenuOptionTableViewCell.swift in Sources */,
 				58BBB6582028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift in Sources */,
+				58C2356720B5119A00237A0B /* DateFormatterExtension.swift in Sources */,
 				5853E7982047C4FD00FF611F /* ECustomTextView.swift in Sources */,
+				58C2355920B35C8B00237A0B /* EYearListTableViewCell.swift in Sources */,
 				583EB48C1FEB0414003CEC57 /* EAboutUsViewController.swift in Sources */,
 				58AE770D1FD4C07D002CAADC /* ELoginViewController.swift in Sources */,
 				583EB48E1FEB041E003CEC57 /* EHelpViewController.swift in Sources */,

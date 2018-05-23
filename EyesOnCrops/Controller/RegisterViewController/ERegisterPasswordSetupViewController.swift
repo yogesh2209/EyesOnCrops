@@ -41,6 +41,11 @@ class ERegisterPasswordSetupViewController: EBaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupFirebaseAnalytics(title: "ERegisterPasswordSetupViewController")
+    }
+    
     //MARK: UIButton Actions
     @IBAction func buttonNextPressed(_ sender: Any) {
         nextButtonAction()

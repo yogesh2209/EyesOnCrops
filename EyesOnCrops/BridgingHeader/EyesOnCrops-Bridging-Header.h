@@ -11,5 +11,6 @@
 
 #import <WhirlyGlobeComponent.h>
 #import <MaplyComponent.h>
+#import <JSONModel/JSONModel.h>
 
 #endif /* EyesOnCrops_Bridging_Header_h */

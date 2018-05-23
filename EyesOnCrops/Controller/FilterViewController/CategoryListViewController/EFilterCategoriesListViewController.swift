@@ -102,9 +102,18 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
     }
     //MARK: UITableView Delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //Take him to level list screen
-        if indexPath.row == 5 {
+        
+        switch indexPath.row {
+        //year list screen
+        case 3:
+            self.performSegue(withIdentifier: FILTER_TO_YEAR_LIST_SEGUE_VC, sender: nil)
+            
+        //level list screen
+        case 5:
             self.performSegue(withIdentifier: CATEGORY_LIST_TO_LEVEL_LIST_SEGUE_VC, sender: nil)
+            
+        default:
+            break
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -118,6 +127,15 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
         }
         else {
             return 12.0
+        }
+    }
+    
+    //MARK: UINavigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == FILTER_TO_YEAR_LIST_SEGUE_VC) {
+            // pass data to next view
+            let secondVC = segue.destination as! EYearsListViewController
+            secondVC.getIndicator = 1 //indicates that year list is being appeared from this screen
         }
     }
 }

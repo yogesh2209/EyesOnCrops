@@ -45,6 +45,7 @@ class ESideMenuViewController: EBaseViewController, UITableViewDataSource, UITab
     func getStoredData() -> [String : Any]? {
         let defaults = UserDefaults.standard
         if let filterDataStored = defaults.object(forKey: "LOGIN_DATA") {
+            print(filterDataStored)
             return filterDataStored as? [String : Any]
         }
         else{
@@ -76,7 +77,7 @@ class ESideMenuViewController: EBaseViewController, UITableViewDataSource, UITab
             cell.imageViewProfilePic.layer.borderColor = UIColor.darkGray.cgColor
             cell.imageViewProfilePic.layer.borderWidth = 5.0
             cell.imageViewProfilePic.layer.masksToBounds = true
-            
+        
             if getStoredData() != nil {
                 if let firstName = self.getStoredData()!["first_name"] {
                     if let lastName = self.getStoredData()!["last_name"] {
@@ -87,7 +88,8 @@ class ESideMenuViewController: EBaseViewController, UITableViewDataSource, UITab
                     }
                 }
                 if let picture = getStoredData()!["image"] {
-                    cell.imageViewProfilePic.sd_setImage(with: URL(string: picture as! String), placeholderImage: UIImage(named: "placeholder.png"))
+                    print(picture)
+                    cell.imageViewProfilePic.sd_setImage(with: URL(string: picture as! String), placeholderImage: UIImage(named: "placeholder"), options: .refreshCached)
                 }
                 if let registrationDate = getStoredData()!["registration_date"] {
                     cell.labelMemberSince.text = registrationDate as? String
