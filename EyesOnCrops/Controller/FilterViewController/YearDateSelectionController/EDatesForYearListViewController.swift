@@ -17,10 +17,10 @@ struct DatesList: Decodable {
 class EDatesForYearListViewController: EBaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableViewDatesList: UITableView!
-    var dates : [DatesList] = []
     
+    var dates : [DatesList] = []
     public var year: String? = nil
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -109,6 +109,6 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
     //MARK: UITableView Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
- 
+       //take him to home screen with passing data to that screen
     }
 }
