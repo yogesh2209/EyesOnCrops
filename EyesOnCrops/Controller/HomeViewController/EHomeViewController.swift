@@ -19,7 +19,8 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate {
         super.viewDidLoad()
         setupMenu()
         setupAdsBanner()
-        self.navigationController?.isNavigationBarHidden = false
+        customiseUI()
+        registerNotification()
         // Do any additional setup after loading the view.
     }
     override func didReceiveMemoryWarning() {
@@ -30,12 +31,16 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate {
         super.viewWillAppear(animated)
         setupFirebaseAnalytics(title: "EHomeViewController")
     }
-    //MARK: Private Methods
+    //MARK: Custom Methods
     func setupAdsBanner() {
         viewBanner.adUnitID = "ca-app-pub-8984057949233397/5348963984"
         viewBanner.rootViewController = self
         viewBanner.load(GADRequest())
         viewBanner.delegate = self
+    }
+    
+    func customiseUI() {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     //MARK: Google Ads Banner Delegate
@@ -76,5 +81,19 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate {
         self.performSegue(withIdentifier: HOME_TO_FILTER_CATEGORY_LIST_SEGUE_VC, sender: nil)
     }
     @IBAction func barButtonResetPressed(_ sender: Any) {
+    }
+    
+    //MARK: Notifications
+    func registerNotification() {
+        NotificationCenter.default.addObserver(forName: .saveDateNotification, object: nil, queue: nil) { (notification) in
+            let dateVC = notification.object as! EDatesForYearListViewController
+            print(dateVC)
+            if let year = dateVC.year {
+                print(year)
+            }
+            else{
+                print("error")
+            }
+        }
     }
 }

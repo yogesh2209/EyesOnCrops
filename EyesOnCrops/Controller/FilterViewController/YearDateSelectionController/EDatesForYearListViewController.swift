@@ -41,10 +41,13 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
         getDatesInYearListServiceCall(year: year)
     }
     
+    // MARK: Custom Methods
+    
     func customiseUI() {
         self.tableViewDatesList.tableFooterView = UIView()
     }
     
+   
     //MARK: Service Calling
     func getDatesInYearListServiceCall(year: String){
         let param: Dictionary<String, Any> =
@@ -110,5 +113,12 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        //take him to home screen with passing data to that screen
+        postNotification(notification: .saveDateNotification)
+        self.navigationController?.backToViewController(vc: EHomeViewController.self)
+    }
+    
+    // MARK: Notifications
+    func postNotification(notification: Notification.Name) {
+        NotificationCenter.default.post(name: notification, object: self)
     }
 }
