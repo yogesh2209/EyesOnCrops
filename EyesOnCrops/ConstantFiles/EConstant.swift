@@ -8,11 +8,8 @@
 
 import Foundation
 
-
-
 /* URLs */
-
-let MAIN_URL                                            = "http://72.27.225.62:220/yogesh/"
+let MAIN_URL                                            = "https://eoe.dynu.net/yogesh/"
 let POST_CREDENTIALS                                    = "credentials.php"
 let POST_GET_DATA                                       = "get_data.php"
 
