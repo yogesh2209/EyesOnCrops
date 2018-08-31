@@ -419,17 +419,9 @@
 		58AE76D51FD4A5A1002CAADC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				58AE76D61FD4A5A1002CAADC /* CollectionViewCells */,
 				58AE76D71FD4A5A1002CAADC /* TableVieCells */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		58AE76D61FD4A5A1002CAADC /* CollectionViewCells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		58AE76D71FD4A5A1002CAADC /* TableVieCells */ = {
@@ -465,7 +457,6 @@
 			isa = PBXGroup;
 			children = (
 				58C2356520B5117D00237A0B /* Extensions */,
-				58C2356020B4A4C000237A0B /* Protocols */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -628,13 +619,6 @@
 				58C2355A20B35C9900237A0B /* EDatesForYearListTableViewCell.swift */,
 			);
 			path = YearDatesCells;
-			sourceTree = "<group>";
-		};
-		58C2356020B4A4C000237A0B /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		58C2356520B5117D00237A0B /* Extensions */ = {
