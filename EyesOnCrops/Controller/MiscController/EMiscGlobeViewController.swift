@@ -9,9 +9,25 @@
 import UIKit
 import WhirlyGlobe
 import MapKit
+import Alamofire
+import PopupDialog
 
-class EMiscGlobeViewController: UIViewController, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate {
+struct JSONData: Decodable {
+    let region_id: String?
+    let country: String?
+    let state: String?
+    let district: String?
+    let ndvi: String?
+    let ndvi_count: String?
+    let anomaly: String?
+    let anomaly_count: String?
+    let centr_lon: String?
+    let centr_lat: String?
+}
 
+class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate {
+
+    var json : [JSONData] = []
     private var theViewC: MaplyBaseViewController?
     private var globeViewC: WhirlyGlobeViewController?
     private var mapViewC: MaplyViewController?
@@ -31,8 +47,8 @@ class EMiscGlobeViewController: UIViewController, WhirlyGlobeViewControllerDeleg
             globeViewC = WhirlyGlobeViewController()
             theViewC = globeViewC
             globeViewC?.delegate = self
-            globeViewC?.height = 0.8
             globeViewC?.animate(toPosition: MaplyCoordinateMakeWithDegrees(-5.93,54.597), time: 1.0)
+          //  globeViewC?.setZoomLimitsMin(1, max: 5)
         }
         else {
             mapViewC = MaplyViewController()
@@ -68,7 +84,7 @@ class EMiscGlobeViewController: UIViewController, WhirlyGlobeViewControllerDeleg
             // Because this is a remote tile set, we'll want a cache directory
             let baseCacheDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
             let tilesCacheDir = "\(baseCacheDir)/tiles/"
-            let maxZoom = Int32(18)
+            let maxZoom = Int32(9)
             
             // Stamen Terrain Tiles, courtesy of Stamen Design under the Creative Commons Attribution License.
             // Data by OpenStreetMap under the Open Data Commons Open Database License.
@@ -76,8 +92,8 @@ class EMiscGlobeViewController: UIViewController, WhirlyGlobeViewControllerDeleg
             guard let tileSource = MaplyRemoteTileSource(
                 baseURL: "http://tile.stamen.com/terrain/",
                 ext: "png",
-                minZoom: 0,
-                maxZoom: maxZoom)
+                minZoom: 1,
+                maxZoom: 7)
                 else {
                     print("Can't create the remote tile source")
                     return
@@ -90,13 +106,14 @@ class EMiscGlobeViewController: UIViewController, WhirlyGlobeViewControllerDeleg
         layer.coverPoles = (globeViewC != nil)
         layer.requireElev = false
         layer.waitLoad = false
+        layer.imageDepth = 1
         layer.drawPriority = 0
         layer.singleLevelLoading = false
         theViewC!.add(layer)
         
         // start up over San Francisco
         if let globeViewC = globeViewC {
-            globeViewC.height = 0.8
+            //globeViewC.height = 0.8
             globeViewC.animate(toPosition: MaplyCoordinateMakeWithDegrees(-122.4192, 37.7793), time: 1.0)
         }
         else if let mapViewC = mapViewC {
@@ -129,6 +146,7 @@ class EMiscGlobeViewController: UIViewController, WhirlyGlobeViewControllerDeleg
         
         // add the countries
         addCountries()
+        addStates()
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,6 +162,10 @@ class EMiscGlobeViewController: UIViewController, WhirlyGlobeViewControllerDeleg
     }
     
     private func addCountries() {
+        
+        //setting the zoom limit
+        globeViewC?.setZoomLimitsMin(0.05, max: 3)
+        
         // handle this in another thread
         let queue = DispatchQueue.global()
         queue.async {
@@ -164,7 +186,7 @@ class EMiscGlobeViewController: UIViewController, WhirlyGlobeViewControllerDeleg
                     }
                     
                     // add the outline to our view
-                    let compObj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDict)
+                    let compObj = self.globeViewC?.addVectors([wgVecObj], desc: self.vectorDict)
                     
                     var c = wgVecObj.center()
                     wgVecObj.centroid(&c)
@@ -217,15 +239,16 @@ class EMiscGlobeViewController: UIViewController, WhirlyGlobeViewControllerDeleg
     // Unified method to handle the selection
     private func handleSelection(selectedObject: NSObject) {
         if let selectedObject = selectedObject as? MaplyVectorObject {
-            var c = selectedObject.center()
-            let abc =  selectedObject.centroid(&c)
-            let loc = c
-            addAnnotationWithTitle(title: "selected", subtitle: selectedObject.userObject as! String, loc: loc)
+            var loc = selectedObject.center()
+            let _ =  selectedObject.centroid(&loc)
+            if let obj = selectedObject.userObject as? String {
+                addAnnotationWithTitle(title: "selected", subtitle: obj, loc: loc)
+                getJSONDataServiceCall()
+            }
         }
         else if let selectedObject = selectedObject as? MaplyScreenMarker {
             addAnnotationWithTitle(title: "selected", subtitle: "marker", loc: selectedObject.loc)
         }
-        addSpheres()
     }
     
     // This is the version for a globe
@@ -243,28 +266,97 @@ class EMiscGlobeViewController: UIViewController, WhirlyGlobeViewControllerDeleg
     func locationManager(_ manager: CLLocationManager, didChange status: CLAuthorizationStatus) {
     }
     
-    private func addSpheres() {
-        let capitals = [MaplyCoordinateMakeWithDegrees(-77.036667, 38.895111),
-                        MaplyCoordinateMakeWithDegrees(120.966667, 14.583333),
-                        MaplyCoordinateMakeWithDegrees(55.75, 37.616667),
-                        MaplyCoordinateMakeWithDegrees(-0.1275, 51.507222),
-                        MaplyCoordinateMakeWithDegrees(-66.916667, 10.5),
-                        MaplyCoordinateMakeWithDegrees(139.6917, 35.689506),
-                        MaplyCoordinateMakeWithDegrees(166.666667, -77.85),
-                        MaplyCoordinateMakeWithDegrees(-58.383333, -34.6),
-                        MaplyCoordinateMakeWithDegrees(-74.075833, 4.598056),
-                        MaplyCoordinateMakeWithDegrees(-79.516667, 8.983333)]
+    private func addSpheres(json: [JSONData]) {
         
-    
-        // convert capitals into spheres. Let's do it functional!
-        let spheres = capitals.map { capital -> MaplyShapeSphere in
-            let sphere = MaplyShapeSphere()
-            sphere.center = capital
-            sphere.radius = 0.01
-            return sphere
+        var coordinates : [MaplyCoordinate] = []
+        
+        for index in 0..<json.count {
+            if  let latStr = json[index].centr_lat,
+                let lonStr = json[index].centr_lon,
+                let lat = Float(latStr),
+                let lon = Float(lonStr) {
+                
+                coordinates.append(MaplyCoordinateMakeWithDegrees(lon, lat))
+            }
         }
         
-        self.theViewC?.addShapes(spheres, desc: [
-            kMaplyColor: UIColor(red: 0.75, green: 0.0, blue: 0.0, alpha: 0.75)])
+        // convert capitals into spheres. Let's do it functional!
+        let spheres = coordinates.map { coordinate -> MaplyShapeCircle in
+            let circle = MaplyShapeCircle()
+            circle.center = coordinate
+            circle.radius = 0.005
+            return circle
+        }
+        
+        globeViewC?.addShapes(spheres, desc: [
+            kMaplyColor: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)])
+    }
+    
+    private func addStates() {
+        // handle this in another thread
+        let queue = DispatchQueue.global()
+        queue.async {
+            let bundle = Bundle.main
+            let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "state_json")
+            
+            for outline in allOutlines.reversed() {
+            
+                if let jsonData = NSData(contentsOfFile: outline),
+                    let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
+ 
+                    // add the outline to our view
+                    let compObj = self.globeViewC?.addVectors([wgVecObj], desc: self.vectorDict)
+               
+                }
+            }
+        }
+    }
+    
+    
+    //MARK: Service Calling
+    func getJSONDataServiceCall(){
+        let param: Dictionary<String, Any> =
+            [
+                "date"               : "2017-09-14"             as Any,
+                "country"            : "Australia"              as Any,
+                "action_for"         :  ACTION_FOR_JSON_DATA     as Any
+                
+                ] as Dictionary<String, Any>
+        
+        self.showAnimatedProgressBar(title: "Wait..", subTitle: "Fetching info")
+        let urL = MAIN_URL + POST_GET_DATA
+        Alamofire.request(urL, method: .get, parameters: param).responseJSON{ response in
+            
+            switch response.result {
+            case .success:
+                print(response.result.value)
+                self.hideAnimatedProgressBar()
+                
+                if let json = response.result.value as? NSDictionary {
+                    if let _ = json["messageResponse"] {
+                        self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                    }
+                    return
+                }
+                
+                guard let data = response.data else { return }
+                
+                do {
+                    self.json = try JSONDecoder().decode([JSONData].self, from: data)
+                    if self.json.count != 0 {
+                       print(self.json)
+                        self.addSpheres(json: self.json)
+                    }
+                }
+                catch {
+                    self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                    return
+                }
+                
+            case .failure(_ ):
+                self.hideAnimatedProgressBar()
+                self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+            }
+        }
     }
 }

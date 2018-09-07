@@ -18,6 +18,7 @@
 		583EB48E1FEB041E003CEC57 /* EHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583EB48D1FEB041E003CEC57 /* EHelpViewController.swift */; };
 		584A0F581FE7B6E700CC2AF4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 584A0F571FE7B6E700CC2AF4 /* GoogleService-Info.plist */; };
 		584C22C02009E54C0093BF8B /* EPasswordRecoveryStepThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584C22BF2009E54C0093BF8B /* EPasswordRecoveryStepThreeViewController.swift */; };
+		5851993B213F51BD00701BF7 /* state_json in Resources */ = {isa = PBXBuildFile; fileRef = 5851993A213F51BD00701BF7 /* state_json */; };
 		5853E7982047C4FD00FF611F /* ECustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5853E7972047C4FD00FF611F /* ECustomTextView.swift */; };
 		585D943C1FD49C7A00F076A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585D943B1FD49C7A00F076A4 /* AppDelegate.swift */; };
 		585D94411FD49C7A00F076A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 585D943F1FD49C7A00F076A4 /* Main.storyboard */; };
@@ -113,6 +114,7 @@
 		583EB48D1FEB041E003CEC57 /* EHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EHelpViewController.swift; sourceTree = "<group>"; };
 		584A0F571FE7B6E700CC2AF4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		584C22BF2009E54C0093BF8B /* EPasswordRecoveryStepThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPasswordRecoveryStepThreeViewController.swift; sourceTree = "<group>"; };
+		5851993A213F51BD00701BF7 /* state_json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = state_json; sourceTree = "<group>"; };
 		5853E7972047C4FD00FF611F /* ECustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECustomTextView.swift; sourceTree = "<group>"; };
 		585D94381FD49C7A00F076A4 /* EyesOnCrops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EyesOnCrops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		585D943B1FD49C7A00F076A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -395,25 +397,10 @@
 		58AE76D21FD4A5A1002CAADC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5851993A213F51BD00701BF7 /* state_json */,
 				58AE76E11FD4BA95002CAADC /* Fonts */,
-				58AE76D31FD4A5A1002CAADC /* Library */,
-				58AE76D41FD4A5A1002CAADC /* Reachability */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		58AE76D31FD4A5A1002CAADC /* Library */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
-		58AE76D41FD4A5A1002CAADC /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Reachability;
 			sourceTree = "<group>";
 		};
 		58AE76D51FD4A5A1002CAADC /* View */ = {
@@ -825,6 +812,7 @@
 				58AE77041FD4BABF002CAADC /* OpenSans-Italic.ttf in Resources */,
 				58AE76F51FD4BABF002CAADC /* OpenSans-ExtraBold.ttf in Resources */,
 				58AE76FD1FD4BABF002CAADC /* Brown Regular.ttf in Resources */,
+				5851993B213F51BD00701BF7 /* state_json in Resources */,
 				58AE76FC1FD4BABF002CAADC /* source-sans-pro.semibold.ttf in Resources */,
 				58AE77001FD4BABF002CAADC /* OpenSans-BoldItalic.ttf in Resources */,
 				584A0F581FE7B6E700CC2AF4 /* GoogleService-Info.plist in Resources */,

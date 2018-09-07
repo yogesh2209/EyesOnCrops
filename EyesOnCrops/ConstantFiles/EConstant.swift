@@ -103,5 +103,7 @@ let ACTION_PSWD_RECOVERY_USER_DATA                      = "pswd_recovery_fetch_u
 let ACTION_FOR_UPDATE_PASSWORD                          = "update_user_password"
 let ACTION_FOR_YEARS_LIST                               = "years_list"
 let ACTION_FOR_DATES_IN_YEAR                            = "dates_in_year"
+let ACTION_FOR_JSON_DATA                                = "ndvi_data"
+
 
 
