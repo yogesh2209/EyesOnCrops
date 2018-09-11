@@ -203,6 +203,7 @@ extension EHomeViewController {
             kMaplyVecWidth: 4.0 as AnyObject
         ]
         
+        setupZoomLevel()
     }
     
     func setupZoomLevel() {
@@ -260,8 +261,6 @@ extension EHomeViewController {
     }
     
     func addCountries() {
-        
-        setupZoomLevel()
         
         // handle this in another thread
         let queue = DispatchQueue.global()

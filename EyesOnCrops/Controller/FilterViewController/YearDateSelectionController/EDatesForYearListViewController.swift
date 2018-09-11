@@ -88,7 +88,7 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
                 if let json = response.result.value as? NSDictionary {
                     if let _ = json["messageResponse"] {
                         self.alertMessage(title: ALERT_TITLE, message: NO_DATES_FOR_YEAR_FOUND)
-                        self.emptyMessageLabel(for: self.tableViewDatesList, label: self.messagelabel, hidden: false, text: NO_DATES_FOR_YEAR_FOUND + ". Please pull to refresh")
+                        self.emptyMessageLabel(for: self.tableViewDatesList, label: self.messagelabel, hidden: false, text: NO_DATES_FOR_YEAR_FOUND + ". Please pull to refresh.")
                     }
                     return
                 }
@@ -104,14 +104,14 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
                 }
                 catch {
                     self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-                    self.emptyMessageLabel(for: self.tableViewDatesList, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + " Please pull to refresh")
+                    self.emptyMessageLabel(for: self.tableViewDatesList, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh.")
                     return
                 }
                 
             case .failure(_ ):
                 self.hideAnimatedProgressBar()
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-                 self.emptyMessageLabel(for: self.tableViewDatesList, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + " Please pull to refresh")
+                 self.emptyMessageLabel(for: self.tableViewDatesList, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh.")
             }
         }
     }

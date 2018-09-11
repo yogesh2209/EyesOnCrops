@@ -82,7 +82,7 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
                 if let json = response.result.value as? NSDictionary {
                     if let _ = json["messageResponse"] {
                         self.alertMessage(title: ALERT_TITLE, message: NO_YEAR_FOUND)
-                        self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: NO_YEAR_FOUND + ". Please pull to refresh")
+                        self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: NO_YEAR_FOUND + ". Please pull to refresh.")
                     }
                     return
                 }
@@ -98,14 +98,14 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
                 }
                 catch {
                     self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-                    self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + " Please pull to refresh")
+                    self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh.")
                     return
                 }
                 
             case .failure(_ ):
                 self.hideAnimatedProgressBar()
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-                self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + " Please pull to refresh")
+                self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh.")
             }
         }
     }
@@ -130,7 +130,6 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
     //MARK: UITableView Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         self.performSegue(withIdentifier: YEAR_LIST_TO_DATES_SEGUE_VC, sender: indexPath.row)
     }
     
