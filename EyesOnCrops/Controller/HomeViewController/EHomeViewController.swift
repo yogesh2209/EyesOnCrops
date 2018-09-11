@@ -69,8 +69,8 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     func setupAdsBanner() {
         viewBanner.adUnitID = "ca-app-pub-8984057949233397/5348963984"
         viewBanner.rootViewController = self
-        viewBanner.load(GADRequest())
         viewBanner.delegate = self
+        viewBanner.load(GADRequest())
     }
     
     func customiseUI() {
@@ -145,6 +145,8 @@ extension EHomeViewController {
         }
         
         self.view.addSubview(theViewC!.view)
+        self.view.bringSubview(toFront: viewBanner)
+        self.view.sendSubview(toBack: theViewC!.view)
         theViewC!.view.frame = self.view.bounds
         addChildViewController(theViewC!)
         

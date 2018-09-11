@@ -18,6 +18,17 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
     
     @IBOutlet weak var tableViewDatesList: UITableView!
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(EYearsListViewController.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.red
+        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing...")
+        
+        return refreshControl
+    }()
+    
     var dates : [DatesList] = []
     public var year: String? = nil
     let messagelabel = UILabel()
@@ -48,6 +59,14 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
         self.tableViewDatesList.tableFooterView = UIView()
     }
     
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        //service call
+        if let y = year {
+           self.getDatesInYearListServiceCall(year: y)
+        }
+        
+        refreshControl.endRefreshing()
+    }
    
     //MARK: Service Calling
     func getDatesInYearListServiceCall(year: String){
@@ -85,14 +104,14 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
                 }
                 catch {
                     self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-                    self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh")
+                    self.emptyMessageLabel(for: self.tableViewDatesList, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + " Please pull to refresh")
                     return
                 }
                 
             case .failure(_ ):
                 self.hideAnimatedProgressBar()
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-                 self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh")
+                 self.emptyMessageLabel(for: self.tableViewDatesList, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + " Please pull to refresh")
             }
         }
     }

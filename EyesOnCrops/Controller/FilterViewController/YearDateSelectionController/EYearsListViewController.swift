@@ -24,6 +24,7 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
             #selector(EYearsListViewController.handleRefresh(_:)),
                                  for: UIControlEvents.valueChanged)
         refreshControl.tintColor = UIColor.red
+        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing...")
         
         return refreshControl
     }()
@@ -36,6 +37,7 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         customiseUI()
         tableView.tableFooterView = UIView()
+        tableView.addSubview(refreshControl)
         // Do any additional setup after loading the view.
     }
     
@@ -55,8 +57,9 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
         title = "Years"
     }
     
-    func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.tableView.reloadData()
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        //service call
+        self.getYearsListServiceCall()
         refreshControl.endRefreshing()
     }
     
@@ -95,14 +98,14 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
                 }
                 catch {
                     self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-                    self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh")
+                    self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + " Please pull to refresh")
                     return
                 }
                 
             case .failure(_ ):
                 self.hideAnimatedProgressBar()
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-                self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh")
+                self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + " Please pull to refresh")
             }
         }
     }

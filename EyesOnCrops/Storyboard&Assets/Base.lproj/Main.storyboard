@@ -2125,6 +2125,7 @@
         <image name="or_line" width="203" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="NuE-RF-6uz"/>
         <segue reference="a50-FB-7qu"/>
         <segue reference="yvM-W4-G3j"/>
         <segue reference="uTI-GX-MkV"/>
