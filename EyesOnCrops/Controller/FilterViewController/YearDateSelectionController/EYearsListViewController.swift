@@ -18,13 +18,24 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
     
     @IBOutlet weak var tableView: UITableView!
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(EYearsListViewController.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.red
+        
+        return refreshControl
+    }()
+    
     var getIndicator: Int!
     var years : [YearList] = []
+    let messagelabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         customiseUI()
-        
+        tableView.tableFooterView = UIView()
         // Do any additional setup after loading the view.
     }
     
@@ -42,6 +53,11 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
     func customiseUI() {
         self.tableView.tableFooterView = UIView()
         title = "Years"
+    }
+    
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     //MARK: Service Calling
@@ -62,7 +78,8 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
                 
                 if let json = response.result.value as? NSDictionary {
                     if let _ = json["messageResponse"] {
-                        self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                        self.alertMessage(title: ALERT_TITLE, message: NO_YEAR_FOUND)
+                        self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: NO_YEAR_FOUND + ". Please pull to refresh")
                     }
                     return
                 }
@@ -74,15 +91,18 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
                     if self.years.count != 0 {
                         self.tableView.reloadData()
                     }
+                    self.messagelabel.isHidden = true
                 }
                 catch {
                     self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                    self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh")
                     return
                 }
                 
             case .failure(_ ):
                 self.hideAnimatedProgressBar()
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh")
             }
         }
     }

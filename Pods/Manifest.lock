@@ -33,6 +33,7 @@ PODS:
   - boost/pointer_cast-includes (1.51.0)
   - boost/shared_ptr-includes (1.51.0)
   - boost/string_algorithms-includes (1.51.0)
+  - Cache (4.2.0)
   - clipper (6.1.3a)
   - CorePlot (2.0)
   - Crashlytics (3.9.3):
@@ -161,6 +162,7 @@ PODS:
 DEPENDENCIES:
   - ActiveLabel
   - Alamofire (~> 4.5)
+  - Cache
   - CorePlot (from `https://github.com/core-plot/core-plot.git`, branch `release-2.0`)
   - Crashlytics (~> 3.9.3)
   - Fabric (~> 1.7.2)
@@ -196,6 +198,7 @@ SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   boost: 6c5c8d8daef26ac83c1e1c00ad14de62b80161d7
+  Cache: f28f8dd64b632155aabf9b3906b036a659048251
   clipper: b009ea56c501e756299e6999e2c73eef6e1ed218
   CorePlot: 18eb2e5fa6e56d53d0716203620580baba50f67c
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
@@ -233,6 +236,6 @@ SPEC CHECKSUMS:
   WhirlyGlobe: 2849f458220be42d92d814ba04377586cadbf7f1
   WhirlyGlobeResources: d7b3e929e828f958a8477ff6797f962fdb165472
 
-PODFILE CHECKSUM: 253f00ead2cf96d830aeda3cd289f452e9a9c834
+PODFILE CHECKSUM: 7f2ba6dd5b3753c4169c21522044de4ea4d1a154
 
 COCOAPODS: 1.3.1

@@ -8,12 +8,41 @@
 
 import UIKit
 import GoogleMobileAds
+import WhirlyGlobe
+import MapKit
+import Alamofire
+import PopupDialog
 
-class EHomeViewController: EBaseViewController, GADBannerViewDelegate {
+struct JSONData: Decodable {
+    let region_id: String?
+    let country: String?
+    let state: String?
+    let district: String?
+    let ndvi: String?
+    let ndvi_count: String?
+    let anomaly: String?
+    let anomaly_count: String?
+    let centr_lon: String?
+    let centr_lat: String?
+}
 
+class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate {
+    
     @IBOutlet weak var viewBanner: GADBannerView!
     @IBOutlet weak var barButtonFilter: UIBarButtonItem!
     @IBOutlet weak var barButtonReset: UIBarButtonItem!
+    
+    var json : [JSONData] = []
+    private var theViewC: MaplyBaseViewController?
+    private var globeViewC: WhirlyGlobeViewController?
+    private var mapViewC: MaplyViewController?
+    private var vectorDict: [String:AnyObject]?
+    private var vecName: NSObject?
+    
+    var selectedLevel: String?
+    var dateSelected: String?
+    var statesObjectArray: [MaplyComponentObject] = []
+    var countryObjectArray: [MaplyComponentObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +50,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate {
         setupAdsBanner()
         customiseUI()
         registerNotification()
+        loadGlobe()
         // Do any additional setup after loading the view.
     }
     override func didReceiveMemoryWarning() {
@@ -30,8 +60,12 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupFirebaseAnalytics(title: "EHomeViewController")
+        udpateGlobeLevel()
     }
+    
+    
     //MARK: Custom Methods
+    
     func setupAdsBanner() {
         viewBanner.adUnitID = "ca-app-pub-8984057949233397/5348963984"
         viewBanner.rootViewController = self
@@ -86,13 +120,333 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate {
     //MARK: Notifications
     func registerNotification() {
         NotificationCenter.default.addObserver(forName: .saveDateNotification, object: nil, queue: nil) { (notification) in
-            let dateVC = notification.object as! EDatesForYearListViewController
-            print(dateVC)
-            if let year = dateVC.year {
-                print(year)
+            if let userDict = notification.userInfo as? [String : String], let date = userDict["selected_date"] {
+                self.dateSelected = date
+            }
+        }
+    }
+}
+
+extension EHomeViewController {
+    
+    func loadGlobe(isGlobeDisplay: Bool = true) {
+        if isGlobeDisplay {
+            // If you're doing a globe
+            globeViewC = WhirlyGlobeViewController()
+            theViewC = globeViewC
+            globeViewC?.delegate = self
+            globeViewC?.animate(toPosition: MaplyCoordinateMakeWithDegrees(-5.93,54.597), time: 1.0)
+            //  globeViewC?.setZoomLimitsMin(1, max: 5)
+        }
+        else {
+            mapViewC = MaplyViewController()
+            theViewC = mapViewC
+            //mapViewC?.delegate = self
+        }
+        
+        self.view.addSubview(theViewC!.view)
+        theViewC!.view.frame = self.view.bounds
+        addChildViewController(theViewC!)
+        
+        // we want a black background for a globe, a white background for a map.
+        theViewC!.clearColor = (globeViewC != nil) ? UIColor.black : UIColor.white
+        
+        // and thirty fps if we can get it ­ change this to 3 if you find your app is struggling
+        theViewC!.frameInterval = 2
+        
+        // we'll need this layer in a second
+        let layer: MaplyQuadImageTilesLayer
+        
+        // Because this is a remote tile set, we'll want a cache directory
+        let baseCacheDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+        let tilesCacheDir = "\(baseCacheDir)/tiles/"
+        
+        // Stamen Terrain Tiles, courtesy of Stamen Design under the Creative Commons Attribution License.
+        // Data by OpenStreetMap under the Open Data Commons Open Database License.
+        
+        guard let tileSource = MaplyRemoteTileSource(
+            baseURL: "http://tile.stamen.com/terrain/",
+            ext: "png",
+            minZoom: 1,
+            maxZoom: 7)
+            else {
+                print("Can't create the remote tile source")
+                return
+        }
+        
+        tileSource.cacheDir = tilesCacheDir
+        layer = MaplyQuadImageTilesLayer(coordSystem: tileSource.coordSys, tileSource: tileSource)
+        layer.handleEdges = (globeViewC != nil)
+        layer.coverPoles = (globeViewC != nil)
+        layer.requireElev = false
+        layer.waitLoad = false
+        layer.imageDepth = 1
+        layer.drawPriority = 0
+        layer.singleLevelLoading = false
+        theViewC!.add(layer)
+        
+        // start up over San Francisco
+        if let globeViewC = globeViewC {
+            //globeViewC.height = 0.8
+            globeViewC.animate(toPosition: MaplyCoordinateMakeWithDegrees(-122.4192, 37.7793), time: 1.0)
+        }
+        else if let mapViewC = mapViewC {
+            mapViewC.height = 1.0
+            mapViewC.animate(toPosition: MaplyCoordinateMakeWithDegrees(-122.4192, 37.7793), time: 1.0)
+        }
+        
+        vectorDict = [
+            kMaplyColor: UIColor.black,
+            kMaplySelectable: true as AnyObject,
+            kMaplyVecWidth: 4.0 as AnyObject
+        ]
+        
+    }
+    
+    func setupZoomLevel() {
+        //setting the zoom limit
+        globeViewC?.setZoomLimitsMin(0.05, max: 3)
+    }
+    
+    //updating globe with level and date
+    func udpateGlobeLevel(){
+        
+        if let selectedLevel = self.getStoredLevelFromUserDefaults() {
+            
+            //country admin level
+            if selectedLevel == "LEVEL-0" {
+                
+                if self.countryObjectArray.count != 0 {
+                    self.globeViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
+                }
+                else{
+                    self.addCountries()
+                }
+                
+                self.globeViewC?.disableObjects(statesObjectArray, mode: MaplyThreadAny)
+            }
+                //state admin level
+            else if selectedLevel == "LEVEL-1" {
+                
+                if self.countryObjectArray.count != 0 {
+                    self.globeViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
+                }
+                else{
+                    self.addCountries()
+                }
+                
+                
+                if self.statesObjectArray.count != 0 {
+                    self.globeViewC?.enable(statesObjectArray, mode: MaplyThreadAny)
+                }
+                else{
+                    self.addStates()
+                }
+            }
+        }
+            //No level found - in case of something wrong
+        else{
+            if self.countryObjectArray.count != 0 {
+                self.globeViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
             }
             else{
-                print("error")
+                self.addCountries()
+            }
+            
+            self.globeViewC?.disableObjects(statesObjectArray, mode: MaplyThreadAny)
+        }
+    }
+    
+    func addCountries() {
+        
+        setupZoomLevel()
+        
+        // handle this in another thread
+        let queue = DispatchQueue.global()
+        queue.async {
+            let bundle = Bundle.main
+            let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "country_json_50m")
+            
+            for outline in allOutlines {
+                if let jsonData = NSData(contentsOfFile: outline),
+                    let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
+                    
+                    wgVecObj.selectable = true
+                    
+                    // the admin tag from the country outline geojson has the country name ­ save
+                    if let attrs = wgVecObj.attributes,
+                        let vecNameee = attrs.object(forKey: "ADMIN") as? NSObject {
+                        self.vecName = vecNameee
+                        wgVecObj.userObject = self.vecName
+                    }
+                    
+                    // add the outline to our view
+                    let obj = self.globeViewC?.addVectors([wgVecObj], desc: self.vectorDict)
+                    if let maplyObj = obj {
+                        self.countryObjectArray.append(maplyObj)
+                    }
+                    var c = wgVecObj.center()
+                    wgVecObj.centroid(&c)
+                }
+            }
+        }
+    }
+    
+    private func addAnnotationWithTitle(title: String, subtitle: String, loc:MaplyCoordinate) {
+        theViewC?.clearAnnotations()
+        
+        let a = MaplyAnnotation()
+        a.title = title
+        a.subTitle = subtitle
+        
+        theViewC?.addAnnotation(a, forPoint: loc, offset: .zero)
+    }
+    
+    func globeViewController(_ viewC: WhirlyGlobeViewController, didTapAt coord: MaplyCoordinate) {
+        // let subtitle = NSString(format: "(%.2fN, %.2fE)", coord.y*57.296,coord.x*57.296) as String
+        // addAnnotationWithTitle(title: "Tap!", subtitle: subtitle, loc: coord)
+    }
+    
+    func maplyViewController(_ viewC: MaplyViewController, didTapAt coord: MaplyCoordinate) {
+        // let subtitle = NSString(format: "(%.2fN, %.2fE)", coord.y*57.296,coord.x*57.296) as String
+        // addAnnotationWithTitle(title: "Tap!", subtitle: subtitle, loc: coord)
+    }
+    
+    // Unified method to handle the selection
+    private func handleSelection(selectedObject: NSObject, date: String = "") {
+        if let selectedObject = selectedObject as? MaplyVectorObject {
+            var loc = selectedObject.center()
+            let _ =  selectedObject.centroid(&loc)
+            if let country = selectedObject.userObject as? String {
+                //  addAnnotationWithTitle(title: "selected", subtitle: obj, loc: loc)
+                getJSONDataServiceCall(date: date, country: country)
+            }
+        }
+        else if let _ = selectedObject as? MaplyScreenMarker {
+            // addAnnotationWithTitle(title: "selected", subtitle: "marker", loc: selectedObject.loc)
+        }
+    }
+    
+    // This is the version for a globe
+    func globeViewController(_ viewC: WhirlyGlobeViewController, didSelect selectedObj: NSObject) {
+        if let dateSelected = dateSelected {
+            handleSelection(selectedObject: selectedObj, date: dateSelected)
+        }
+        else{
+            self.alertMessage(title: "ALERT", message: "Please select the date first!")
+        }
+    }
+    
+    // This is the version for a map
+    func maplyViewController(_ viewC: MaplyViewController, didSelect selectedObj: NSObject) {
+        if let dateSelected = dateSelected {
+            handleSelection(selectedObject: selectedObj, date: dateSelected)
+        }
+        else{
+            self.alertMessage(title: "ALERT", message: "Please select the date first!")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    }
+    func locationManager(_ manager: CLLocationManager, didChange status: CLAuthorizationStatus) {
+    }
+    
+    private func addCoordinates(json: [JSONData]) {
+        
+        var coordinates: [MaplyCoordinate] = []
+        var colors: [UIColor] = []
+        
+        for index in 0..<json.count {
+            if  let latStr = json[index].centr_lat,
+                let lonStr = json[index].centr_lon,
+                let lat = Float(latStr),
+                let lon = Float(lonStr),
+                let ndvi = json[index].ndvi,
+                let ndviFloat = Float(ndvi) {
+                
+                coordinates.append(MaplyCoordinateMakeWithDegrees(lon, lat))
+                colors.append(UIColor.init(red: CGFloat(ndviFloat.toRGB()), green: CGFloat(ndviFloat.toRGB()), blue: CGFloat(ndviFloat.toRGB()), alpha: 1.0))
+            }
+        }
+        
+        var circles: [MaplyShapeCircle] = []
+        for index in 0..<coordinates.count {
+            let circle = MaplyShapeCircle()
+            circle.center = coordinates[index]
+            circle.radius = 0.005
+            circle.color = colors[index]
+            circles.append(circle)
+        }
+        
+        globeViewC?.addShapes(circles, desc: [:])
+    }
+    
+    func addStates() {
+        
+        // handle this in another thread
+        let queue = DispatchQueue.global()
+        queue.async {
+            let bundle = Bundle.main
+            let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "state_json")
+            
+            for outline in allOutlines.reversed() {
+                
+                if let jsonData = NSData(contentsOfFile: outline),
+                    let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
+                    
+                    // add the outline to our view
+                    let obj = self.globeViewC?.addVectors([wgVecObj], desc: self.vectorDict)
+                    if let maplyObj = obj {
+                        self.statesObjectArray.append(maplyObj)
+                    }
+                }
+            }
+        }
+    }
+    
+    //MARK: Service Calling
+    func getJSONDataServiceCall(date: String, country: String){
+        let param: Dictionary<String, Any> =
+            [
+                "date"               : date                     as Any,
+                "country"            : country                  as Any,
+                "action_for"         : ACTION_FOR_JSON_DATA     as Any
+                
+                ] as Dictionary<String, Any>
+        
+        self.showAnimatedProgressBar(title: "Wait..", subTitle: "Fetching info for" + date + "of " + country)
+        let urL = MAIN_URL + POST_GET_DATA
+        Alamofire.request(urL, method: .get, parameters: param).responseJSON{ response in
+            
+            switch response.result {
+            case .success:
+                
+                self.hideAnimatedProgressBar()
+                
+                if let json = response.result.value as? NSDictionary {
+                    if let _ = json["messageResponse"] {
+                        self.alertMessage(title: ALERT_TITLE, message: NO_DATA_AVAILABLE + country)
+                    }
+                    return
+                }
+                
+                guard let data = response.data else { return }
+                
+                do {
+                    self.json = try JSONDecoder().decode([JSONData].self, from: data)
+                    if self.json.count != 0 {
+                        self.addCoordinates(json: self.json)
+                    }
+                }
+                catch {
+                    self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                    return
+                }
+                
+            case .failure(_ ):
+                self.hideAnimatedProgressBar()
+                self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
             }
         }
     }

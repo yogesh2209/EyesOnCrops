@@ -8,14 +8,23 @@
 
 import Foundation
 
-extension DateFormatter {
+extension String {
     
     //change one date format to another
-//    func changeDateFormat(date: Date, oldFormat: String, newFormat: String) -> Date?{
-//        let dateFormatter = DateFormatter()
-//        let date dateFormatter.dateFormat = newFormat
-//        
-//    }
+    func changeDateFormat(date: String, oldFormat: String, newFormat: String = "MMM dd,yyyy") -> String?{
+   
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = oldFormat
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = newFormat
+        
+        if let convertedDate = dateFormatterGet.date(from: date) {
+            return dateFormatter.string(from: convertedDate)
+        }
+        
+        return nil
+       
+    }
 }
 
 

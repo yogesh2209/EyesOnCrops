@@ -20,10 +20,11 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
     
     var dates : [DatesList] = []
     public var year: String? = nil
+    let messagelabel = UILabel()
   
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableViewDatesList.tableFooterView = UIView()
         // Do any additional setup after loading the view.
     }
 
@@ -67,7 +68,8 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
                 
                 if let json = response.result.value as? NSDictionary {
                     if let _ = json["messageResponse"] {
-                        self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                        self.alertMessage(title: ALERT_TITLE, message: NO_DATES_FOR_YEAR_FOUND)
+                        self.emptyMessageLabel(for: self.tableViewDatesList, label: self.messagelabel, hidden: false, text: NO_DATES_FOR_YEAR_FOUND + ". Please pull to refresh")
                     }
                     return
                 }
@@ -79,15 +81,18 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
                     if self.dates.count != 0 {
                         self.tableViewDatesList.reloadData()
                     }
+                    self.messagelabel.isHidden = true
                 }
                 catch {
                     self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                    self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh")
                     return
                 }
                 
             case .failure(_ ):
                 self.hideAnimatedProgressBar()
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                 self.emptyMessageLabel(for: self.tableView, label: self.messagelabel, hidden: false, text: SOMETHING_WENT_WRONG_ERROR + ". Please pull to refresh")
             }
         }
     }
@@ -113,12 +118,14 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        //take him to home screen with passing data to that screen
-        postNotification(notification: .saveDateNotification)
-        self.navigationController?.backToViewController(vc: EHomeViewController.self)
+        if dates.count != 0, let date = dates[indexPath.row].start_date {
+            postNotification(notification: .saveDateNotification, date: date)
+            self.navigationController?.backToViewController(vc: EHomeViewController.self)
+        }
     }
     
     // MARK: Notifications
-    func postNotification(notification: Notification.Name) {
-        NotificationCenter.default.post(name: notification, object: self)
+    func postNotification(notification: Notification.Name, date: String) {
+        NotificationCenter.default.post(name: notification, object: self, userInfo: ["selected_date" : date])
     }
 }

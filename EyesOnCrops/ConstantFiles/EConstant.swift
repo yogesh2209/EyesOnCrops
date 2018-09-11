@@ -59,8 +59,9 @@ let DATES_LIST_CUSTOM_CELL                              = "datesListCustomCell"
 
 /* -------- STATIC ARRAYS / DATA ---------------- */
 
-let FilterCategoryArray = ["Layer","Year : Date","Level", "Color Scheme"]
+let FilterCategoryArray = ["Layer","Year : Date", "Level", "Color Scheme"]
 let LevelListArray = ["Admin Level 0","Admin Level 1","250 metre resolution"]
+let categoryDetailsArray = [".","Select year and date", "Select Admin Level", "Select color scheme for data"]
 
 
 /* -------- ALERT MESSAGE STRINGS ---------------- */
@@ -85,6 +86,9 @@ let USER_ALREADY_REGISTERED                             = "User already exist!"
 let INVALID_CREDENTIALS_LOGIN                           = "Please check your credentials"
 let EMPTY_DATE_OF_BIRTH_ERROR                           = "Year of birth cannot be empty"
 let DATE_OF_BIRTH_MISMATCH_ERROR                        = "Year of Birth does not match"
+let NO_DATA_AVAILABLE                                   = "No data available for"
+let NO_YEAR_FOUND                                       = "No year found!"
+let NO_DATES_FOR_YEAR_FOUND                             = "No dates for year found!"
 
 
 /* -------- PLACEHOLDER STRINGS ---------------- */

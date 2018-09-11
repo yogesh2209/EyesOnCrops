@@ -12,6 +12,7 @@ import MapKit
 import Alamofire
 import PopupDialog
 
+/*
 struct JSONData: Decodable {
     let region_id: String?
     let country: String?
@@ -24,6 +25,7 @@ struct JSONData: Decodable {
     let centr_lon: String?
     let centr_lat: String?
 }
+ */
 
 class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate {
 
@@ -227,13 +229,13 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
     }
     
     func globeViewController(_ viewC: WhirlyGlobeViewController, didTapAt coord: MaplyCoordinate) {
-        let subtitle = NSString(format: "(%.2fN, %.2fE)", coord.y*57.296,coord.x*57.296) as String
-        addAnnotationWithTitle(title: "Tap!", subtitle: subtitle, loc: coord)
+       // let subtitle = NSString(format: "(%.2fN, %.2fE)", coord.y*57.296,coord.x*57.296) as String
+       // addAnnotationWithTitle(title: "Tap!", subtitle: subtitle, loc: coord)
     }
     
     func maplyViewController(_ viewC: MaplyViewController, didTapAt coord: MaplyCoordinate) {
-        let subtitle = NSString(format: "(%.2fN, %.2fE)", coord.y*57.296,coord.x*57.296) as String
-        addAnnotationWithTitle(title: "Tap!", subtitle: subtitle, loc: coord)
+       // let subtitle = NSString(format: "(%.2fN, %.2fE)", coord.y*57.296,coord.x*57.296) as String
+       // addAnnotationWithTitle(title: "Tap!", subtitle: subtitle, loc: coord)
     }
     
     // Unified method to handle the selection
@@ -241,13 +243,13 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
         if let selectedObject = selectedObject as? MaplyVectorObject {
             var loc = selectedObject.center()
             let _ =  selectedObject.centroid(&loc)
-            if let obj = selectedObject.userObject as? String {
-                addAnnotationWithTitle(title: "selected", subtitle: obj, loc: loc)
+            if let _ = selectedObject.userObject as? String {
+              //  addAnnotationWithTitle(title: "selected", subtitle: obj, loc: loc)
                 getJSONDataServiceCall()
             }
         }
-        else if let selectedObject = selectedObject as? MaplyScreenMarker {
-            addAnnotationWithTitle(title: "selected", subtitle: "marker", loc: selectedObject.loc)
+        else if let _ = selectedObject as? MaplyScreenMarker {
+           // addAnnotationWithTitle(title: "selected", subtitle: "marker", loc: selectedObject.loc)
         }
     }
     
@@ -266,30 +268,42 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
     func locationManager(_ manager: CLLocationManager, didChange status: CLAuthorizationStatus) {
     }
     
-    private func addSpheres(json: [JSONData]) {
+    private func addCoordinates(json: [JSONData]) {
         
-        var coordinates : [MaplyCoordinate] = []
+        var coordinates: [MaplyCoordinate] = []
+        var colors: [UIColor] = []
         
         for index in 0..<json.count {
             if  let latStr = json[index].centr_lat,
                 let lonStr = json[index].centr_lon,
                 let lat = Float(latStr),
-                let lon = Float(lonStr) {
+                let lon = Float(lonStr),
+                let ndvi = json[index].ndvi,
+                let ndviFloat = Float(ndvi) {
                 
                 coordinates.append(MaplyCoordinateMakeWithDegrees(lon, lat))
+                colors.append(UIColor.init(red: CGFloat(ndviFloat.toRGB()), green: CGFloat(ndviFloat.toRGB()), blue: CGFloat(ndviFloat.toRGB()), alpha: 1.0))
             }
         }
         
-        // convert capitals into spheres. Let's do it functional!
-        let spheres = coordinates.map { coordinate -> MaplyShapeCircle in
+        var circles: [MaplyShapeCircle] = []
+        for index in 0..<coordinates.count {
             let circle = MaplyShapeCircle()
-            circle.center = coordinate
+            circle.center = coordinates[index]
             circle.radius = 0.005
-            return circle
+            circle.color = colors[index]
+            circles.append(circle)
         }
         
-        globeViewC?.addShapes(spheres, desc: [
-            kMaplyColor: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)])
+        // convert capitals into spheres. Let's do it functional!
+//        let spheres = coordinates.map { coordinate -> MaplyShapeCircle in
+//            let circle = MaplyShapeCircle()
+//            circle.center = coordinate
+//            circle.radius = 0.005
+//            return circle
+//        }
+        
+        globeViewC?.addShapes(circles, desc: [:])
     }
     
     private func addStates() {
@@ -329,7 +343,7 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
             
             switch response.result {
             case .success:
-                print(response.result.value)
+       
                 self.hideAnimatedProgressBar()
                 
                 if let json = response.result.value as? NSDictionary {
@@ -344,8 +358,7 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
                 do {
                     self.json = try JSONDecoder().decode([JSONData].self, from: data)
                     if self.json.count != 0 {
-                       print(self.json)
-                        self.addSpheres(json: self.json)
+                        self.addCoordinates(json: self.json)
                     }
                 }
                 catch {
@@ -358,5 +371,11 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
             }
         }
+    }
+}
+
+extension Float {
+    func toRGB() -> Float {
+        return self * 255.0
     }
 }

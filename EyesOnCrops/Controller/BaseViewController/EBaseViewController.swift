@@ -51,4 +51,40 @@ class EBaseViewController: UIViewController {
     func hideAnimatedProgressBar() {
         HUD.hide(animated: true)
     }
+   
+    func emptyMessageLabel(for localView: UIView, label: UILabel, hidden: Bool = true, text: String) {
+        if !hidden {
+            label.isHidden = false
+            label.frame = CGRect(x: 0, y: localView.frame.size.height/2 - 30, width: localView.frame.size.width, height: 60)
+            label.text = text
+            label.textAlignment = .center
+            label.numberOfLines = 0
+            label.lineBreakMode = .byWordWrapping
+            label.textColor = UIColor.black
+            label.font = UIFont(name: "Palatino-Italic", size: 24.0)
+            localView.isHidden = false
+            localView.addSubview(label)
+            localView.sendSubview(toBack: label)
+        }
+        else{
+            label.isHidden = true
+        }
+    }
+    
+    //getting level stored from user defaults
+    func getStoredLevelFromUserDefaults() -> String? {
+        let defaults = UserDefaults.standard
+        if let levelStored = defaults.object(forKey: "LEVEL") as? String {
+            return levelStored
+        }
+        else{
+            return nil
+        }
+    }
+    
+    //Storing data in NSUserDefaults
+    func storeLevelInUserDefaults(level: String = "LEVEL-0") {
+        let defaults = UserDefaults.standard
+        defaults.set(level, forKey: "LEVEL")
+    }
 }

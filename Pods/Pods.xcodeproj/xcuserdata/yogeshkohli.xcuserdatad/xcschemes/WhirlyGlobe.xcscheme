@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '1246BCDDB9A5950D28C7051A0EA44087'
+               BlueprintIdentifier = 'C8833722E7D6917C56F695348E29C019'
                BlueprintName = 'WhirlyGlobe'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'WhirlyGlobe.framework'>

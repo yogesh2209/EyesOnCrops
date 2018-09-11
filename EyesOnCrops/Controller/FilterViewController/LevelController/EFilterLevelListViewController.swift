@@ -26,6 +26,7 @@ class EFilterLevelListViewController: EBaseViewController, UITableViewDataSource
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        setLastSelectedLevel()
         setupFirebaseAnalytics(title: "EFilterLevelListViewController")
         reloadTableView()
     }
@@ -39,8 +40,36 @@ class EFilterLevelListViewController: EBaseViewController, UITableViewDataSource
             self.tableView.reloadData()
         }
     }
+
+    func setLastSelectedLevel() {
+        if let level = self.getStoredLevelFromUserDefaults() {
+            //Countries
+            if level == "LEVEL-0" {
+                lastSelected = IndexPath(row: 1, section: 0)
+            }
+            //States
+            else if level == "LEVEL-1" {
+                lastSelected = IndexPath(row: 3, section: 0)
+            }
+            else{
+                lastSelected = IndexPath(row: 1, section: 0)
+            }
+        }
+        else{
+            lastSelected = IndexPath(row: 1, section: 0)
+            storeLevelInUserDefaults(level: "LEVEL-0")
+        }
+    }
+    
     //MARK: UIButton Actions
     @IBAction func barButtonApplyPressed(_ sender: Any) {
+        if lastSelected?.row == 1 {
+            self.storeLevelInUserDefaults(level: "LEVEL-0")
+        }
+        else if lastSelected?.row == 3 {
+            self.storeLevelInUserDefaults(level: "LEVEL-1")
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     //MARK: UITableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,6 +80,20 @@ class EFilterLevelListViewController: EBaseViewController, UITableViewDataSource
         if indexPath.row % 2 != 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_LEVEL_LIST_OPTION_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterLevelListOptionTableViewCell
             cell.labelOption.text = LevelListArray[indexPath.row/2]
+           
+           
+            if let ls = lastSelected, ls == indexPath {
+                DispatchQueue.main.async {
+                    cell.imageViewCheckMark.isHidden = false
+                    cell.imageViewCheckMark.image = UIImage.init(named: "tick.png")
+                }
+            }
+            else{
+                DispatchQueue.main.async {
+                    cell.imageViewCheckMark.isHidden = true
+                }
+            }
+            
             return cell
         }
         //SPACING CELL HERE
@@ -64,7 +107,6 @@ class EFilterLevelListViewController: EBaseViewController, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row % 2 != 0 {
             if let lastSelected = lastSelected {
-                print(lastSelected)
                 let cell = self.tableView.cellForRow(at: lastSelected) as! EFilterLevelListOptionTableViewCell
                 DispatchQueue.main.async {
                     cell.imageViewCheckMark.isHidden = true
@@ -82,6 +124,7 @@ class EFilterLevelListViewController: EBaseViewController, UITableViewDataSource
                     cell.imageViewCheckMark.image = UIImage.init(named: "tick.png")
                 }
             }
+            
              lastSelected = indexPath
         }
     }

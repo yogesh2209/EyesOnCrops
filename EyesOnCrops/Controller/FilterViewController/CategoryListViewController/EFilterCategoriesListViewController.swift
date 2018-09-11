@@ -92,6 +92,7 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
             else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_CATEGORY_LIST_OPTION_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterCategoryListOptionTableViewCell
                 cell.labelOption.text = FilterCategoryArray[indexPath.row/2]
+                cell.labelSelectedOption.text = categoryDetailsArray[indexPath.row/2]
                 return cell
             }
         }

@@ -24,6 +24,7 @@ pod 'CorePlot', :git => 'https://github.com/core-plot/core-plot.git', :branch =>
 pod 'WhirlyGlobe', '2.4'
 pod 'WhirlyGlobeResources'
 pod 'Google-Mobile-Ads-SDK'
+pod 'Cache'
 
 
 
