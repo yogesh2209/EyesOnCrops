@@ -21,7 +21,7 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
-            #selector(EYearsListViewController.handleRefresh(_:)),
+            #selector(EDatesForYearListViewController.handleRefresh(_:)),
                                  for: UIControlEvents.valueChanged)
         refreshControl.tintColor = UIColor.red
         refreshControl.attributedTitle = NSAttributedString(string: "Refreshing...")

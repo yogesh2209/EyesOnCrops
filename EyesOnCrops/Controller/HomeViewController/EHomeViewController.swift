@@ -27,9 +27,9 @@ struct JSONData: Decodable {
 }
 
 class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate, UIGestureRecognizerDelegate {
-    
-    @IBOutlet weak var viewInfo: UIView!
-    @IBOutlet weak var viewExport: UIView!
+
+    @IBOutlet weak var imageViewInfo: UIImageView!
+    @IBOutlet weak var imageViewExport: UIImageView!
     @IBOutlet weak var viewBanner: GADBannerView!
     @IBOutlet weak var barButtonFilter: UIBarButtonItem!
     @IBOutlet weak var barButtonReset: UIBarButtonItem!
@@ -46,6 +46,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     var statesObjectArray: [MaplyComponentObject] = []
     var countryObjectArray: [MaplyComponentObject] = []
     var dataParams: [Any] = []
+    var dataPointsArray: [Any] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,14 +73,14 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     func updateViewsVisibility() {
         if json.count != 0 {
             DispatchQueue.main.async {
-                self.viewExport.isHidden = false
-                self.viewInfo.isHidden = false
+                self.imageViewExport.isHidden = false
+                self.imageViewInfo.isHidden = false
             }
         }
         else{
             DispatchQueue.main.async {
-                self.viewExport.isHidden = true
-                self.viewInfo.isHidden = true
+                self.imageViewExport.isHidden = true
+                self.imageViewInfo.isHidden = true
             }
         }
     }
@@ -87,8 +88,8 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     func addTapGestureOnViews(){
         let tapExportView = UITapGestureRecognizer(target: self, action: #selector(self.handleTapExport(_:)))
         let tapInfoView = UITapGestureRecognizer(target: self, action: #selector(self.handleTapInfo(_:)))
-        viewExport.addGestureRecognizer(tapExportView)
-        viewInfo.addGestureRecognizer(tapInfoView)
+        imageViewExport.addGestureRecognizer(tapExportView)
+        imageViewInfo.addGestureRecognizer(tapInfoView)
     }
     
     @objc func handleTapExport(_ sender: UITapGestureRecognizer) {
@@ -102,14 +103,13 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
             let title = "You are viewing"
             var message = ""
             for index in 0..<self.dataParams.count {
-                
                 if let param = self.dataParams[index] as? [String : String], let country = param["country"], let date = param["date"] {
                 
                     if message != "" {
-                        message = message + ", "
+                        message = message + " | "
                     }
                     
-                    message = message + country + ", " + date
+                    message = message + country + " - " + date
                 }
             }
             
@@ -129,6 +129,9 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     
     func customiseUI(){
         self.navigationController?.isNavigationBarHidden = false
+        imageViewInfo.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleBottomMargin, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin]
+        imageViewInfo.contentMode = .scaleAspectFit // OR .scaleAspectFill
+        imageViewInfo.clipsToBounds = true
     }
     
     //MARK: Google Ads Banner Delegate
@@ -199,7 +202,8 @@ extension EHomeViewController {
         
         self.view.addSubview(theViewC!.view)
         self.view.bringSubview(toFront: viewBanner)
-        self.view.bringSubview(toFront: viewExport)
+        self.view.bringSubview(toFront: imageViewInfo)
+        self.view.bringSubview(toFront: imageViewExport)
         self.view.sendSubview(toBack: theViewC!.view)
         theViewC!.view.frame = self.view.bounds
         addChildViewController(theViewC!)
@@ -369,14 +373,49 @@ extension EHomeViewController {
         // addAnnotationWithTitle(title: "Tap!", subtitle: subtitle, loc: coord)
     }
     
+    func validateSelectedCountry(for data: [Any], selectedCountry: String, currentSelectedDate: String) {
+        
+        for index in 0..<data.count {
+            
+            if  let param = data[index] as? [String : Any],
+                let country = param["country"] as? String,
+                let date = param["date"] as? String,
+                let circles = param["points"] as? [MaplyShapeCircle],
+                circles.count != 0 {
+                
+                //same country selected and different date - so clean old data
+                if selectedCountry == country && currentSelectedDate != date {
+                 //clean old data
+                 self.globeViewC?.remove(circles)
+                    
+                //service calling here
+                getJSONDataServiceCall(date: currentSelectedDate, country: selectedCountry)
+                }
+                else if selectedCountry != country {
+                    //service calling here
+                    getJSONDataServiceCall(date: currentSelectedDate, country: selectedCountry)
+                }
+                else if selectedCountry == country && currentSelectedDate == date {
+                    self.alertMessage(title: ALERT_TITLE, message: "Data already visible for the date and country")
+                }
+            }
+        }
+    }
+    
     // Unified method to handle the selection
     private func handleSelection(selectedObject: NSObject, date: String = "") {
         if let selectedObject = selectedObject as? MaplyVectorObject {
             var loc = selectedObject.center()
             let _ =  selectedObject.centroid(&loc)
             if let country = selectedObject.userObject as? String {
-                //  addAnnotationWithTitle(title: "selected", subtitle: obj, loc: loc)
-                getJSONDataServiceCall(date: date, country: country)
+                
+                if dataPointsArray.count != 0 {
+                    //validate here
+                    validateSelectedCountry(for: dataPointsArray, selectedCountry: country, currentSelectedDate: date)
+                }
+                else{
+                    getJSONDataServiceCall(date: date, country: country)
+                }
             }
         }
         else if let _ = selectedObject as? MaplyScreenMarker {
@@ -409,7 +448,7 @@ extension EHomeViewController {
     func locationManager(_ manager: CLLocationManager, didChange status: CLAuthorizationStatus) {
     }
     
-    private func addCoordinates(json: [JSONData]) {
+    private func addCoordinates(json: [JSONData], country: String, date: String) {
         
         var coordinates: [MaplyCoordinate] = []
         var colors: [UIColor] = []
@@ -434,6 +473,15 @@ extension EHomeViewController {
             circle.radius = 0.005
             circle.color = colors[index]
             circles.append(circle)
+        }
+        
+        var dict: [String: Any] = [:]
+        
+        if circles.count != 0 {
+            dict["country"] = country
+            dict["date"] = date
+            dict["points"] = circles
+            dataPointsArray.append(dict)
         }
         
         updateViewsVisibility()
@@ -496,7 +544,7 @@ extension EHomeViewController {
                     self.json = try JSONDecoder().decode([JSONData].self, from: data)
                     if self.json.count != 0 {
                         self.dataParams.append(param)
-                        self.addCoordinates(json: self.json)
+                        self.addCoordinates(json: self.json, country: country, date: date)
                     }
                 }
                 catch {
