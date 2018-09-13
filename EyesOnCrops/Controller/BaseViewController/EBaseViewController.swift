@@ -51,6 +51,31 @@ class EBaseViewController: UIViewController {
     func hideAnimatedProgressBar() {
         HUD.hide(animated: true)
     }
+    
+    func showInfoAlert(title: String, message: String, animated: Bool = true) {
+        // Prepare the popup
+        let title = title
+        let message = message
+    
+        // Create the dialog
+        let popup = PopupDialog(title: title,
+                                message: message,
+                                buttonAlignment: .horizontal,
+                                transitionStyle: .zoomIn,
+                                gestureDismissal: true,
+                                hideStatusBar: true) {
+        }
+        
+        let buttonBack = DefaultButton(title: "Back") {
+
+        }
+        
+        // Add buttons to dialog
+        popup.addButtons([buttonBack])
+        
+        // Present dialog
+        self.present(popup, animated: animated, completion: nil)
+    }
    
     func emptyMessageLabel(for localView: UIView, label: UILabel, hidden: Bool = true, text: String) {
         if !hidden {

@@ -636,12 +636,48 @@
                                     <constraint firstAttribute="height" constant="60" id="74A-rX-bAT"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSg-3Y-KQ5">
+                                <rect key="frame" x="313" y="76" width="50" height="50"/>
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="export" translatesAutoresizingMaskIntoConstraints="NO" id="3aB-KG-n79">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="1CD-yF-sQq"/>
+                                    <constraint firstAttribute="trailing" secondItem="3aB-KG-n79" secondAttribute="trailing" id="D9i-b1-bYx"/>
+                                    <constraint firstItem="3aB-KG-n79" firstAttribute="top" secondItem="CSg-3Y-KQ5" secondAttribute="top" id="LiK-bO-KoR"/>
+                                    <constraint firstItem="3aB-KG-n79" firstAttribute="leading" secondItem="CSg-3Y-KQ5" secondAttribute="leading" id="OGe-Zu-okt"/>
+                                    <constraint firstAttribute="width" constant="50" id="Y4I-5M-Oi9"/>
+                                    <constraint firstAttribute="bottom" secondItem="3aB-KG-n79" secondAttribute="bottom" id="zqj-jI-4KD"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agZ-29-Wrc">
+                                <rect key="frame" x="12" y="76" width="50" height="50"/>
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="fkc-RL-c1l">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="fkc-RL-c1l" firstAttribute="top" secondItem="agZ-29-Wrc" secondAttribute="top" id="5Se-kf-NQp"/>
+                                    <constraint firstAttribute="height" constant="50" id="Gb1-vo-fn4"/>
+                                    <constraint firstAttribute="trailing" secondItem="fkc-RL-c1l" secondAttribute="trailing" id="WKD-Rf-ETe"/>
+                                    <constraint firstAttribute="width" constant="50" id="eLc-JB-Zt9"/>
+                                    <constraint firstAttribute="bottom" secondItem="fkc-RL-c1l" secondAttribute="bottom" id="gIj-al-jec"/>
+                                    <constraint firstItem="fkc-RL-c1l" firstAttribute="leading" secondItem="agZ-29-Wrc" secondAttribute="leading" id="w8Y-bF-8qc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="CSg-3Y-KQ5" firstAttribute="top" secondItem="7A7-tO-K1e" secondAttribute="top" constant="12" id="Dr5-wS-Pav"/>
                             <constraint firstItem="rkE-Qq-Pzt" firstAttribute="bottom" secondItem="7A7-tO-K1e" secondAttribute="bottom" id="HkN-3S-1M1"/>
                             <constraint firstItem="rkE-Qq-Pzt" firstAttribute="leading" secondItem="7A7-tO-K1e" secondAttribute="leading" id="UBN-Tb-caZ"/>
                             <constraint firstItem="rkE-Qq-Pzt" firstAttribute="trailing" secondItem="7A7-tO-K1e" secondAttribute="trailing" id="ZEA-bk-g5Q"/>
+                            <constraint firstItem="agZ-29-Wrc" firstAttribute="top" secondItem="7A7-tO-K1e" secondAttribute="top" constant="12" id="fdj-oY-CRg"/>
+                            <constraint firstItem="7A7-tO-K1e" firstAttribute="trailing" secondItem="CSg-3Y-KQ5" secondAttribute="trailing" constant="12" id="jk0-ab-I7k"/>
+                            <constraint firstItem="agZ-29-Wrc" firstAttribute="leading" secondItem="7A7-tO-K1e" secondAttribute="leading" constant="12" id="z88-3v-Q7U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7A7-tO-K1e"/>
                     </view>
@@ -669,6 +705,8 @@
                         <outlet property="barButtonFilter" destination="903-c9-0rI" id="qpW-Oh-sNq"/>
                         <outlet property="barButtonReset" destination="hpP-SS-MJ7" id="uce-05-6gc"/>
                         <outlet property="viewBanner" destination="rkE-Qq-Pzt" id="hTz-18-6dc"/>
+                        <outlet property="viewExport" destination="CSg-3Y-KQ5" id="fwQ-pT-n88"/>
+                        <outlet property="viewInfo" destination="agZ-29-Wrc" id="oWC-Ot-dVS"/>
                         <segue destination="W64-oY-ppl" kind="show" identifier="homeToFilterCategoryListSegueVC" id="FdA-xP-uk0"/>
                     </connections>
                 </viewController>
@@ -2122,6 +2160,8 @@
     </scenes>
     <resources>
         <image name="box" width="22" height="22"/>
+        <image name="export" width="32" height="32"/>
+        <image name="info" width="32" height="32"/>
         <image name="or_line" width="203" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -26,8 +26,10 @@ struct JSONData: Decodable {
     let centr_lat: String?
 }
 
-class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate {
+class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate, UIGestureRecognizerDelegate {
     
+    @IBOutlet weak var viewInfo: UIView!
+    @IBOutlet weak var viewExport: UIView!
     @IBOutlet weak var viewBanner: GADBannerView!
     @IBOutlet weak var barButtonFilter: UIBarButtonItem!
     @IBOutlet weak var barButtonReset: UIBarButtonItem!
@@ -43,6 +45,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     var dateSelected: String?
     var statesObjectArray: [MaplyComponentObject] = []
     var countryObjectArray: [MaplyComponentObject] = []
+    var dataParams: [Any] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +54,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
         customiseUI()
         registerNotification()
         loadGlobe()
+        addTapGestureOnViews()
         // Do any additional setup after loading the view.
     }
     override func didReceiveMemoryWarning() {
@@ -63,17 +67,67 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
         udpateGlobeLevel()
     }
     
-    
     //MARK: Custom Methods
     
-    func setupAdsBanner() {
+    func updateViewsVisibility() {
+        if json.count != 0 {
+            DispatchQueue.main.async {
+                self.viewExport.isHidden = false
+                self.viewInfo.isHidden = false
+            }
+        }
+        else{
+            DispatchQueue.main.async {
+                self.viewExport.isHidden = true
+                self.viewInfo.isHidden = true
+            }
+        }
+    }
+    
+    func addTapGestureOnViews(){
+        let tapExportView = UITapGestureRecognizer(target: self, action: #selector(self.handleTapExport(_:)))
+        let tapInfoView = UITapGestureRecognizer(target: self, action: #selector(self.handleTapInfo(_:)))
+        viewExport.addGestureRecognizer(tapExportView)
+        viewInfo.addGestureRecognizer(tapInfoView)
+    }
+    
+    @objc func handleTapExport(_ sender: UITapGestureRecognizer) {
+        // handling code
+    }
+    
+    @objc func handleTapInfo(_ sender: UITapGestureRecognizer) {
+        // handling code
+        if self.dataParams.count != 0 {
+            //for loop apply and get all the countries and show it in info message
+            let title = "You are viewing"
+            var message = ""
+            for index in 0..<self.dataParams.count {
+                
+                if let param = self.dataParams[index] as? [String : String], let country = param["country"], let date = param["date"] {
+                
+                    if message != "" {
+                        message = message + ", "
+                    }
+                    
+                    message = message + country + ", " + date
+                }
+            }
+            
+            self.showInfoAlert(title: title, message: message)
+        }
+        else{
+             self.alertMessage(title: "ALERT", message: "Something went wrong, please try again later")
+        }
+    }
+    
+    func setupAdsBanner(){
         viewBanner.adUnitID = "ca-app-pub-8984057949233397/5348963984"
         viewBanner.rootViewController = self
         viewBanner.delegate = self
         viewBanner.load(GADRequest())
     }
     
-    func customiseUI() {
+    func customiseUI(){
         self.navigationController?.isNavigationBarHidden = false
     }
     
@@ -136,7 +190,6 @@ extension EHomeViewController {
             theViewC = globeViewC
             globeViewC?.delegate = self
             globeViewC?.animate(toPosition: MaplyCoordinateMakeWithDegrees(-5.93,54.597), time: 1.0)
-            //  globeViewC?.setZoomLimitsMin(1, max: 5)
         }
         else {
             mapViewC = MaplyViewController()
@@ -146,6 +199,7 @@ extension EHomeViewController {
         
         self.view.addSubview(theViewC!.view)
         self.view.bringSubview(toFront: viewBanner)
+        self.view.bringSubview(toFront: viewExport)
         self.view.sendSubview(toBack: theViewC!.view)
         theViewC!.view.frame = self.view.bounds
         addChildViewController(theViewC!)
@@ -213,6 +267,8 @@ extension EHomeViewController {
     
     //updating globe with level and date
     func udpateGlobeLevel(){
+        
+        updateViewsVisibility()
         
         if let selectedLevel = self.getStoredLevelFromUserDefaults() {
             
@@ -380,6 +436,7 @@ extension EHomeViewController {
             circles.append(circle)
         }
         
+        updateViewsVisibility()
         globeViewC?.addShapes(circles, desc: [:])
     }
     
@@ -408,15 +465,15 @@ extension EHomeViewController {
     
     //MARK: Service Calling
     func getJSONDataServiceCall(date: String, country: String){
-        let param: Dictionary<String, Any> =
+       let param: Dictionary<String, Any> =
             [
                 "date"               : date                     as Any,
                 "country"            : country                  as Any,
                 "action_for"         : ACTION_FOR_JSON_DATA     as Any
                 
                 ] as Dictionary<String, Any>
-        
-        self.showAnimatedProgressBar(title: "Wait..", subTitle: "Fetching info for" + date + "of " + country)
+   
+        self.showAnimatedProgressBar(title: "Fetching info..", subTitle: date + ", " + country)
         let urL = MAIN_URL + POST_GET_DATA
         Alamofire.request(urL, method: .get, parameters: param).responseJSON{ response in
             
@@ -427,7 +484,8 @@ extension EHomeViewController {
                 
                 if let json = response.result.value as? NSDictionary {
                     if let _ = json["messageResponse"] {
-                        self.alertMessage(title: ALERT_TITLE, message: NO_DATA_AVAILABLE + country)
+                        self.updateViewsVisibility()
+                        self.alertMessage(title: ALERT_TITLE, message: NO_DATA_AVAILABLE + " " + date + ", " + country)
                     }
                     return
                 }
@@ -437,16 +495,19 @@ extension EHomeViewController {
                 do {
                     self.json = try JSONDecoder().decode([JSONData].self, from: data)
                     if self.json.count != 0 {
+                        self.dataParams.append(param)
                         self.addCoordinates(json: self.json)
                     }
                 }
                 catch {
+                    self.updateViewsVisibility()
                     self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
                     return
                 }
                 
             case .failure(_ ):
                 self.hideAnimatedProgressBar()
+                self.updateViewsVisibility()
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
             }
         }
