@@ -47,6 +47,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     var countryObjectArray: [MaplyComponentObject] = []
     var dataParams: [Any] = []
     var dataPointsArray: [Any] = []
+    var currentInfoString = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,10 +95,20 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     
     @objc func handleTapExport(_ sender: UITapGestureRecognizer) {
         // handling code
+        if self.dataParams.count != 0 {
+            
+            //yes action here - take him to export screen
+            let yesAction = {
+                
+            }
+            
+            self.showExportAlert(title: "Are you sure you want to export data?", message: currentInfoString, animated: true, yesAction: yesAction)
+        }
     }
     
     @objc func handleTapInfo(_ sender: UITapGestureRecognizer) {
         // handling code
+        currentInfoString = ""
         if self.dataParams.count != 0 {
             //for loop apply and get all the countries and show it in info message
             let title = "You are viewing"
@@ -113,6 +124,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
                 }
             }
             
+            currentInfoString = message
             self.showInfoAlert(title: title, message: message)
         }
         else{
@@ -373,7 +385,9 @@ extension EHomeViewController {
         // addAnnotationWithTitle(title: "Tap!", subtitle: subtitle, loc: coord)
     }
     
-    func validateSelectedCountry(for data: [Any], selectedCountry: String, currentSelectedDate: String) {
+    func validateSelectedCountry(for data: [Any], selectedCountry: String, currentSelectedDate: String) -> Bool {
+        
+        var isValidDateCountry: Bool = false
         
         for index in 0..<data.count {
             
@@ -386,20 +400,20 @@ extension EHomeViewController {
                 //same country selected and different date - so clean old data
                 if selectedCountry == country && currentSelectedDate != date {
                  //clean old data
-                 self.globeViewC?.remove(circles)
-                    
-                //service calling here
-                getJSONDataServiceCall(date: currentSelectedDate, country: selectedCountry)
+                self.globeViewC?.remove(circles, mode: MaplyThreadAny)
+             
+                isValidDateCountry = true
                 }
                 else if selectedCountry != country {
-                    //service calling here
-                    getJSONDataServiceCall(date: currentSelectedDate, country: selectedCountry)
+                    isValidDateCountry = true
                 }
                 else if selectedCountry == country && currentSelectedDate == date {
                     self.alertMessage(title: ALERT_TITLE, message: "Data already visible for the date and country")
+                    return false
                 }
             }
         }
+        return isValidDateCountry
     }
     
     // Unified method to handle the selection
@@ -411,7 +425,12 @@ extension EHomeViewController {
                 
                 if dataPointsArray.count != 0 {
                     //validate here
-                    validateSelectedCountry(for: dataPointsArray, selectedCountry: country, currentSelectedDate: date)
+                    if validateSelectedCountry(for: dataPointsArray, selectedCountry: country, currentSelectedDate: date) {
+                        getJSONDataServiceCall(date: date, country: country)
+                    }
+                    else{
+                        
+                    }
                 }
                 else{
                     getJSONDataServiceCall(date: date, country: country)

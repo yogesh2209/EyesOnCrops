@@ -13,7 +13,7 @@ import SideMenu
 import PKHUD
 
 class EBaseViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -56,7 +56,7 @@ class EBaseViewController: UIViewController {
         // Prepare the popup
         let title = title
         let message = message
-    
+        
         // Create the dialog
         let popup = PopupDialog(title: title,
                                 message: message,
@@ -67,7 +67,7 @@ class EBaseViewController: UIViewController {
         }
         
         let buttonBack = DefaultButton(title: "Back") {
-
+            
         }
         
         // Add buttons to dialog
@@ -76,7 +76,36 @@ class EBaseViewController: UIViewController {
         // Present dialog
         self.present(popup, animated: animated, completion: nil)
     }
-   
+    
+    func showExportAlert(title: String, message: String, animated: Bool = true, yesAction: @escaping (() -> Void)) {
+        // Prepare the popup
+        let title = title
+        let message = message
+        
+        // Create the dialog
+        let popup = PopupDialog(title: title,
+                                message: message,
+                                buttonAlignment: .horizontal,
+                                transitionStyle: .zoomIn,
+                                gestureDismissal: true,
+                                hideStatusBar: true) {
+        }
+        
+        let buttonNo = DefaultButton(title: "No") {
+            
+        }
+        
+        let buttonYes = DefaultButton(title: "Yes") {
+            yesAction()
+        }
+        
+        // Add buttons to dialog
+        popup.addButtons([buttonNo, buttonYes])
+        
+        // Present dialog
+        self.present(popup, animated: animated, completion: nil)
+    }
+    
     func emptyMessageLabel(for localView: UIView, label: UILabel, hidden: Bool = true, text: String) {
         if !hidden {
             label.isHidden = false
