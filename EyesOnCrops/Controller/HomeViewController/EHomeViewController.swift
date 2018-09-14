@@ -209,7 +209,7 @@ extension EHomeViewController {
         else {
             mapViewC = MaplyViewController()
             theViewC = mapViewC
-            //mapViewC?.delegate = self
+            mapViewC?.delegate = self
         }
         
         self.view.addSubview(theViewC!.view)
@@ -276,9 +276,15 @@ extension EHomeViewController {
         setupZoomLevel()
     }
     
-    func setupZoomLevel() {
+    func setupZoomLevel(isGlobe: Bool = true) {
         //setting the zoom limit
-        globeViewC?.setZoomLimitsMin(0.05, max: 3)
+        
+        if isGlobe {
+            globeViewC?.setZoomLimitsMin(0.05, max: 3)
+        }
+        else{
+           // mapViewC?.setZoomLimitsMin(<#T##minHeight: Float##Float#>, max: <#T##Float#>)
+        }
     }
     
     //updating globe with level and date
@@ -292,19 +298,19 @@ extension EHomeViewController {
             if selectedLevel == "LEVEL-0" {
                 
                 if self.countryObjectArray.count != 0 {
-                    self.globeViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
+                    self.theViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
                 }
                 else{
                     self.addCountries()
                 }
                 
-                self.globeViewC?.disableObjects(statesObjectArray, mode: MaplyThreadAny)
+                self.theViewC?.disableObjects(statesObjectArray, mode: MaplyThreadAny)
             }
                 //state admin level
             else if selectedLevel == "LEVEL-1" {
                 
                 if self.countryObjectArray.count != 0 {
-                    self.globeViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
+                    self.theViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
                 }
                 else{
                     self.addCountries()
@@ -312,7 +318,7 @@ extension EHomeViewController {
                 
                 
                 if self.statesObjectArray.count != 0 {
-                    self.globeViewC?.enable(statesObjectArray, mode: MaplyThreadAny)
+                    self.theViewC?.enable(statesObjectArray, mode: MaplyThreadAny)
                 }
                 else{
                     self.addStates()
@@ -322,13 +328,13 @@ extension EHomeViewController {
             //No level found - in case of something wrong
         else{
             if self.countryObjectArray.count != 0 {
-                self.globeViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
+                self.theViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
             }
             else{
                 self.addCountries()
             }
             
-            self.globeViewC?.disableObjects(statesObjectArray, mode: MaplyThreadAny)
+            self.theViewC?.disableObjects(statesObjectArray, mode: MaplyThreadAny)
         }
     }
     
@@ -354,7 +360,7 @@ extension EHomeViewController {
                     }
                     
                     // add the outline to our view
-                    let obj = self.globeViewC?.addVectors([wgVecObj], desc: self.vectorDict)
+                    let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDict)
                     if let maplyObj = obj {
                         self.countryObjectArray.append(maplyObj)
                     }
@@ -400,7 +406,7 @@ extension EHomeViewController {
                 //same country selected and different date - so clean old data
                 if selectedCountry == country && currentSelectedDate != date {
                  //clean old data
-                self.globeViewC?.remove(circles, mode: MaplyThreadAny)
+                self.theViewC?.remove(circles, mode: MaplyThreadAny)
              
                 isValidDateCountry = true
                 }
@@ -521,7 +527,7 @@ extension EHomeViewController {
                     let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
                     
                     // add the outline to our view
-                    let obj = self.globeViewC?.addVectors([wgVecObj], desc: self.vectorDict)
+                    let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDict)
                     if let maplyObj = obj {
                         self.statesObjectArray.append(maplyObj)
                     }

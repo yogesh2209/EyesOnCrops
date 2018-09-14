@@ -144,7 +144,7 @@
                             <constraint firstItem="HKT-cO-PwJ" firstAttribute="width" secondItem="hGv-YP-dCN" secondAttribute="width" id="adN-lw-c84"/>
                             <constraint firstItem="0Of-Yd-8gc" firstAttribute="leading" secondItem="hGv-YP-dCN" secondAttribute="trailing" constant="1" id="er9-kh-dpZ"/>
                             <constraint firstItem="XJ5-Di-4sa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fkG-Vf-Oto"/>
-                            <constraint firstAttribute="bottom" secondItem="0Of-Yd-8gc" secondAttribute="bottom" id="jpr-pP-6ul"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0Of-Yd-8gc" secondAttribute="bottom" id="jpr-pP-6ul"/>
                             <constraint firstItem="HKT-cO-PwJ" firstAttribute="leading" secondItem="0Of-Yd-8gc" secondAttribute="trailing" constant="1" id="lQJ-Mc-uTI"/>
                             <constraint firstItem="HKT-cO-PwJ" firstAttribute="top" secondItem="XJ5-Di-4sa" secondAttribute="bottom" constant="1" id="lRY-YV-wuJ"/>
                             <constraint firstItem="Y6y-Qx-06k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="lfY-cs-XFX"/>
@@ -2147,7 +2147,7 @@
         <image name="or_line" width="203" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NuE-RF-6uz"/>
+        <segue reference="WdS-gw-SUd"/>
         <segue reference="a50-FB-7qu"/>
         <segue reference="yvM-W4-G3j"/>
         <segue reference="uTI-GX-MkV"/>
