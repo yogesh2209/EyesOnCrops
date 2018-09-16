@@ -48,6 +48,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     var dataParams: [Any] = []
     var dataPointsArray: [Any] = []
     var currentInfoString = ""
+    var isCurrentGlobe = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
         setupAdsBanner()
         customiseUI()
         registerNotification()
-        loadGlobe()
+        loadGlobe(isGlobeDisplay: isGlobe())
         addTapGestureOnViews()
         // Do any additional setup after loading the view.
     }
@@ -66,6 +67,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupFirebaseAnalytics(title: "EHomeViewController")
+        updateMapType()
         udpateGlobeLevel()
     }
     
@@ -198,18 +200,47 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
 
 extension EHomeViewController {
     
+    func isGlobe() -> Bool {
+        if let mapStored = self.getStoredMapTypeFromUserDefaults() {
+            if mapStored == "GLOBE" {
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        else{
+            return true
+        }
+    }
+    
     func loadGlobe(isGlobeDisplay: Bool = true) {
         if isGlobeDisplay {
+            if let map = mapViewC {
+                map.removeFromParentViewController()
+                theViewC?.removeFromParentViewController()
+                theViewC?.view.removeFromSuperview()
+            }
+            
             // If you're doing a globe
             globeViewC = WhirlyGlobeViewController()
             theViewC = globeViewC
+            isCurrentGlobe = true
             globeViewC?.delegate = self
             globeViewC?.animate(toPosition: MaplyCoordinateMakeWithDegrees(-5.93,54.597), time: 1.0)
         }
         else {
+            
+            if let globe = globeViewC {
+                globe.removeFromParentViewController()
+                theViewC?.removeFromParentViewController()
+                theViewC?.view.removeFromSuperview()
+            }
+            
             mapViewC = MaplyViewController()
             theViewC = mapViewC
             mapViewC?.delegate = self
+            isCurrentGlobe = false
         }
         
         self.view.addSubview(theViewC!.view)
@@ -219,10 +250,7 @@ extension EHomeViewController {
         self.view.sendSubview(toBack: theViewC!.view)
         theViewC!.view.frame = self.view.bounds
         addChildViewController(theViewC!)
-        
-        // we want a black background for a globe, a white background for a map.
-        theViewC!.clearColor = (globeViewC != nil) ? UIColor.black : UIColor.white
-        
+    
         // and thirty fps if we can get it ­ change this to 3 if you find your app is struggling
         theViewC!.frameInterval = 2
         
@@ -259,11 +287,14 @@ extension EHomeViewController {
         
         // start up over San Francisco
         if let globeViewC = globeViewC {
+            // we want a black background for a globe, a white background for a map.
+            theViewC!.clearColor = UIColor.black
             //globeViewC.height = 0.8
             globeViewC.animate(toPosition: MaplyCoordinateMakeWithDegrees(-122.4192, 37.7793), time: 1.0)
         }
         else if let mapViewC = mapViewC {
-            mapViewC.height = 1.0
+            mapViewC.height = 0.0
+            theViewC!.clearColor = UIColor.white
             mapViewC.animate(toPosition: MaplyCoordinateMakeWithDegrees(-122.4192, 37.7793), time: 1.0)
         }
         
@@ -273,7 +304,7 @@ extension EHomeViewController {
             kMaplyVecWidth: 4.0 as AnyObject
         ]
         
-        setupZoomLevel()
+        setupZoomLevel(isGlobe: isGlobeDisplay)
     }
     
     func setupZoomLevel(isGlobe: Bool = true) {
@@ -283,8 +314,28 @@ extension EHomeViewController {
             globeViewC?.setZoomLimitsMin(0.05, max: 3)
         }
         else{
-           // mapViewC?.setZoomLimitsMin(<#T##minHeight: Float##Float#>, max: <#T##Float#>)
+            mapViewC?.setZoomLimitsMin(0.005, max: 2)
         }
+    }
+    
+    func updateMapType() {
+        //map type activate
+         if !isGlobe() && isCurrentGlobe {
+            resetShapeFilesLevel()
+            loadGlobe(isGlobeDisplay: false)
+        }
+            //globe type activate
+        else if isGlobe() && !isCurrentGlobe {
+            resetShapeFilesLevel()
+            loadGlobe(isGlobeDisplay: true)
+        }
+    }
+    
+    func resetShapeFilesLevel(){
+        countryObjectArray = []
+        statesObjectArray = []
+        self.storeLevelInUserDefaults(level: "LEVEL-0")
+        self.addCountries()
     }
     
     //updating globe with level and date
@@ -315,7 +366,6 @@ extension EHomeViewController {
                 else{
                     self.addCountries()
                 }
-                
                 
                 if self.statesObjectArray.count != 0 {
                     self.theViewC?.enable(statesObjectArray, mode: MaplyThreadAny)
@@ -510,7 +560,7 @@ extension EHomeViewController {
         }
         
         updateViewsVisibility()
-        globeViewC?.addShapes(circles, desc: [:])
+        self.theViewC?.addShapes(circles, desc: [:])
     }
     
     func addStates() {

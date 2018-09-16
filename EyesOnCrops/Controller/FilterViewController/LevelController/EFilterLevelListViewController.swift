@@ -81,7 +81,6 @@ class EFilterLevelListViewController: EBaseViewController, UITableViewDataSource
             let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_LEVEL_LIST_OPTION_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterLevelListOptionTableViewCell
             cell.labelOption.text = LevelListArray[indexPath.row/2]
            
-           
             if let ls = lastSelected, ls == indexPath {
                 DispatchQueue.main.async {
                     cell.imageViewCheckMark.isHidden = false

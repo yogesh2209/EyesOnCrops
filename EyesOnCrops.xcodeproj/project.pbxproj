@@ -58,6 +58,7 @@
 		58AE77131FD4C957002CAADC /* ERegisterSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77121FD4C957002CAADC /* ERegisterSecondViewController.swift */; };
 		58AE77151FD4C973002CAADC /* ERegisterThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77141FD4C973002CAADC /* ERegisterThreeViewController.swift */; };
 		58AE77171FD4C97E002CAADC /* ERegisterFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77161FD4C97E002CAADC /* ERegisterFourthViewController.swift */; };
+		58BA3967214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BA3966214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift */; };
 		58BBB6522028D368005F9E5A /* EFilterCategoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */; };
 		58BBB6562028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */; };
 		58BBB6582028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6572028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift */; };
@@ -160,6 +161,7 @@
 		58AE77121FD4C957002CAADC /* ERegisterSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterSecondViewController.swift; sourceTree = "<group>"; };
 		58AE77141FD4C973002CAADC /* ERegisterThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterThreeViewController.swift; sourceTree = "<group>"; };
 		58AE77161FD4C97E002CAADC /* ERegisterFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterFourthViewController.swift; sourceTree = "<group>"; };
+		58BA3966214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryMapTypeOptionTableViewCell.swift; sourceTree = "<group>"; };
 		58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoriesListViewController.swift; sourceTree = "<group>"; };
 		58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryListOptionTableViewCell.swift; sourceTree = "<group>"; };
 		58BBB6572028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryListPlainSpaceTableViewCell.swift; sourceTree = "<group>"; };
@@ -586,6 +588,7 @@
 				58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */,
 				58BBB6572028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift */,
 				589AD40F202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift */,
+				58BA3966214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift */,
 			);
 			path = CategoryListCells;
 			sourceTree = "<group>";
@@ -1470,6 +1473,7 @@
 				58E635DB20073E81008B5069 /* ETermsPrivacyConmonViewController.swift in Sources */,
 				58C2355420B35B3E00237A0B /* EYearsListViewController.swift in Sources */,
 				58E635DE20080F19008B5069 /* EChangePasswordViewController.swift in Sources */,
+				58BA3967214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift in Sources */,
 				58BBB6562028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift in Sources */,
 				584C22C02009E54C0093BF8B /* EPasswordRecoveryStepThreeViewController.swift in Sources */,
 				583EB48A1FEB03FA003CEC57 /* ESideMenuViewController.swift in Sources */,

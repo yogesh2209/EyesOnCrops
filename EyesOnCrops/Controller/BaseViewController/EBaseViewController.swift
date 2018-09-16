@@ -141,4 +141,20 @@ class EBaseViewController: UIViewController {
         let defaults = UserDefaults.standard
         defaults.set(level, forKey: "LEVEL")
     }
+    
+    //MAP OR GLOBE
+    func storeMapTypeInDefaults(type: String = "GLOBE") {
+        let defaults = UserDefaults.standard
+        defaults.set(type, forKey: "MAP_TYPE")
+    }
+    
+    func getStoredMapTypeFromUserDefaults() -> String? {
+        let defaults = UserDefaults.standard
+        if let mapTypeStored = defaults.object(forKey: "MAP_TYPE") as? String {
+            return mapTypeStored
+        }
+        else{
+            return nil
+        }
+    }
 }

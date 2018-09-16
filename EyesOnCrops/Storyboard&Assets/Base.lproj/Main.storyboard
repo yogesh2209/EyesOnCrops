@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1038,6 +1039,56 @@
                                             <outlet property="switchTerra" destination="inw-Gp-uve" id="2TM-Rx-OHg"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterCategoryMapTypeCustomCell" rowHeight="65" id="8RN-ME-ckm" customClass="EFilterCategoryMapTypeOptionTableViewCell" customModule="EyesOnCrops" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="247" width="375" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8RN-ME-ckm" id="7wO-sy-lLm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r84-sX-gKJ">
+                                                    <rect key="frame" x="16" y="8" width="287" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="DFo-1b-jgJ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rB5-k7-xep">
+                                                    <rect key="frame" x="15" y="35" width="288" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="aul-T8-iAT"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-iT-Cyx">
+                                                    <rect key="frame" x="313" y="17" width="49" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="47" id="dMy-a5-uz3"/>
+                                                    </constraints>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="r84-sX-gKJ" firstAttribute="top" secondItem="7wO-sy-lLm" secondAttribute="top" constant="8" id="E4k-lH-vXt"/>
+                                                <constraint firstItem="Fqf-iT-Cyx" firstAttribute="leading" secondItem="rB5-k7-xep" secondAttribute="trailing" constant="10" id="E5M-tH-EWo"/>
+                                                <constraint firstItem="Fqf-iT-Cyx" firstAttribute="top" secondItem="7wO-sy-lLm" secondAttribute="topMargin" constant="6" id="aVQ-8s-9oN"/>
+                                                <constraint firstItem="rB5-k7-xep" firstAttribute="top" secondItem="r84-sX-gKJ" secondAttribute="bottom" constant="6" id="dEx-aU-MOd"/>
+                                                <constraint firstItem="Fqf-iT-Cyx" firstAttribute="trailing" secondItem="7wO-sy-lLm" secondAttribute="trailingMargin" id="flM-4d-IOY"/>
+                                                <constraint firstItem="rB5-k7-xep" firstAttribute="leading" secondItem="7wO-sy-lLm" secondAttribute="leading" constant="15" id="imb-bI-ZnK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Fqf-iT-Cyx" secondAttribute="bottom" constant="6" id="sP9-T7-ows"/>
+                                                <constraint firstItem="r84-sX-gKJ" firstAttribute="leading" secondItem="7wO-sy-lLm" secondAttribute="leading" constant="16" id="xIE-rT-1bJ"/>
+                                                <constraint firstItem="Fqf-iT-Cyx" firstAttribute="leading" secondItem="r84-sX-gKJ" secondAttribute="trailing" constant="10" id="zqX-0P-vyO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="labelMapDetail" destination="rB5-k7-xep" id="4xm-Mg-RwA"/>
+                                            <outlet property="labelMapHeading" destination="r84-sX-gKJ" id="dcA-sr-B4Y"/>
+                                            <outlet property="switchMapType" destination="Fqf-iT-Cyx" id="6zy-uP-CmA"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="W64-oY-ppl" id="2Qy-4C-CNy"/>
@@ -1078,7 +1129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6h1-Zz-Z0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7694" y="-1467"/>
+            <point key="canvasLocation" x="7693.6000000000004" y="-1467.616191904048"/>
         </scene>
         <!--Years List View Controller-->
         <scene sceneID="luN-yW-glG">
@@ -2147,7 +2198,6 @@
         <image name="or_line" width="203" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WdS-gw-SUd"/>
         <segue reference="a50-FB-7qu"/>
         <segue reference="yvM-W4-G3j"/>
         <segue reference="uTI-GX-MkV"/>
