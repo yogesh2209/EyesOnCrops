@@ -157,4 +157,9 @@ class EBaseViewController: UIViewController {
             return nil
         }
     }
+    
+    // MARK: Notifications
+    func postNotification(notification: Notification.Name) {
+        NotificationCenter.default.post(name: notification, object: self, userInfo: nil)
+    }
 }

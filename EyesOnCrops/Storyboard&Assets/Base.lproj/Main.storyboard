@@ -1039,7 +1039,7 @@
                                             <outlet property="switchTerra" destination="inw-Gp-uve" id="2TM-Rx-OHg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterCategoryMapTypeCustomCell" rowHeight="65" id="8RN-ME-ckm" customClass="EFilterCategoryMapTypeOptionTableViewCell" customModule="EyesOnCrops" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="filterCategoryMapTypeCustomCell" rowHeight="65" id="8RN-ME-ckm" customClass="EFilterCategoryMapTypeOptionTableViewCell" customModule="EyesOnCrops" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="247" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8RN-ME-ckm" id="7wO-sy-lLm">
@@ -1105,23 +1105,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YdS-nq-A5O"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Filter options" id="aWh-u5-dUj">
-                        <rightBarButtonItems>
-                            <barButtonItem title="Apply" id="sO3-jy-uq8">
-                                <connections>
-                                    <action selector="barButtonApplyPressed:" destination="W64-oY-ppl" id="bKr-lB-Akj"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Reset" id="2tZ-J1-5O2">
-                                <connections>
-                                    <action selector="barButtonResetPressed:" destination="W64-oY-ppl" id="8DL-Vu-wcb"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Filter options" id="aWh-u5-dUj"/>
                     <connections>
-                        <outlet property="barButtonApply" destination="sO3-jy-uq8" id="f0V-GQ-fmP"/>
-                        <outlet property="barButtonReset" destination="2tZ-J1-5O2" id="NRc-Iz-blc"/>
                         <outlet property="tableView" destination="E7b-mu-tjh" id="Lqw-g4-zdr"/>
                         <segue destination="iji-7U-eHd" kind="show" identifier="categoryListToLevelListSegueVC" id="hjI-6e-yRg"/>
                         <segue destination="aZX-0f-O9S" kind="show" identifier="filterOptionsToYearsListSegueVC" id="iHp-68-TTo"/>

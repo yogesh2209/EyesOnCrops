@@ -67,7 +67,6 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupFirebaseAnalytics(title: "EHomeViewController")
-        updateMapType()
         udpateGlobeLevel()
     }
     
@@ -190,10 +189,17 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     
     //MARK: Notifications
     func registerNotification() {
-        NotificationCenter.default.addObserver(forName: .saveDateNotification, object: nil, queue: nil) { (notification) in
+        NotificationCenter.default.addObserver(forName: .saveDateNotification, object: nil, queue: nil) { [weak self] (notification) in
+             guard let strongSelf = self else { return }
             if let userDict = notification.userInfo as? [String : String], let date = userDict["selected_date"] {
-                self.dateSelected = date
+                strongSelf.dateSelected = date
             }
+        }
+        
+        NotificationCenter.default.addObserver(forName: .popToHomeScreenNotification, object: nil, queue: nil) { [weak self] (notification) in
+            //pop up from back screen
+            guard let strongSelf = self else { return }
+            strongSelf.updateMapType()
         }
     }
 }
@@ -314,7 +320,7 @@ extension EHomeViewController {
             globeViewC?.setZoomLimitsMin(0.05, max: 3)
         }
         else{
-            mapViewC?.setZoomLimitsMin(0.005, max: 2)
+            mapViewC?.setZoomLimitsMin(0.05, max: 3)
         }
     }
     
@@ -332,8 +338,8 @@ extension EHomeViewController {
     }
     
     func resetShapeFilesLevel(){
-        countryObjectArray = []
-        statesObjectArray = []
+        self.countryObjectArray.removeAll()
+        self.statesObjectArray.removeAll()
         self.storeLevelInUserDefaults(level: "LEVEL-0")
         self.addCountries()
     }
@@ -390,6 +396,8 @@ extension EHomeViewController {
     
     func addCountries() {
         
+        self.countryObjectArray.removeAll()
+       
         // handle this in another thread
         let queue = DispatchQueue.global()
         queue.async {
@@ -450,15 +458,14 @@ extension EHomeViewController {
             if  let param = data[index] as? [String : Any],
                 let country = param["country"] as? String,
                 let date = param["date"] as? String,
-                let circles = param["points"] as? [MaplyShapeCircle],
-                circles.count != 0 {
+                let shape_object = param["shape_object"] as? MaplyComponentObject {
                 
                 //same country selected and different date - so clean old data
                 if selectedCountry == country && currentSelectedDate != date {
-                 //clean old data
-                self.theViewC?.remove(circles, mode: MaplyThreadAny)
-             
-                isValidDateCountry = true
+                    //remove old data from dataparam too
+                    self.dataParams.remove(at: index)
+                    self.theViewC?.remove(shape_object)
+                    isValidDateCountry = true
                 }
                 else if selectedCountry != country {
                     isValidDateCountry = true
@@ -556,14 +563,19 @@ extension EHomeViewController {
             dict["country"] = country
             dict["date"] = date
             dict["points"] = circles
-            dataPointsArray.append(dict)
         }
         
         updateViewsVisibility()
-        self.theViewC?.addShapes(circles, desc: [:])
+        let shapes = self.theViewC?.addShapes(circles, desc: [:])
+        if let s = shapes {
+            dict["shape_object"] = s
+        }
+        dataPointsArray.append(dict)
     }
     
     func addStates() {
+        
+     self.statesObjectArray.removeAll()
         
         // handle this in another thread
         let queue = DispatchQueue.global()

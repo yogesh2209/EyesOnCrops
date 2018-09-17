@@ -9,9 +9,7 @@
 import UIKit
 
 class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    @IBOutlet weak var barButtonApply: UIBarButtonItem!
-    @IBOutlet weak var barButtonReset: UIBarButtonItem!
+   
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -24,10 +22,16 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         setupFirebaseAnalytics(title: "EFilterCategoriesListViewController")
         self.tableView.reloadData()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.postNotification(notification: .popToHomeScreenNotification)
+    }
+    
     //MARK: Private Methods
     func  customiseUI() {
         tableView.separatorColor = UIColor.clear
@@ -36,8 +40,6 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
     
     //Switch Actions
     @objc func switchAquaChanged(_ sender : UISwitch!){
-        print("table row switch Changed \(sender.tag)")
-        print("The switch is \(sender.isOn ? "ON" : "OFF")")
         //If switch aqua is on, need to switch off the terra and vice versa
         if sender.isOn == true {
             let indexPath = IndexPath(row: 3, section: 0)
@@ -53,8 +55,6 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
         }
     }
     @objc func switchTerraChanged(_ sender : UISwitch!){
-        print("table row switch Changed \(sender.tag)")
-        print("The switch is \(sender.isOn ? "ON" : "OFF")")
         //If switch aqua is on, need to switch off the terra and vice versa
         if sender.isOn == true {
             let indexPath = IndexPath(row: 3, section: 0)
@@ -71,9 +71,6 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
     }
     
     @objc func switchMapTypeChanged(_ sender : UISwitch!){
-        print("table row switch Changed \(sender.tag)")
-        print("The switch is \(sender.isOn ? "ON" : "OFF")")
-       
         //Globe selected
         if sender.isOn == true {
             let indexPath =  IndexPath(row: 1, section: 0)
@@ -93,13 +90,8 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
         self.storeLevelInUserDefaults(level: "LEVEL-0")
     }
     
-    //MARK: UIButton Actions
-    @IBAction func barButtonResetPressed(_ sender: Any) {
-    }
-    @IBAction func barButtonApplyPressed(_ sender: Any) {
-    }
-    
     //MARK: UITableView DataSource
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2*FilterCategoryArray.count
     }

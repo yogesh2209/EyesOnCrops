@@ -53,6 +53,11 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
         getDatesInYearListServiceCall(year: year)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.postNotification(notification: .popToHomeScreenNotification)
+    }
+    
     // MARK: Custom Methods
     
     func customiseUI() {

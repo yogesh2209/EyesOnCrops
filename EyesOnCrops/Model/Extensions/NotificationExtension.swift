@@ -11,4 +11,5 @@ import UIKit
 extension Notification.Name {
     
     static let saveDateNotification = Notification.Name(rawValue: "com.yogeshkohli.EyesOnCrops.saveDate")
+    static let popToHomeScreenNotification = Notification.Name(rawValue: "com.yogeshkohli.EyesOnCrops.popToHomeScreen")
 }
