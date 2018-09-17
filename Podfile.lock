@@ -123,6 +123,7 @@ PODS:
   - SDWebImage/Core (4.3.3)
   - SideMenu (3.1.5)
   - SMCalloutView (2.1.5)
+  - SwiftCSVExport (2.0.1)
   - tinyxml (2.1.0)
   - WhirlyGlobe (2.4):
     - WhirlyGlobe/MaplyComponent (= 2.4)
@@ -179,6 +180,7 @@ DEPENDENCIES:
   - PopupDialog (~> 0.6)
   - SDWebImage (~> 4.0)
   - SideMenu
+  - SwiftCSVExport
   - WhirlyGlobe (= 2.4)
   - WhirlyGlobeResources
 
@@ -232,10 +234,11 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
   SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481
+  SwiftCSVExport: a2baa3904699e9d5b66dc1a15111d8172ade84dc
   tinyxml: 41d718babd106ac5d39d4e98b43c835d3b9080d8
   WhirlyGlobe: 2849f458220be42d92d814ba04377586cadbf7f1
   WhirlyGlobeResources: d7b3e929e828f958a8477ff6797f962fdb165472
 
-PODFILE CHECKSUM: 7f2ba6dd5b3753c4169c21522044de4ea4d1a154
+PODFILE CHECKSUM: 2c2e33113a9536276742848b94450febff64774b
 
 COCOAPODS: 1.3.1

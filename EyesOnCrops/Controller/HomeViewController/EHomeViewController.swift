@@ -12,6 +12,7 @@ import WhirlyGlobe
 import MapKit
 import Alamofire
 import PopupDialog
+import MessageUI
 
 struct JSONData: Decodable {
     let region_id: String?
@@ -26,8 +27,8 @@ struct JSONData: Decodable {
     let centr_lat: String?
 }
 
-class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate, UIGestureRecognizerDelegate {
-
+class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
+    
     @IBOutlet weak var imageViewInfo: UIImageView!
     @IBOutlet weak var imageViewExport: UIImageView!
     @IBOutlet weak var viewBanner: GADBannerView!
@@ -47,7 +48,6 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     var countryObjectArray: [MaplyComponentObject] = []
     var dataParams: [Any] = []
     var dataPointsArray: [Any] = []
-    var currentInfoString = ""
     var isCurrentGlobe = Bool()
     
     override func viewDidLoad() {
@@ -68,6 +68,12 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
         super.viewWillAppear(animated)
         setupFirebaseAnalytics(title: "EHomeViewController")
         udpateGlobeLevel()
+    }
+    
+    //MARK: MFMailComposerDelegate
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: Custom Methods
@@ -94,29 +100,49 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
         imageViewInfo.addGestureRecognizer(tapInfoView)
     }
     
+    func setupMailComposer() {
+        let composeVC = MFMailComposeViewController()
+        composeVC.mailComposeDelegate = self
+        //composeVC.setToRecipients(["desiredEmail@gmail.com"])
+        composeVC.setSubject("NDVI CSV Export")
+        
+        guard MFMailComposeViewController.canSendMail() else {
+            let a = URL(string: "mailto:test@test.com")
+            UIApplication.shared.open(a!, options: [:], completionHandler: nil)
+            return
+        }
+        
+        composeVC.setMessageBody("hello", isHTML: false)
+        
+        self.present(composeVC, animated: true, completion: nil)
+    }
+    
     @objc func handleTapExport(_ sender: UITapGestureRecognizer) {
         // handling code
         if self.dataParams.count != 0 {
             
             //yes action here - take him to export screen
             let yesAction = {
-                
+                self.setupMailComposer()
             }
             
-            self.showExportAlert(title: "Are you sure you want to export data?", message: currentInfoString, animated: true, yesAction: yesAction)
+            if let message = customiseCurrentInfoString() {
+                self.showExportAlert(title: "Are you sure you want to export data?", message: message, animated: true, yesAction: yesAction)
+            }
+            else{
+                self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+            }
         }
     }
     
-    @objc func handleTapInfo(_ sender: UITapGestureRecognizer) {
+    func customiseCurrentInfoString() -> String? {
         // handling code
-        currentInfoString = ""
         if self.dataParams.count != 0 {
             //for loop apply and get all the countries and show it in info message
-            let title = "You are viewing"
             var message = ""
             for index in 0..<self.dataParams.count {
                 if let param = self.dataParams[index] as? [String : String], let country = param["country"], let date = param["date"] {
-                
+                    
                     if message != "" {
                         message = message + " | "
                     }
@@ -124,12 +150,20 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
                     message = message + country + " - " + date
                 }
             }
-            
-            currentInfoString = message
-            self.showInfoAlert(title: title, message: message)
+         
+            return message
         }
         else{
-             self.alertMessage(title: "ALERT", message: "Something went wrong, please try again later")
+            return nil
+        }
+    }
+    
+    @objc func handleTapInfo(_ sender: UITapGestureRecognizer) {
+        if let message = customiseCurrentInfoString() {
+             self.showInfoAlert(title: "You are viewing", message: message)
+        }
+        else{
+             self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
         }
     }
     
@@ -190,7 +224,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     //MARK: Notifications
     func registerNotification() {
         NotificationCenter.default.addObserver(forName: .saveDateNotification, object: nil, queue: nil) { [weak self] (notification) in
-             guard let strongSelf = self else { return }
+            guard let strongSelf = self else { return }
             if let userDict = notification.userInfo as? [String : String], let date = userDict["selected_date"] {
                 strongSelf.dateSelected = date
             }
@@ -253,10 +287,10 @@ extension EHomeViewController {
         self.view.bringSubview(toFront: viewBanner)
         self.view.bringSubview(toFront: imageViewInfo)
         self.view.bringSubview(toFront: imageViewExport)
-        self.view.sendSubview(toBack: theViewC!.view)
+        //self.view.sendSubview(toBack: theViewC!.view)
         theViewC!.view.frame = self.view.bounds
         addChildViewController(theViewC!)
-    
+        
         // and thirty fps if we can get it ­ change this to 3 if you find your app is struggling
         theViewC!.frameInterval = 2
         
@@ -299,7 +333,7 @@ extension EHomeViewController {
             globeViewC.animate(toPosition: MaplyCoordinateMakeWithDegrees(-122.4192, 37.7793), time: 1.0)
         }
         else if let mapViewC = mapViewC {
-            mapViewC.height = 0.0
+            mapViewC.height = 1.0
             theViewC!.clearColor = UIColor.white
             mapViewC.animate(toPosition: MaplyCoordinateMakeWithDegrees(-122.4192, 37.7793), time: 1.0)
         }
@@ -326,22 +360,45 @@ extension EHomeViewController {
     
     func updateMapType() {
         //map type activate
-         if !isGlobe() && isCurrentGlobe {
-            resetShapeFilesLevel()
+        if !isGlobe() && isCurrentGlobe {
+            resetShapePreviousConfiguration()
+            updateViewsVisibility()
             loadGlobe(isGlobeDisplay: false)
         }
             //globe type activate
         else if isGlobe() && !isCurrentGlobe {
-            resetShapeFilesLevel()
+            resetShapePreviousConfiguration()
+            updateViewsVisibility()
             loadGlobe(isGlobeDisplay: true)
         }
     }
     
-    func resetShapeFilesLevel(){
+    func resetShapePreviousConfiguration(){
+        //reseting shape files
         self.countryObjectArray.removeAll()
         self.statesObjectArray.removeAll()
         self.storeLevelInUserDefaults(level: "LEVEL-0")
         self.addCountries()
+        
+        //removing all active maplycomponentobject
+        removeActivePoints()
+        
+        //empty json
+        json = []
+    }
+    
+    func removeActivePoints() {
+        for index in 0..<self.dataPointsArray.count {
+            
+            if  let param = dataPointsArray[index] as? [String : Any],
+                let shape_object = param["shape_object"] as? MaplyComponentObject {
+                
+               self.theViewC?.remove(shape_object)
+            }
+        }
+        
+        self.dataPointsArray.removeAll()
+        self.dataParams.removeAll()
     }
     
     //updating globe with level and date
@@ -397,7 +454,7 @@ extension EHomeViewController {
     func addCountries() {
         
         self.countryObjectArray.removeAll()
-       
+        
         // handle this in another thread
         let queue = DispatchQueue.global()
         queue.async {
@@ -544,7 +601,7 @@ extension EHomeViewController {
                 let ndviFloat = Float(ndvi) {
                 
                 coordinates.append(MaplyCoordinateMakeWithDegrees(lon, lat))
-                colors.append(UIColor.init(red: CGFloat(ndviFloat.toRGB()), green: CGFloat(ndviFloat.toRGB()), blue: CGFloat(ndviFloat.toRGB()), alpha: 1.0))
+                colors.append(UIColor.green)
             }
         }
         
@@ -552,7 +609,7 @@ extension EHomeViewController {
         for index in 0..<coordinates.count {
             let circle = MaplyShapeCircle()
             circle.center = coordinates[index]
-            circle.radius = 0.005
+            circle.radius = 0.010
             circle.color = colors[index]
             circles.append(circle)
         }
@@ -566,6 +623,7 @@ extension EHomeViewController {
         }
         
         updateViewsVisibility()
+        
         let shapes = self.theViewC?.addShapes(circles, desc: [:])
         if let s = shapes {
             dict["shape_object"] = s
@@ -575,7 +633,7 @@ extension EHomeViewController {
     
     func addStates() {
         
-     self.statesObjectArray.removeAll()
+        self.statesObjectArray.removeAll()
         
         // handle this in another thread
         let queue = DispatchQueue.global()
@@ -600,14 +658,14 @@ extension EHomeViewController {
     
     //MARK: Service Calling
     func getJSONDataServiceCall(date: String, country: String){
-       let param: Dictionary<String, Any> =
+        let param: Dictionary<String, Any> =
             [
                 "date"               : date                     as Any,
                 "country"            : country                  as Any,
                 "action_for"         : ACTION_FOR_JSON_DATA     as Any
                 
                 ] as Dictionary<String, Any>
-   
+        
         self.showAnimatedProgressBar(title: "Fetching info..", subTitle: date + ", " + country)
         let urL = MAIN_URL + POST_GET_DATA
         Alamofire.request(urL, method: .get, parameters: param).responseJSON{ response in

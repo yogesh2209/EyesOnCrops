@@ -25,7 +25,7 @@ pod 'WhirlyGlobe', '2.4'
 pod 'WhirlyGlobeResources'
 pod 'Google-Mobile-Ads-SDK'
 pod 'Cache'
-
+pod 'SwiftCSVExport'
 
 
   # Pods for EyesOnCrops
