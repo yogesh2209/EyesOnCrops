@@ -219,6 +219,8 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
         self.performSegue(withIdentifier: HOME_TO_FILTER_CATEGORY_LIST_SEGUE_VC, sender: nil)
     }
     @IBAction func barButtonResetPressed(_ sender: Any) {
+        //reset everything
+        resetConfiguration()
     }
     
     //MARK: Notifications
@@ -361,19 +363,19 @@ extension EHomeViewController {
     func updateMapType() {
         //map type activate
         if !isGlobe() && isCurrentGlobe {
-            resetShapePreviousConfiguration()
+            resetConfiguration()
             updateViewsVisibility()
             loadGlobe(isGlobeDisplay: false)
         }
             //globe type activate
         else if isGlobe() && !isCurrentGlobe {
-            resetShapePreviousConfiguration()
+            resetConfiguration()
             updateViewsVisibility()
             loadGlobe(isGlobeDisplay: true)
         }
     }
     
-    func resetShapePreviousConfiguration(){
+    func resetConfiguration(){
         //reseting shape files
         self.countryObjectArray.removeAll()
         self.statesObjectArray.removeAll()
@@ -384,7 +386,9 @@ extension EHomeViewController {
         removeActivePoints()
         
         //empty json
-        json = []
+        self.json.removeAll()
+        self.json = []
+        self.dataParams.removeAll()
     }
     
     func removeActivePoints() {

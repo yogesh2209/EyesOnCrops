@@ -107,14 +107,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-7J-Tep">
-                                <rect key="frame" x="8" y="186" width="351" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="Sdz-KT-jd4" kind="show" id="AKn-Kt-CS4"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms of Use and Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o06-4w-Ev4" customClass="ActiveLabel" customModule="ActiveLabel">
                                 <rect key="frame" x="16" y="533" width="343" height="39"/>
                                 <constraints>
@@ -2183,6 +2175,7 @@
         <image name="or_line" width="203" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="WdS-gw-SUd"/>
         <segue reference="a50-FB-7qu"/>
         <segue reference="yvM-W4-G3j"/>
         <segue reference="uTI-GX-MkV"/>
