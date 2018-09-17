@@ -691,7 +691,6 @@ extension EHomeViewController {
                     self.json = try JSONDecoder().decode([JSONData].self, from: data)
                     if self.json.count != 0 {
                         self.dataParams.append(param)
-                        self.addSpheres()
                         self.addCoordinates(json: self.json, country: country, date: date)
                     }
                 }
@@ -707,29 +706,5 @@ extension EHomeViewController {
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
             }
         }
-    }
-    
-    private func addSpheres() {
-        let capitals = [MaplyCoordinateMakeWithDegrees(-77.036667, 38.895111),
-                        MaplyCoordinateMakeWithDegrees(120.966667, 14.583333),
-                        MaplyCoordinateMakeWithDegrees(55.75, 37.616667),
-                        MaplyCoordinateMakeWithDegrees(-0.1275, 51.507222),
-                        MaplyCoordinateMakeWithDegrees(-66.916667, 10.5),
-                        MaplyCoordinateMakeWithDegrees(139.6917, 35.689506),
-                        MaplyCoordinateMakeWithDegrees(166.666667, -77.85),
-                        MaplyCoordinateMakeWithDegrees(-58.383333, -34.6),
-                        MaplyCoordinateMakeWithDegrees(-74.075833, 4.598056),
-                        MaplyCoordinateMakeWithDegrees(-79.516667, 8.983333)]
-        
-        // convert capitals into spheres. Let's do it functional!
-        let spheres = capitals.map { capital -> MaplyShapeSphere in
-            let sphere = MaplyShapeSphere()
-            sphere.center = capital
-            sphere.radius = 0.05
-            return sphere
-        }
-      
-        self.theViewC?.addShapes(spheres, desc: [
-            kMaplyColor: UIColor(red: 0.75, green: 0.0, blue: 0.0, alpha: 0.75)])
     }
 }
