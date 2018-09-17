@@ -221,6 +221,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     @IBAction func barButtonResetPressed(_ sender: Any) {
         //reset everything
         resetConfiguration()
+        updateViewsVisibility()
     }
     
     //MARK: Notifications
