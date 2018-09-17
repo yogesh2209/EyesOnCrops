@@ -459,7 +459,7 @@ extension EHomeViewController {
         let queue = DispatchQueue.global()
         queue.async {
             let bundle = Bundle.main
-            let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "country_json_50m")
+            let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "country_json")
             
             for outline in allOutlines {
                 if let jsonData = NSData(contentsOfFile: outline),
