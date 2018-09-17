@@ -354,7 +354,7 @@ extension EHomeViewController {
             globeViewC?.setZoomLimitsMin(0.05, max: 3)
         }
         else{
-            mapViewC?.setZoomLimitsMin(0.05, max: 3)
+            mapViewC?.setZoomLimitsMin(0.05, max: 7)
         }
     }
     
@@ -598,18 +598,18 @@ extension EHomeViewController {
                 let lat = Float(latStr),
                 let lon = Float(lonStr),
                 let ndvi = json[index].ndvi,
-                let ndviFloat = Float(ndvi) {
-                
+                let _ = Float(ndvi) {
+    
                 coordinates.append(MaplyCoordinateMakeWithDegrees(lon, lat))
                 colors.append(UIColor.green)
             }
         }
         
-        var circles: [MaplyShapeCircle] = []
+        var circles: [MaplyShapeSphere] = []
         for index in 0..<coordinates.count {
-            let circle = MaplyShapeCircle()
+            let circle = MaplyShapeSphere()
             circle.center = coordinates[index]
-            circle.radius = 0.010
+            circle.radius = 0.01
             circle.color = colors[index]
             circles.append(circle)
         }
@@ -624,7 +624,7 @@ extension EHomeViewController {
         
         updateViewsVisibility()
         
-        let shapes = self.theViewC?.addShapes(circles, desc: [:])
+        let shapes = self.theViewC?.addShapes(circles, desc: [:], mode: MaplyThreadAny)
         if let s = shapes {
             dict["shape_object"] = s
         }
@@ -645,6 +645,8 @@ extension EHomeViewController {
                 
                 if let jsonData = NSData(contentsOfFile: outline),
                     let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
+                    
+                    wgVecObj.selectable = true
                     
                     // add the outline to our view
                     let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDict)
@@ -689,6 +691,7 @@ extension EHomeViewController {
                     self.json = try JSONDecoder().decode([JSONData].self, from: data)
                     if self.json.count != 0 {
                         self.dataParams.append(param)
+                        self.addSpheres()
                         self.addCoordinates(json: self.json, country: country, date: date)
                     }
                 }
@@ -704,5 +707,29 @@ extension EHomeViewController {
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
             }
         }
+    }
+    
+    private func addSpheres() {
+        let capitals = [MaplyCoordinateMakeWithDegrees(-77.036667, 38.895111),
+                        MaplyCoordinateMakeWithDegrees(120.966667, 14.583333),
+                        MaplyCoordinateMakeWithDegrees(55.75, 37.616667),
+                        MaplyCoordinateMakeWithDegrees(-0.1275, 51.507222),
+                        MaplyCoordinateMakeWithDegrees(-66.916667, 10.5),
+                        MaplyCoordinateMakeWithDegrees(139.6917, 35.689506),
+                        MaplyCoordinateMakeWithDegrees(166.666667, -77.85),
+                        MaplyCoordinateMakeWithDegrees(-58.383333, -34.6),
+                        MaplyCoordinateMakeWithDegrees(-74.075833, 4.598056),
+                        MaplyCoordinateMakeWithDegrees(-79.516667, 8.983333)]
+        
+        // convert capitals into spheres. Let's do it functional!
+        let spheres = capitals.map { capital -> MaplyShapeSphere in
+            let sphere = MaplyShapeSphere()
+            sphere.center = capital
+            sphere.radius = 0.05
+            return sphere
+        }
+      
+        self.theViewC?.addShapes(spheres, desc: [
+            kMaplyColor: UIColor(red: 0.75, green: 0.0, blue: 0.0, alpha: 0.75)])
     }
 }

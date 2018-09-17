@@ -34,7 +34,7 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
     private var globeViewC: WhirlyGlobeViewController?
     private var mapViewC: MaplyViewController?
     
-    private let doGlobe = true
+    private let doGlobe = false
     private var vectorDict: [String:AnyObject]?
     private var vecName: NSObject?
    
@@ -55,7 +55,7 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
         else {
             mapViewC = MaplyViewController()
             theViewC = mapViewC
-            //mapViewC?.delegate = self
+            mapViewC?.delegate = self
         }
         
         self.view.addSubview(theViewC!.view)
@@ -147,8 +147,8 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
         ]
         
         // add the countries
-        addCountries()
-        addStates()
+       // addCountries()
+       // addStates()
     }
 
     override func didReceiveMemoryWarning() {
@@ -161,6 +161,7 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        getJSONDataServiceCall()
     }
     
     private func addCountries() {
@@ -228,15 +229,7 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
         theViewC?.addAnnotation(a, forPoint: loc, offset: .zero)
     }
     
-    func globeViewController(_ viewC: WhirlyGlobeViewController, didTapAt coord: MaplyCoordinate) {
-       // let subtitle = NSString(format: "(%.2fN, %.2fE)", coord.y*57.296,coord.x*57.296) as String
-       // addAnnotationWithTitle(title: "Tap!", subtitle: subtitle, loc: coord)
-    }
-    
-    func maplyViewController(_ viewC: MaplyViewController, didTapAt coord: MaplyCoordinate) {
-       // let subtitle = NSString(format: "(%.2fN, %.2fE)", coord.y*57.296,coord.x*57.296) as String
-       // addAnnotationWithTitle(title: "Tap!", subtitle: subtitle, loc: coord)
-    }
+   
     
     // Unified method to handle the selection
     private func handleSelection(selectedObject: NSObject) {
@@ -282,7 +275,7 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
                 let ndviFloat = Float(ndvi) {
                 
                 coordinates.append(MaplyCoordinateMakeWithDegrees(lon, lat))
-                colors.append(UIColor.init(red: CGFloat(ndviFloat.toRGB()), green: CGFloat(ndviFloat.toRGB()), blue: CGFloat(ndviFloat.toRGB()), alpha: 1.0))
+                colors.append(UIColor.green)
             }
         }
         
@@ -290,7 +283,7 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
         for index in 0..<coordinates.count {
             let circle = MaplyShapeCircle()
             circle.center = coordinates[index]
-            circle.radius = 0.005
+            circle.radius = 0.05
             circle.color = colors[index]
             circles.append(circle)
         }
@@ -303,7 +296,7 @@ class EMiscGlobeViewController: EBaseViewController, WhirlyGlobeViewControllerDe
 //            return circle
 //        }
         
-        globeViewC?.addShapes(circles, desc: [:])
+        theViewC?.addShapes(circles, desc: [:])
     }
     
     private func addStates() {
