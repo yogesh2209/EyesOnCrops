@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EyesOnCrops/Controller/MiscController/EMiscGlobeViewController.swift"
-            timestampString = "558894835.674547"
+            timestampString = "559003031.43894"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "256"
@@ -106,12 +106,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EyesOnCrops/Controller/MiscController/EMiscGlobeViewController.swift"
-            timestampString = "558894835.674597"
+            timestampString = "559003031.439021"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "236"
             endingLineNumber = "236"
             landmarkName = "handleSelection(selectedObject:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EyesOnCrops/Controller/HomeViewController/EHomeViewController.swift"
+            timestampString = "559003031.4391"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "795"
+            endingLineNumber = "795"
+            landmarkName = "setupMailFiles()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

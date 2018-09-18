@@ -13,6 +13,7 @@ import MapKit
 import Alamofire
 import PopupDialog
 import MessageUI
+import SwiftCSVExport
 
 struct JSONData: Decodable {
     let region_id: String?
@@ -27,6 +28,19 @@ struct JSONData: Decodable {
     let centr_lat: String?
 }
 
+class JSONExportData {
+    var region_id: String? = ""
+    var country: String? = ""
+    var state: String? = ""
+    var district: String? = ""
+    var ndvi: String? = ""
+    var ndvi_count: String? = ""
+    var anomaly: String? = ""
+    var anomaly_count: String? = ""
+    var centr_lon: String? = ""
+    var centr_lat: String? = ""
+}
+
 class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var imageViewInfo: UIImageView!
@@ -36,6 +50,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     @IBOutlet weak var barButtonReset: UIBarButtonItem!
     
     var json : [JSONData] = []
+    var dataToExport : [Any] = []
     private var theViewC: MaplyBaseViewController?
     private var globeViewC: WhirlyGlobeViewController?
     private var mapViewC: MaplyViewController?
@@ -49,6 +64,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     var dataParams: [Any] = []
     var dataPointsArray: [Any] = []
     var isCurrentGlobe = Bool()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +116,8 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
         imageViewInfo.addGestureRecognizer(tapInfoView)
     }
     
-    func setupMailComposer() {
+    func setupMailComposer(data: [Data]?, fileNameArr: [String]?) {
+        
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
         //composeVC.setToRecipients(["desiredEmail@gmail.com"])
@@ -111,7 +128,14 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
             UIApplication.shared.open(a!, options: [:], completionHandler: nil)
             return
         }
-        
+    
+        //setupMailFiles(mailComposer: composeVC)
+        if let d = data, let fileNames = fileNameArr, d.count == fileNames.count {
+            for index in 0..<d.count {
+                 composeVC.addAttachmentData(d[index], mimeType: "text/csv", fileName: fileNames[index] + ".csv")
+            }
+        }
+       
         composeVC.setMessageBody("hello", isHTML: false)
         
         self.present(composeVC, animated: true, completion: nil)
@@ -123,7 +147,12 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
             
             //yes action here - take him to export screen
             let yesAction = {
-                self.setupMailComposer()
+                if let (data, file) = self.setupMailFiles() {
+                    self.setupMailComposer(data: data, fileNameArr: file)
+                }
+                else{
+                    self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                }
             }
             
             if let message = customiseCurrentInfoString() {
@@ -150,7 +179,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
                     message = message + country + " - " + date
                 }
             }
-         
+            
             return message
         }
         else{
@@ -160,10 +189,10 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     
     @objc func handleTapInfo(_ sender: UITapGestureRecognizer) {
         if let message = customiseCurrentInfoString() {
-             self.showInfoAlert(title: "You are viewing", message: message)
+            self.showInfoAlert(title: "You are viewing", message: message)
         }
         else{
-             self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+            self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
         }
     }
     
@@ -215,9 +244,11 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     }
     
     //MARK: UIButton Actions
+    
     @IBAction func barButtonFilterPressed(_ sender: Any) {
         self.performSegue(withIdentifier: HOME_TO_FILTER_CATEGORY_LIST_SEGUE_VC, sender: nil)
     }
+    
     @IBAction func barButtonResetPressed(_ sender: Any) {
         //reset everything
         resetConfiguration()
@@ -390,6 +421,7 @@ extension EHomeViewController {
         self.json.removeAll()
         self.json = []
         self.dataParams.removeAll()
+        self.dataToExport.removeAll()
     }
     
     func removeActivePoints() {
@@ -398,7 +430,7 @@ extension EHomeViewController {
             if  let param = dataPointsArray[index] as? [String : Any],
                 let shape_object = param["shape_object"] as? MaplyComponentObject {
                 
-               self.theViewC?.remove(shape_object)
+                self.theViewC?.remove(shape_object)
             }
         }
         
@@ -486,6 +518,33 @@ extension EHomeViewController {
                     }
                     var c = wgVecObj.center()
                     wgVecObj.centroid(&c)
+                }
+            }
+        }
+    }
+    
+    func addStates() {
+        
+        self.statesObjectArray.removeAll()
+        
+        // handle this in another thread
+        let queue = DispatchQueue.global()
+        queue.async {
+            let bundle = Bundle.main
+            let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "state_json")
+            
+            for outline in allOutlines.reversed() {
+                
+                if let jsonData = NSData(contentsOfFile: outline),
+                    let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
+                    
+                    wgVecObj.selectable = true
+                    
+                    // add the outline to our view
+                    let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDict)
+                    if let maplyObj = obj {
+                        self.statesObjectArray.append(maplyObj)
+                    }
                 }
             }
         }
@@ -604,7 +663,7 @@ extension EHomeViewController {
                 let lon = Float(lonStr),
                 let ndvi = json[index].ndvi,
                 let _ = Float(ndvi) {
-    
+                
                 coordinates.append(MaplyCoordinateMakeWithDegrees(lon, lat))
                 colors.append(UIColor.green)
             }
@@ -634,33 +693,6 @@ extension EHomeViewController {
             dict["shape_object"] = s
         }
         dataPointsArray.append(dict)
-    }
-    
-    func addStates() {
-        
-        self.statesObjectArray.removeAll()
-        
-        // handle this in another thread
-        let queue = DispatchQueue.global()
-        queue.async {
-            let bundle = Bundle.main
-            let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "state_json")
-            
-            for outline in allOutlines.reversed() {
-                
-                if let jsonData = NSData(contentsOfFile: outline),
-                    let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
-                    
-                    wgVecObj.selectable = true
-                    
-                    // add the outline to our view
-                    let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDict)
-                    if let maplyObj = obj {
-                        self.statesObjectArray.append(maplyObj)
-                    }
-                }
-            }
-        }
     }
     
     //MARK: Service Calling
@@ -696,6 +728,7 @@ extension EHomeViewController {
                     self.json = try JSONDecoder().decode([JSONData].self, from: data)
                     if self.json.count != 0 {
                         self.dataParams.append(param)
+                        self.appendExportData(json: self.json, params: param)
                         self.addCoordinates(json: self.json, country: country, date: date)
                     }
                 }
@@ -710,6 +743,95 @@ extension EHomeViewController {
                 self.updateViewsVisibility()
                 self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
             }
+        }
+    }
+    
+    func appendExportData(json: [JSONData], params: [String : Any]) {
+        var dict: [String : Any] = [:]
+        dict["params"] = params
+        dict["json_data"] = json
+        
+        if dict.count != 0 {
+            dataToExport.append(dict)
+        }
+    }
+    
+    func setupMailFiles() -> ([Data]?, [String]?)? {
+       
+        if dataToExport.count != 0 {
+            
+            var filePathArray: [String] = []
+            var fileNameArray: [String] = []
+            var dataArray: [Data] = []
+            let header = ["region_id", "country", "state", "district", "ndvi","ndvi_count", "anomaly", "anomaly_count", "centr_lon", "centr_lat"]
+            
+            for index in 0..<dataToExport.count {
+                
+                let data: NSMutableArray  = NSMutableArray()
+                
+                if  let dataAtIndex = dataToExport[index] as? [String : Any],
+                    let paramsDict = dataAtIndex["params"] as? [String : Any],
+                    let country = paramsDict["country"] as? String,
+                    let date = paramsDict["date"] as? String,
+                    let jsonData = dataAtIndex["json_data"] as? [Any] {
+                    
+                    for j in 0..<jsonData.count {
+                    
+                        if  let jsonForRow = jsonData[j] as? JSONData {
+                            
+                            //valid data
+                            let jsonObject = JSONExportData()
+                            jsonObject.region_id = jsonForRow.region_id
+                            jsonObject.country = jsonForRow.country
+                            jsonObject.state = jsonForRow.state
+                            jsonObject.district = jsonForRow.district
+                            jsonObject.ndvi = jsonForRow.ndvi
+                            jsonObject.ndvi_count = jsonForRow.ndvi_count
+                            jsonObject.anomaly = jsonForRow.anomaly
+                            jsonObject.anomaly_count = jsonForRow.anomaly_count
+                            jsonObject.centr_lon = jsonForRow.centr_lon
+                            jsonObject.centr_lat = jsonForRow.centr_lat
+                            
+                            data.add(listPropertiesWithValues(jsonObject))
+                            
+                        }
+                    }
+                    
+                    // Create a object for write CSV
+                    let writeCSVObj = CSV()
+                    writeCSVObj.rows = data
+                    writeCSVObj.delimiter = DividerType.comma.rawValue
+                    writeCSVObj.fields = header as NSArray
+                    writeCSVObj.name = "\(country)_\(date)"
+                    
+                    let output = CSVExport.export(writeCSVObj);
+                    if output.result.isSuccess {
+                        guard let filePath =  output.filePath else {
+                            print("Export Error: \(String(describing: output.message))")
+                            self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                            return nil
+                        }
+                        filePathArray.append(filePath)
+                        fileNameArray.append("\(country)_\(date)")
+                    }
+                }
+            }
+            
+            //read csv and add it to mailcomposer
+            let fileManager = FileManager.default
+            for j in 0..<filePathArray.count {
+                if fileManager.fileExists(atPath: filePathArray[j]){
+                    if let cert = NSData(contentsOfFile: filePathArray[j]) {
+                        dataArray.append(cert as Data)
+                    }
+                }
+            }
+            return (dataArray, fileNameArray)
+        }
+        //no data to attach - show him error
+        else{
+            self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+            return nil
         }
     }
 }
