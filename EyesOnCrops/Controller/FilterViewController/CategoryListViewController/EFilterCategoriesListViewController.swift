@@ -77,7 +77,7 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
             let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategoryMapTypeOptionTableViewCell
             cell.switchMapType.setOn(true, animated: true)
             cell.labelMapDetail.text = "Globe selected"
-            self.storeMapTypeInDefaults(type: "GLOBE")
+            self.storeDataInDefaults(type: "GLOBE", key: "MAP_TYPE")
         }
             //map selected
         else{
@@ -85,9 +85,28 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
             let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategoryMapTypeOptionTableViewCell
             cell.switchMapType.setOn(false, animated: true)
             cell.labelMapDetail.text = "Map selected"
-            self.storeMapTypeInDefaults(type: "MAP")
+            self.storeDataInDefaults(type: "MAP", key: "MAP_TYPE")
         }
-        self.storeLevelInUserDefaults(level: "LEVEL-0")
+        self.storeDataInDefaults(type: "LEVEL-0", key: "LEVEL")
+    }
+    
+    @objc func switchDataTypeChanged(_ sender : UISwitch!){
+        //ndvi selected
+        if sender.isOn == true {
+            let indexPath =  IndexPath(row: 1, section: 0)
+            let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategoryDataTypeTableViewCell
+            cell.switchDataType.setOn(true, animated: true)
+            cell.labelDetail.text = "NDVI selected"
+            self.storeDataInDefaults(type: "NDVI", key: "DATA_TYPE")
+        }
+            //ndvi anomaly selected
+        else{
+            let indexPath = IndexPath(row: 1, section: 0)
+            let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategoryDataTypeTableViewCell
+            cell.switchDataType.setOn(false, animated: true)
+            cell.labelDetail.text = "NDVI Anomaly selected"
+            self.storeDataInDefaults(type: "NDVI_ANOMALY", key: "DATA_TYPE")
+        }
     }
     
     //MARK: UITableView DataSource
@@ -98,12 +117,39 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row % 2 != 0 {
             
-            //MAP TYPE CELL HERE
+            //Data type Cell - NDVI or NDVI Anomaly
             if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_CATEGORY_DATA_TYPE_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterCategoryDataTypeTableViewCell
+                cell.switchDataType.addTarget(self, action: #selector(self.switchDataTypeChanged(_:)), for: .valueChanged)
+                
+                if let storedMapType = self.getStoredDataFromUserDefaults(for: "DATA_TYPE") {
+                    if storedMapType == "NDVI" {
+                        cell.switchDataType.setOn(true, animated: false)
+                        cell.labelDetail.text = "NDVI selected"
+                    }
+                    else{
+                        cell.switchDataType.setOn(false, animated: false)
+                        cell.labelDetail.text = "NDVI Anomaly selected"
+                    }
+                }
+                else{
+                    cell.switchDataType.setOn(true, animated: false)
+                    self.storeDataInDefaults(type: "NDVI", key: "DATA_TYPE")
+                    cell.labelDetail.text = "NDVI selected"
+                }
+                
+                cell.labelHeading.text = "NDVI / NDVI Anomaly"
+                
+                
+                return cell
+            }
+            
+            //MAP TYPE CELL HERE
+            else if indexPath.row == 3 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_CATEGORY_MAP_TYPE_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterCategoryMapTypeOptionTableViewCell
                 cell.switchMapType.addTarget(self, action: #selector(self.switchMapTypeChanged(_:)), for: .valueChanged)
                 
-                if let storedMapType = self.getStoredMapTypeFromUserDefaults() {
+                if let storedMapType = self.getStoredDataFromUserDefaults(for: "MAP_TYPE") {
                     if storedMapType == "GLOBE" {
                         cell.switchMapType.setOn(true, animated: false)
                         cell.labelMapDetail.text = "Globe selected"
@@ -115,7 +161,7 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
                 }
                 else{
                     cell.switchMapType.setOn(true, animated: false)
-                    self.storeMapTypeInDefaults(type: "GLOBE")
+                    self.storeDataInDefaults(type: "GLOBE", key: "MAP_TYPE")
                     cell.labelMapDetail.text = "Globe selected"
                 }
                 
@@ -126,7 +172,7 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
             }
             
             //SATELLITE TYPE CELL HERE
-           else if indexPath.row == 3 {
+           else if indexPath.row == 5 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_CATEGORY_SATELLITE_TYPE_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterCategorySatelliteTypeTableViewCell
                 cell.switchAqua.addTarget(self, action: #selector(self.switchAquaChanged(_:)), for: .valueChanged)
                 cell.switchTerra.addTarget(self, action: #selector(self.switchTerraChanged(_:)), for: .valueChanged)
@@ -150,11 +196,11 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
         
         switch indexPath.row {
         //year list screen
-        case 5:
+        case 7:
             self.performSegue(withIdentifier: FILTER_TO_YEAR_LIST_SEGUE_VC, sender: nil)
             
         //level list screen
-        case 7:
+        case 9:
             self.performSegue(withIdentifier: CATEGORY_LIST_TO_LEVEL_LIST_SEGUE_VC, sender: nil)
             
         default:
@@ -163,10 +209,10 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row % 2 != 0 {
-            if indexPath.row == 1 {
+            if indexPath.row == 1 || indexPath.row == 3 {
                 return 65.0
             }
-            else if indexPath.row == 3 {
+            else if indexPath.row == 5 {
                 return 110.0
             }
             else{

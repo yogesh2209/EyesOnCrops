@@ -59,6 +59,12 @@
 		58AE77151FD4C973002CAADC /* ERegisterThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77141FD4C973002CAADC /* ERegisterThreeViewController.swift */; };
 		58AE77171FD4C97E002CAADC /* ERegisterFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE77161FD4C97E002CAADC /* ERegisterFourthViewController.swift */; };
 		58B6A3B921500E5400C6493B /* country_json in Resources */ = {isa = PBXBuildFile; fileRef = 58B6A3B821500E5300C6493B /* country_json */; };
+		58B6A3BC2152FD7900C6493B /* ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3BB2152FD7900C6493B /* ColorMap.swift */; };
+		58B6A3BD2152FD7900C6493B /* ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3BB2152FD7900C6493B /* ColorMap.swift */; };
+		58B6A3BE2152FD7900C6493B /* ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3BB2152FD7900C6493B /* ColorMap.swift */; };
+		58B6A3C0215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3BF215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift */; };
+		58B6A3C1215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3BF215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift */; };
+		58B6A3C2215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3BF215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift */; };
 		58BA3967214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BA3966214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift */; };
 		58BBB6522028D368005F9E5A /* EFilterCategoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */; };
 		58BBB6562028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */; };
@@ -163,6 +169,8 @@
 		58AE77141FD4C973002CAADC /* ERegisterThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterThreeViewController.swift; sourceTree = "<group>"; };
 		58AE77161FD4C97E002CAADC /* ERegisterFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERegisterFourthViewController.swift; sourceTree = "<group>"; };
 		58B6A3B821500E5300C6493B /* country_json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = country_json; sourceTree = "<group>"; };
+		58B6A3BB2152FD7900C6493B /* ColorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorMap.swift; sourceTree = "<group>"; };
+		58B6A3BF215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryDataTypeTableViewCell.swift; sourceTree = "<group>"; };
 		58BA3966214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryMapTypeOptionTableViewCell.swift; sourceTree = "<group>"; };
 		58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoriesListViewController.swift; sourceTree = "<group>"; };
 		58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryListOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -456,10 +464,9 @@
 		58AE76DB1FD4A5A1002CAADC /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
+				58B6A3BA2152FD6800C6493B /* Custom */,
 				5853E7932047BEA100FF611F /* TextViewClasses */,
 				58AE76DC1FD4A5A1002CAADC /* TextFieldClasses */,
-				58AE76DD1FD4A5A1002CAADC /* ButtonClasses */,
-				58AE76DE1FD4A5A1002CAADC /* LabelClasses */,
 				58AE76DF1FD4A5A1002CAADC /* ViewClasses */,
 			);
 			path = CustomClasses;
@@ -471,20 +478,6 @@
 				58DA1D7B1FD5F18900C3DA3B /* ECustomTextField.swift */,
 			);
 			path = TextFieldClasses;
-			sourceTree = "<group>";
-		};
-		58AE76DD1FD4A5A1002CAADC /* ButtonClasses */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ButtonClasses;
-			sourceTree = "<group>";
-		};
-		58AE76DE1FD4A5A1002CAADC /* LabelClasses */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LabelClasses;
 			sourceTree = "<group>";
 		};
 		58AE76DF1FD4A5A1002CAADC /* ViewClasses */ = {
@@ -565,6 +558,14 @@
 			path = LoginViewController;
 			sourceTree = "<group>";
 		};
+		58B6A3BA2152FD6800C6493B /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				58B6A3BB2152FD7900C6493B /* ColorMap.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		58BBB6502028D307005F9E5A /* FilterViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,6 +593,7 @@
 				58BBB6572028D412005F9E5A /* EFilterCategoryListPlainSpaceTableViewCell.swift */,
 				589AD40F202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift */,
 				58BA3966214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift */,
+				58B6A3BF215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift */,
 			);
 			path = CategoryListCells;
 			sourceTree = "<group>";
@@ -1477,6 +1479,7 @@
 				58AE77091FD4BC8B002CAADC /* EMainViewController.swift in Sources */,
 				58AE77131FD4C957002CAADC /* ERegisterSecondViewController.swift in Sources */,
 				58E635DB20073E81008B5069 /* ETermsPrivacyConmonViewController.swift in Sources */,
+				58B6A3BC2152FD7900C6493B /* ColorMap.swift in Sources */,
 				58C2355420B35B3E00237A0B /* EYearsListViewController.swift in Sources */,
 				58E635DE20080F19008B5069 /* EChangePasswordViewController.swift in Sources */,
 				58BA3967214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift in Sources */,
@@ -1498,6 +1501,7 @@
 				589AD410202ABBA700C300D4 /* EFilterCategorySatelliteTypeTableViewCell.swift in Sources */,
 				58E635E120081307008B5069 /* EPasswordRecoveryStepOneViewController.swift in Sources */,
 				58DA1D811FD5FF2F00C3DA3B /* EHomeViewController.swift in Sources */,
+				58B6A3C0215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */,
 				5821B9572006B683001D9D82 /* EMiscGlobeViewController.swift in Sources */,
 				589AD414202B911700C300D4 /* EFilterLevelListViewController.swift in Sources */,
 				58AE77111FD4C6B7002CAADC /* ELoginEmailViewController.swift in Sources */,
@@ -1511,6 +1515,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B6A3BD2152FD7900C6493B /* ColorMap.swift in Sources */,
+				58B6A3C1215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */,
 				585D94541FD49C7A00F076A4 /* EyesOnCropsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1519,6 +1525,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B6A3BE2152FD7900C6493B /* ColorMap.swift in Sources */,
+				58B6A3C2215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */,
 				585D945F1FD49C7B00F076A4 /* EyesOnCropsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

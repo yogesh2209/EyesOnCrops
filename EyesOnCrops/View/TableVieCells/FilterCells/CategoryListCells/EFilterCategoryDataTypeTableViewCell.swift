@@ -1,18 +1,18 @@
 //
-//  EFilterCategorySatelliteTypeTableViewCell.swift
+//  EFilterCategoryDataTypeTableViewCell.swift
 //  EyesOnCrops
 //
-//  Created by Yogesh Kohli on 2/6/18.
+//  Created by Yogesh Kohli on 9/19/18.
 //  Copyright © 2018 Yogesh Kohli. All rights reserved.
 //
 
 import UIKit
 
-class EFilterCategorySatelliteTypeTableViewCell: UITableViewCell {
+class EFilterCategoryDataTypeTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var switchAqua: UISwitch!
-    @IBOutlet weak var switchTerra: UISwitch!
-    
+    @IBOutlet weak var labelDetail: UILabel!
+    @IBOutlet weak var labelHeading: UILabel!
+    @IBOutlet weak var switchDataType: UISwitch!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

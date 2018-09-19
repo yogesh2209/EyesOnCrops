@@ -128,14 +128,14 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
             UIApplication.shared.open(a!, options: [:], completionHandler: nil)
             return
         }
-    
+        
         //setupMailFiles(mailComposer: composeVC)
         if let d = data, let fileNames = fileNameArr, d.count == fileNames.count {
             for index in 0..<d.count {
-                 composeVC.addAttachmentData(d[index], mimeType: "text/csv", fileName: fileNames[index] + ".csv")
+                composeVC.addAttachmentData(d[index], mimeType: "text/csv", fileName: fileNames[index] + ".csv")
             }
         }
-       
+        
         composeVC.setMessageBody("hello", isHTML: false)
         
         self.present(composeVC, animated: true, completion: nil)
@@ -275,7 +275,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
 extension EHomeViewController {
     
     func isGlobe() -> Bool {
-        if let mapStored = self.getStoredMapTypeFromUserDefaults() {
+        if let mapStored = self.getStoredDataFromUserDefaults(for: "MAP_TYPE") {
             if mapStored == "GLOBE" {
                 return true
             }
@@ -411,7 +411,7 @@ extension EHomeViewController {
         //reseting shape files
         self.countryObjectArray.removeAll()
         self.statesObjectArray.removeAll()
-        self.storeLevelInUserDefaults(level: "LEVEL-0")
+        self.storeDataInDefaults(type: "LEVEL-0", key: "LEVEL")
         self.addCountries()
         
         //removing all active maplycomponentobject
@@ -443,7 +443,7 @@ extension EHomeViewController {
         
         updateViewsVisibility()
         
-        if let selectedLevel = self.getStoredLevelFromUserDefaults() {
+        if let selectedLevel = self.getStoredDataFromUserDefaults(for: "LEVEL") {
             
             //country admin level
             if selectedLevel == "LEVEL-0" {
@@ -757,7 +757,7 @@ extension EHomeViewController {
     }
     
     func setupMailFiles() -> ([Data]?, [String]?)? {
-       
+        
         if dataToExport.count != 0 {
             
             var filePathArray: [String] = []
@@ -776,7 +776,7 @@ extension EHomeViewController {
                     let jsonData = dataAtIndex["json_data"] as? [Any] {
                     
                     for j in 0..<jsonData.count {
-                    
+                        
                         if  let jsonForRow = jsonData[j] as? JSONData {
                             
                             //valid data
@@ -828,7 +828,7 @@ extension EHomeViewController {
             }
             return (dataArray, fileNameArray)
         }
-        //no data to attach - show him error
+            //no data to attach - show him error
         else{
             self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
             return nil

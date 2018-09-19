@@ -53,16 +53,17 @@ let FILTER_CATEGORY_LIST_SPACING_CUSTOM_CELL            = "filterCategoryPlainSp
 let FILTER_CATEGORY_SATELLITE_TYPE_CUSTOM_CELL          = "filterCategorySatelliteTypeCustomCell"
 let FILTER_LEVEL_LIST_OPTION_CUSTOM_CELL                = "levelListOptionCustomCell"
 let FILTER_LEVEL_LIST_PLAIN_SPACE_CUSTOM_CELL           = "levelListPlainSpaceCustomCell"
-let FILTER_CATEGORY_MAP_TYPE_CUSTOM_CELL              = "filterCategoryMapTypeCustomCell"
+let FILTER_CATEGORY_MAP_TYPE_CUSTOM_CELL                = "filterCategoryMapTypeCustomCell"
 let YEAR_LIST_CUSTOM_CELL                               = "yearListCustomCell"
 let DATES_LIST_CUSTOM_CELL                              = "datesListCustomCell"
+let FILTER_CATEGORY_DATA_TYPE_CUSTOM_CELL               = "filterCategoryDataTypeCustomCell"
 
 
 /* -------- STATIC ARRAYS / DATA ---------------- */
 
-let FilterCategoryArray = ["Map","Layer","Year : Date", "Level", "Color Scheme"]
+let FilterCategoryArray = ["Data","Map","Layer","Year : Date", "Level", "Color Scheme"]
 let LevelListArray = ["Admin Level 0","Admin Level 1","Admin Level 2"]
-let categoryDetailsArray = [".",".","Select year and date", "Select Admin Level", "Select color scheme for data"]
+let categoryDetailsArray = [".",".",".","Select year and date", "Select Admin Level", "Select color scheme for data"]
 
 
 /* -------- ALERT MESSAGE STRINGS ---------------- */

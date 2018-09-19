@@ -1081,6 +1081,56 @@
                                             <outlet property="switchMapType" destination="Fqf-iT-Cyx" id="6zy-uP-CmA"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterCategoryDataTypeCustomCell" rowHeight="65" id="dLy-qF-xB0" customClass="EFilterCategoryDataTypeTableViewCell" customModule="EyesOnCrops" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="312" width="375" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dLy-qF-xB0" id="YA5-7U-X9g">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nb0-If-3AF">
+                                                    <rect key="frame" x="16" y="8" width="287" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="t8a-qX-Lsm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwn-JV-KWj">
+                                                    <rect key="frame" x="15" y="35" width="288" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="6iN-vU-Mne"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGJ-at-i9m">
+                                                    <rect key="frame" x="313" y="17" width="49" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="47" id="ymq-Zb-zKz"/>
+                                                    </constraints>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nb0-If-3AF" firstAttribute="top" secondItem="YA5-7U-X9g" secondAttribute="top" constant="8" id="0gK-Oe-Rzg"/>
+                                                <constraint firstItem="jGJ-at-i9m" firstAttribute="trailing" secondItem="YA5-7U-X9g" secondAttribute="trailingMargin" id="44y-zB-xj7"/>
+                                                <constraint firstItem="jGJ-at-i9m" firstAttribute="top" secondItem="YA5-7U-X9g" secondAttribute="topMargin" constant="6" id="Fxm-ZO-BEI"/>
+                                                <constraint firstItem="jGJ-at-i9m" firstAttribute="leading" secondItem="rwn-JV-KWj" secondAttribute="trailing" constant="10" id="b9K-Cc-hyA"/>
+                                                <constraint firstItem="rwn-JV-KWj" firstAttribute="top" secondItem="nb0-If-3AF" secondAttribute="bottom" constant="6" id="bst-jz-HLf"/>
+                                                <constraint firstItem="rwn-JV-KWj" firstAttribute="leading" secondItem="YA5-7U-X9g" secondAttribute="leading" constant="15" id="f9i-Ia-KXQ"/>
+                                                <constraint firstItem="nb0-If-3AF" firstAttribute="leading" secondItem="YA5-7U-X9g" secondAttribute="leading" constant="16" id="jKc-Cm-jr7"/>
+                                                <constraint firstItem="jGJ-at-i9m" firstAttribute="leading" secondItem="nb0-If-3AF" secondAttribute="trailing" constant="10" id="kXD-lt-Lot"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="jGJ-at-i9m" secondAttribute="bottom" constant="6" id="pnD-hY-Oly"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="labelDetail" destination="rwn-JV-KWj" id="72g-LO-t1N"/>
+                                            <outlet property="labelHeading" destination="nb0-If-3AF" id="3n2-pU-w8M"/>
+                                            <outlet property="switchDataType" destination="jGJ-at-i9m" id="TIF-KY-HWS"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="W64-oY-ppl" id="2Qy-4C-CNy"/>
@@ -2175,7 +2225,6 @@
         <image name="or_line" width="203" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WdS-gw-SUd"/>
         <segue reference="a50-FB-7qu"/>
         <segue reference="yvM-W4-G3j"/>
         <segue reference="uTI-GX-MkV"/>

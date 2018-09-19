@@ -125,32 +125,14 @@ class EBaseViewController: UIViewController {
         }
     }
     
-    //getting level stored from user defaults
-    func getStoredLevelFromUserDefaults() -> String? {
+    func storeDataInDefaults(type: String, key: String) {
         let defaults = UserDefaults.standard
-        if let levelStored = defaults.object(forKey: "LEVEL") as? String {
-            return levelStored
-        }
-        else{
-            return nil
-        }
+        defaults.set(type, forKey: key)
     }
     
-    //Storing data in NSUserDefaults
-    func storeLevelInUserDefaults(level: String = "LEVEL-0") {
+    func getStoredDataFromUserDefaults(for key: String) -> String? {
         let defaults = UserDefaults.standard
-        defaults.set(level, forKey: "LEVEL")
-    }
-    
-    //MAP OR GLOBE
-    func storeMapTypeInDefaults(type: String = "GLOBE") {
-        let defaults = UserDefaults.standard
-        defaults.set(type, forKey: "MAP_TYPE")
-    }
-    
-    func getStoredMapTypeFromUserDefaults() -> String? {
-        let defaults = UserDefaults.standard
-        if let mapTypeStored = defaults.object(forKey: "MAP_TYPE") as? String {
+        if let mapTypeStored = defaults.object(forKey: key) as? String {
             return mapTypeStored
         }
         else{

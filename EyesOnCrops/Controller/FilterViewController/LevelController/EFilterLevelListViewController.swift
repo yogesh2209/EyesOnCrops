@@ -42,7 +42,7 @@ class EFilterLevelListViewController: EBaseViewController, UITableViewDataSource
     }
 
     func setLastSelectedLevel() {
-        if let level = self.getStoredLevelFromUserDefaults() {
+        if let level = self.getStoredDataFromUserDefaults(for: "LEVEL") {
             //Countries
             if level == "LEVEL-0" {
                 lastSelected = IndexPath(row: 1, section: 0)
@@ -57,17 +57,17 @@ class EFilterLevelListViewController: EBaseViewController, UITableViewDataSource
         }
         else{
             lastSelected = IndexPath(row: 1, section: 0)
-            storeLevelInUserDefaults(level: "LEVEL-0")
+            self.storeDataInDefaults(type: "LEVEL-0", key: "LEVEL")
         }
     }
     
     //MARK: UIButton Actions
     @IBAction func barButtonApplyPressed(_ sender: Any) {
         if lastSelected?.row == 1 {
-            self.storeLevelInUserDefaults(level: "LEVEL-0")
+            self.storeDataInDefaults(type: "LEVEL-0", key: "LEVEL")
         }
         else if lastSelected?.row == 3 {
-            self.storeLevelInUserDefaults(level: "LEVEL-1")
+            self.storeDataInDefaults(type: "LEVEL-1", key: "LEVEL")
         }
         self.navigationController?.popViewController(animated: true)
     }
