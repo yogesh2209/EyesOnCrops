@@ -42,13 +42,13 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
     @objc func switchAquaChanged(_ sender : UISwitch!){
         //If switch aqua is on, need to switch off the terra and vice versa
         if sender.isOn == true {
-            let indexPath = IndexPath(row: 3, section: 0)
+            let indexPath = IndexPath(row: 5, section: 0)
             let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategorySatelliteTypeTableViewCell
             cell.switchAqua.setOn(true, animated: true)
             cell.switchTerra.setOn(false, animated: true)
         }
         else{
-            let indexPath = IndexPath(row: 3, section: 0)
+            let indexPath = IndexPath(row: 5, section: 0)
             let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategorySatelliteTypeTableViewCell
             cell.switchAqua.setOn(false, animated: true)
             cell.switchTerra.setOn(true, animated: true)
@@ -57,13 +57,13 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
     @objc func switchTerraChanged(_ sender : UISwitch!){
         //If switch aqua is on, need to switch off the terra and vice versa
         if sender.isOn == true {
-            let indexPath = IndexPath(row: 3, section: 0)
+            let indexPath = IndexPath(row: 5, section: 0)
             let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategorySatelliteTypeTableViewCell
             cell.switchAqua.setOn(false, animated: true)
             cell.switchTerra.setOn(true, animated: true)
         }
         else{
-            let indexPath = IndexPath(row: 3, section: 0)
+            let indexPath = IndexPath(row: 5, section: 0)
             let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategorySatelliteTypeTableViewCell
             cell.switchAqua.setOn(true, animated: true)
             cell.switchTerra.setOn(false, animated: true)
@@ -73,7 +73,7 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
     @objc func switchMapTypeChanged(_ sender : UISwitch!){
         //Globe selected
         if sender.isOn == true {
-            let indexPath =  IndexPath(row: 1, section: 0)
+            let indexPath =  IndexPath(row: 3, section: 0)
             let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategoryMapTypeOptionTableViewCell
             cell.switchMapType.setOn(true, animated: true)
             cell.labelMapDetail.text = "Globe selected"
@@ -81,7 +81,7 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
         }
             //map selected
         else{
-            let indexPath = IndexPath(row: 1, section: 0)
+            let indexPath = IndexPath(row: 3, section: 0)
             let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategoryMapTypeOptionTableViewCell
             cell.switchMapType.setOn(false, animated: true)
             cell.labelMapDetail.text = "Map selected"
