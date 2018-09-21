@@ -1,0 +1,26 @@
+//
+//  UIColor+Extension.swift
+//  EyesOnCrops
+//
+//  Created by Yogesh Kohli on 9/20/18.
+//  Copyright © 2018 Yogesh Kohli. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+extension UIColor {
+    
+    //r g b
+    func colorComponents() -> (CGFloat, CGFloat, CGFloat)? {
+        
+        let rgbComponents = self.cgColor.components
+        
+        if let rgb = rgbComponents {
+            return (rgb[0]*255.0, rgb[1]*255.0, rgb[2]*255.0)
+        }
+        
+        return nil
+    }
+    
+}

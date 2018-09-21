@@ -10,144 +10,6 @@ import Foundation
 
 import UIKit
 
-/*
- 
- STEPS TO GET COLOR VALUE AND GET IT'S COLOR VALUE IN RGB
- 
- 
- createGradient(colorMap) {
- var gradient : {
- Offset: string,
- StopColor: string
- }[] = [];
- 
- for (var currPercentage = 0; currPercentage <= 1.0; currPercentage += 0.05) {
- var offsetString = (currPercentage * 100).toString() + "%";
- var currColors;
- currColors = this.customColorMapByPercentage(colorMap, 0.0, 1.0, 1.0 - currPercentage);
- var colorsHex = this.rgbToHex(Math.round(currColors[0] * 255),
- Math.round(currColors[1] * 255),
- Math.round(currColors[2] * 255));
- gradient.push({
- Offset: offsetString,
- StopColor: colorsHex
- });
- }
- return gradient;
- }
- 
- func createGradient(colorMap: [UIColor]) {
- 
- var gradient : [String : Any] = [:]
- 
- for currentPercentage in 0.stride(to: 1, by: 0.05) {
-    print(currentPercentage)
-    var offsetString = String(currPercentage * 100) + "%"
-    var currColors = [UIColor]()
- }
-
- 
- }
- 
- 
- func customColorMapByPercentage(colorMap: [UIColor], minValue: Float, maxValue: Float, percentage: Float) {
- var currValue = ((maxValue - minValue)*percentage) + minValue
- return customColorMap(colormap, minValue, maxValue, currValue)
- 
- }
- 
- 
- customColorMap (colormap, minValue, maxValue, currValue){
- var valueScaled = (currValue - minValue)/(maxValue - minValue);
- 
- if (currValue < minValue) {
- var lowerColor = [colormap[0].r, colormap[0].g, colormap[0].b];
- var upperColor = [colormap[0].r, colormap[0].g, colormap[0].b];
- var percentFade = 1.0;
- } else if (currValue > maxValue) {
- var curLoc = colormap.length-1;
- var lowerColor = [colormap[curLoc].r, colormap[curLoc].g, colormap[curLoc].b];
- var upperColor = [colormap[curLoc].r, colormap[curLoc].g, colormap[curLoc].b];
- var percentFade = 1.0;
- } else {
- for (var i = 1; i < colormap.length; i++) {
- if (valueScaled >= colormap[i - 1].x && valueScaled <= colormap[i].x) {
- var lowerColor = [colormap[i - 1].r, colormap[i - 1].g, colormap[i - 1].b];
- var upperColor = [colormap[i].r, colormap[i].g, colormap[i].b];
- var percentFade = (valueScaled - colormap[i - 1].x) / (colormap[i].x - colormap[i - 1].x);
- break;
- } else if (i == colormap.length - 1 && valueScaled > colormap[i].x) {
- 
- break;
- }
- }
- }
- 
- var diffRed = upperColor[0] - lowerColor[0];
- var diffGreen = upperColor[1] - lowerColor[1];
- var diffBlue = upperColor[2] - lowerColor[2];
- 
- diffRed = (diffRed * percentFade) + lowerColor[0];
- diffGreen = (diffGreen * percentFade) + lowerColor[1];
- diffBlue = (diffBlue * percentFade) + lowerColor[2];
- 
- return [diffRed, diffGreen, diffBlue];
- }
- 
- 
- 
- func customColorMap(colorMap: [UIColor], minValue: Float, maxValue: Float, currValue: Float) {
- var valueScaled = (currValue - minValue)/(maxValue - minValue)
- 
- if currValue < minValue {
- 
- var percentFade = 1.0
- }
- else{
- 
- }
- 
- }
- 
- 
-*/
-
-func customColorMap(colorMap: [UIColor], minValue: Float, maxValue: Float, currValue: Float) {
-    var valueScaled = (currValue - minValue)/(maxValue - minValue)
-    
-    if currValue < minValue {
-        var lowerColor = colorMap[0]
-       
-    }
-    else if currValue > maxValue {
-        
-    }
-    
-}
-
-//Color map from hex values
-func createColorMapFromHexValues(hexValues : [String]) -> [UIColor] {
-    var colorsMap : [UIColor] = []
-    var currColor = UIColor()
-    
-    for index in 0..<hexValues.count {
-        currColor = hexStringToUIColor(hex: hexValues[index])
-        colorsMap.append(currColor)
-    }
-    
-    return colorsMap
-}
-
-//RGB to HEX
-func rgbToHex(r: Float, g: Float, b: Float) -> String {
-    return "#" + componentToHex(c: r) + componentToHex(c: g) + componentToHex(c: b)
-}
-
-func componentToHex(c: Float)  -> String {
-    let hex = String(c)
-    return hex.count == 1 ? "0" + hex : hex
-}
-
 //HEX to RGB - UIColor
 func hexStringToUIColor(hex:String) -> UIColor {
     var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
@@ -169,6 +31,107 @@ func hexStringToUIColor(hex:String) -> UIColor {
         blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
         alpha: CGFloat(1.0)
     )
+}
+
+//return min and max value
+func giveColorMapLimits(currValue: Float) -> (Float, Float) {
+    
+    if currValue < -125.0  {
+        return (-125.0, -125.0)
+    }
+    else if currValue >= -125.0 && currValue < -80.0 {
+        return (-125.0, -80.0)
+    }
+    else if currValue >= -80.0 && currValue < -60.0 {
+        return (-80.0, -60.0)
+    }
+    else if currValue >= -60.0 && currValue < -40.0 {
+        return (-60.0, -40.0)
+    }
+    else if currValue >= -40.0 && currValue < -20.0 {
+        return (-40.0, -20.0)
+    }
+    else if currValue >= -20.0 && currValue < 0.0 {
+        return (-20.0, 0.0)
+    }
+    else if currValue >= 0.0 && currValue < 20.0 {
+        return (0, 20.0)
+    }
+    else if currValue >= 20.0 && currValue < 40.0 {
+        return (0, 20.0)
+    }
+    else if currValue >= 40.0 && currValue < 60.0 {
+        return (40.0, 60.0)
+    }
+    else if currValue >= 60.0 && currValue < 80.0 {
+        return (60.0, 80.0)
+    }
+    else if currValue >= 80.0 && currValue < 125.0 {
+        return (80.0, 125.0)
+    }
+    else {
+        return (125.0, 125.0)
+    }
+}
+
+func rgbOnLimits(currentColorMap: String, minValue: Float, maxValue: Float) -> (UIColor, UIColor)? {
+    
+    var minColor = UIColor()
+    var maxColor = UIColor()
+    var colorMapIndex = 0
+    
+    if currentColorMap == "DEFAULT" {
+        colorMapIndex = 0
+    }
+    else if currentColorMap == "UPDATE_1" {
+        colorMapIndex = 1
+    }
+    
+    //get data from json file
+    if let path = Bundle.main.path(forResource: "colorMap", ofType: "json") {
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+            if let jr = jsonResult as? [Any], let colorMap = jr[colorMapIndex] as? [[String : String]] {
+                // do stuff
+                print(colorMap)
+                print(colorMap.count)
+                
+                for index in 0..<colorMap.count {
+                    
+                    if let r = colorMap[index]["r"], let g = colorMap[index]["g"], let b = colorMap[index]["b"], let floatR = Float(r), let floatG = Float(g), let floatB = Float(b) {
+                        
+                        if let min = colorMap[index]["value"], minValue == Float(min) {
+                            minColor = UIColor(red: CGFloat(floatR/255.0), green: CGFloat(floatG/255.0), blue: CGFloat(floatB/255.0), alpha: 1.0)
+                        }
+                        if let max = colorMap[index]["value"], maxValue == Float(max) {
+                            maxColor = UIColor(red: CGFloat(floatR/255.0), green: CGFloat(floatG/255.0), blue: CGFloat(floatB/255.0), alpha: 1.0)
+                        }
+                    }
+                }
+            }
+        } catch {
+            // handle error
+        }
+    }
+    
+    return (minColor, maxColor)
+}
+
+//function which takes limits and their color and returns gradient of the current value
+func gradientColor(minColor: UIColor, maxColor: UIColor, currentValue: Float, minValue: Float, maxValue: Float) -> UIColor? {
+    
+    
+    guard
+        let (minR, minG, minB) = minColor.colorComponents(),
+        let (maxR, maxG, maxB) = maxColor.colorComponents()
+        else { return nil }
+    
+     
+    
+    
+    
+    return nil
 }
 
 

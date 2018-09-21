@@ -599,7 +599,7 @@ extension EHomeViewController {
         }
         return isValidDateCountry
     }
-    
+  
     // Unified method to handle the selection
     private func handleSelection(selectedObject: NSObject, date: String = "") {
         if let selectedObject = selectedObject as? MaplyVectorObject {

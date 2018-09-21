@@ -10,7 +10,7 @@ import UIKit
 import ActiveLabel
 
 class EMainViewController: EBaseViewController, ActiveLabelDelegate {
-
+    
     @IBOutlet weak var labelTermsAndPolicy: ActiveLabel!
     @IBOutlet weak var buttonRegister: UIButton!
     @IBOutlet weak var buttonLogin: UIButton!
@@ -18,12 +18,12 @@ class EMainViewController: EBaseViewController, ActiveLabelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         customiseUI()
-         setupTermsPrivacyLabel()
+        setupTermsPrivacyLabel()
         // Do any additional setup after loading the view.
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-       
+        
         // Dispose of any resources that can be recreated.
     }
     
@@ -34,11 +34,12 @@ class EMainViewController: EBaseViewController, ActiveLabelDelegate {
     }
     
     //MARK: UIButton Actions
+    
     @IBAction func buttonLoginPressed(_ sender: Any) {
         performSegue(withIdentifier: LOGINSCREEN_SEGUE_VC, sender: nil)
     }
     @IBAction func buttonRegisterPressed(_ sender: Any) {
-         performSegue(withIdentifier: REGISTER_1_SEGUE_VC, sender: nil)
+        performSegue(withIdentifier: REGISTER_1_SEGUE_VC, sender: nil)
     }
     
     //MARK: Private Methods

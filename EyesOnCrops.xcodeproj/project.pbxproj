@@ -65,6 +65,12 @@
 		58B6A3C0215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3BF215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift */; };
 		58B6A3C1215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3BF215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift */; };
 		58B6A3C2215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3BF215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift */; };
+		58B6A3C421543CCE00C6493B /* colorMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 58B6A3C321543CCE00C6493B /* colorMap.json */; };
+		58B6A3C521543CCE00C6493B /* colorMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 58B6A3C321543CCE00C6493B /* colorMap.json */; };
+		58B6A3C621543CCE00C6493B /* colorMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 58B6A3C321543CCE00C6493B /* colorMap.json */; };
+		58B6A3C82154BD0B00C6493B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3C72154BD0B00C6493B /* UIColor+Extension.swift */; };
+		58B6A3C92154BD0B00C6493B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3C72154BD0B00C6493B /* UIColor+Extension.swift */; };
+		58B6A3CA2154BD0B00C6493B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3C72154BD0B00C6493B /* UIColor+Extension.swift */; };
 		58BA3967214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BA3966214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift */; };
 		58BBB6522028D368005F9E5A /* EFilterCategoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */; };
 		58BBB6562028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */; };
@@ -74,7 +80,6 @@
 		58C2355920B35C8B00237A0B /* EYearListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C2355820B35C8B00237A0B /* EYearListTableViewCell.swift */; };
 		58C2355B20B35C9900237A0B /* EDatesForYearListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C2355A20B35C9900237A0B /* EDatesForYearListTableViewCell.swift */; };
 		58C2356720B5119A00237A0B /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C2356620B5119A00237A0B /* DateFormatterExtension.swift */; };
-		58C2356920B5121C00237A0B /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C2356820B5121C00237A0B /* StringExtensions.swift */; };
 		58DA1D7A1FD5EBBC00C3DA3B /* EConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D791FD5EBBC00C3DA3B /* EConstant.swift */; };
 		58DA1D7C1FD5F18900C3DA3B /* ECustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D7B1FD5F18900C3DA3B /* ECustomTextField.swift */; };
 		58DA1D7E1FD5F19C00C3DA3B /* ECustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA1D7D1FD5F19C00C3DA3B /* ECustomView.swift */; };
@@ -171,6 +176,8 @@
 		58B6A3B821500E5300C6493B /* country_json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = country_json; sourceTree = "<group>"; };
 		58B6A3BB2152FD7900C6493B /* ColorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorMap.swift; sourceTree = "<group>"; };
 		58B6A3BF215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryDataTypeTableViewCell.swift; sourceTree = "<group>"; };
+		58B6A3C321543CCE00C6493B /* colorMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = colorMap.json; sourceTree = "<group>"; };
+		58B6A3C72154BD0B00C6493B /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		58BA3966214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryMapTypeOptionTableViewCell.swift; sourceTree = "<group>"; };
 		58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoriesListViewController.swift; sourceTree = "<group>"; };
 		58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryListOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -180,7 +187,6 @@
 		58C2355820B35C8B00237A0B /* EYearListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EYearListTableViewCell.swift; sourceTree = "<group>"; };
 		58C2355A20B35C9900237A0B /* EDatesForYearListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDatesForYearListTableViewCell.swift; sourceTree = "<group>"; };
 		58C2356620B5119A00237A0B /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
-		58C2356820B5121C00237A0B /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		58DA1D791FD5EBBC00C3DA3B /* EConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EConstant.swift; sourceTree = "<group>"; };
 		58DA1D7B1FD5F18900C3DA3B /* ECustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECustomTextField.swift; sourceTree = "<group>"; };
 		58DA1D7D1FD5F19C00C3DA3B /* ECustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECustomView.swift; sourceTree = "<group>"; };
@@ -331,6 +337,7 @@
 		585D943A1FD49C7A00F076A4 /* EyesOnCrops */ = {
 			isa = PBXGroup;
 			children = (
+				58B6A3C321543CCE00C6493B /* colorMap.json */,
 				5821B95C2006BBFC001D9D82 /* country-lowres.mbtiles */,
 				5821B95A2006BA27001D9D82 /* geography-class_medres.mbtiles */,
 				5821B9582006B771001D9D82 /* BridgingHeader */,
@@ -620,9 +627,9 @@
 			isa = PBXGroup;
 			children = (
 				58C2356620B5119A00237A0B /* DateFormatterExtension.swift */,
-				58C2356820B5121C00237A0B /* StringExtensions.swift */,
 				58E3E9C120BB94A700525A49 /* NotificationExtension.swift */,
 				58E3E9C320BB9B7E00525A49 /* NavigationControllerExtension.swift */,
+				58B6A3C72154BD0B00C6493B /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -815,6 +822,7 @@
 				58AE77011FD4BABF002CAADC /* OpenSans-LightItalic.ttf in Resources */,
 				585D94461FD49C7A00F076A4 /* Assets.xcassets in Resources */,
 				58AE77051FD4BABF002CAADC /* OpenSans-SemiboldItalic.ttf in Resources */,
+				58B6A3C421543CCE00C6493B /* colorMap.json in Resources */,
 				58AE76FE1FD4BABF002CAADC /* OpenSans-Bold.ttf in Resources */,
 				585D94411FD49C7A00F076A4 /* Main.storyboard in Resources */,
 				58AE77021FD4BABF002CAADC /* OpenSans-Semibold.ttf in Resources */,
@@ -834,6 +842,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B6A3C521543CCE00C6493B /* colorMap.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,6 +850,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B6A3C621543CCE00C6493B /* colorMap.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1469,7 +1479,6 @@
 				58C2355B20B35C9900237A0B /* EDatesForYearListTableViewCell.swift in Sources */,
 				5888C213209037CD00EBC33F /* ERegisterPasswordSetupViewController.swift in Sources */,
 				58DA1D7C1FD5F18900C3DA3B /* ECustomTextField.swift in Sources */,
-				58C2356920B5121C00237A0B /* StringExtensions.swift in Sources */,
 				583EB4841FEAFFCB003CEC57 /* ESideMenuProfileTableViewCell.swift in Sources */,
 				58AE77171FD4C97E002CAADC /* ERegisterFourthViewController.swift in Sources */,
 				58DA1D7A1FD5EBBC00C3DA3B /* EConstant.swift in Sources */,
@@ -1480,6 +1489,7 @@
 				58AE77131FD4C957002CAADC /* ERegisterSecondViewController.swift in Sources */,
 				58E635DB20073E81008B5069 /* ETermsPrivacyConmonViewController.swift in Sources */,
 				58B6A3BC2152FD7900C6493B /* ColorMap.swift in Sources */,
+				58B6A3C82154BD0B00C6493B /* UIColor+Extension.swift in Sources */,
 				58C2355420B35B3E00237A0B /* EYearsListViewController.swift in Sources */,
 				58E635DE20080F19008B5069 /* EChangePasswordViewController.swift in Sources */,
 				58BA3967214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift in Sources */,
@@ -1518,6 +1528,7 @@
 				58B6A3BD2152FD7900C6493B /* ColorMap.swift in Sources */,
 				58B6A3C1215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */,
 				585D94541FD49C7A00F076A4 /* EyesOnCropsTests.swift in Sources */,
+				58B6A3C92154BD0B00C6493B /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1528,6 +1539,7 @@
 				58B6A3BE2152FD7900C6493B /* ColorMap.swift in Sources */,
 				58B6A3C2215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */,
 				585D945F1FD49C7B00F076A4 /* EyesOnCropsUITests.swift in Sources */,
+				58B6A3CA2154BD0B00C6493B /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
