@@ -121,7 +121,6 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
         
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
-        //composeVC.setToRecipients(["desiredEmail@gmail.com"])
         composeVC.setSubject("NDVI CSV Export")
         
         guard MFMailComposeViewController.canSendMail() else {
@@ -190,7 +189,16 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     
     @objc func handleTapInfo(_ sender: UITapGestureRecognizer) {
         if let message = customiseCurrentInfoString() {
-            self.showInfoAlert(title: "You are viewing", message: message)
+            var tempString = ""
+            if let dataType = self.getStoredDataFromUserDefaults(for: "DATA_TYPE") {
+                if dataType == "NDVI" {
+                    tempString = " NDVI (%)"
+                }
+                else{
+                    tempString = " NDVI Anamoly (%)"
+                }
+            }
+            self.showInfoAlert(title: "You are viewing" + tempString, message: message)
         }
         else{
             self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
@@ -618,7 +626,7 @@ extension EHomeViewController {
         }
         return isValidDateCountry
     }
-  
+    
     // Unified method to handle the selection
     private func handleSelection(selectedObject: NSObject, date: String = "") {
         if let selectedObject = selectedObject as? MaplyVectorObject {
@@ -689,7 +697,7 @@ extension EHomeViewController {
                 
                 //check if anamoly is selected or ndvi
                 if let dataTypeSelected = self.getStoredDataFromUserDefaults(for: "DATA_TYPE") {
-                   
+                    
                     if dataTypeSelected == "NDVI_ANOMALY" {
                         colorValue = anomalyFloat*100
                     }
@@ -698,7 +706,7 @@ extension EHomeViewController {
                     }
                     
                 }
-                //default is NDVI
+                    //default is NDVI
                 else{
                     colorValue = ndviFloat*100
                 }

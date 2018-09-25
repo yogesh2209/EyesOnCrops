@@ -1045,7 +1045,6 @@
 				"${PODS_ROOT}/WhirlyGlobeResources/base_maps/lowres_wtb/lowres_wtb_4x0.pvrtc",
 				"${PODS_ROOT}/WhirlyGlobeResources/base_maps/lowres_wtb/lowres_wtb_4x1.pvrtc",
 				"${PODS_ROOT}/WhirlyGlobeResources/base_maps/lowres_wtb/lowres_wtb_info.plist",
-				"${PODS_ROOT}/WhirlyGlobeResources/elevation/world_web_mercator.sqlite",
 				"${PODS_ROOT}/WhirlyGlobeResources/LICENSE",
 				"${PODS_ROOT}/WhirlyGlobeResources/maki icons/airfield-24@2x.png",
 				"${PODS_ROOT}/WhirlyGlobeResources/maki icons/airport-24@2x.png",
