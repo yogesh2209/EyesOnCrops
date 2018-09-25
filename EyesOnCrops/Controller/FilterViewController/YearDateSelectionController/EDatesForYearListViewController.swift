@@ -36,6 +36,7 @@ class EDatesForYearListViewController: EBaseViewController, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewDatesList.tableFooterView = UIView()
+        tableViewDatesList.addSubview(refreshControl)
         // Do any additional setup after loading the view.
     }
 

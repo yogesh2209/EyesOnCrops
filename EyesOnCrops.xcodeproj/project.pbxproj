@@ -71,6 +71,15 @@
 		58B6A3C82154BD0B00C6493B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3C72154BD0B00C6493B /* UIColor+Extension.swift */; };
 		58B6A3C92154BD0B00C6493B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3C72154BD0B00C6493B /* UIColor+Extension.swift */; };
 		58B6A3CA2154BD0B00C6493B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3C72154BD0B00C6493B /* UIColor+Extension.swift */; };
+		58B6A3CD2159A96F00C6493B /* EFilterColorSchemeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3CC2159A96F00C6493B /* EFilterColorSchemeListViewController.swift */; };
+		58B6A3CE2159A96F00C6493B /* EFilterColorSchemeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3CC2159A96F00C6493B /* EFilterColorSchemeListViewController.swift */; };
+		58B6A3CF2159A96F00C6493B /* EFilterColorSchemeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3CC2159A96F00C6493B /* EFilterColorSchemeListViewController.swift */; };
+		58B6A3D22159A99E00C6493B /* EFilterColorSchemeOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3D12159A99E00C6493B /* EFilterColorSchemeOptionTableViewCell.swift */; };
+		58B6A3D32159A99E00C6493B /* EFilterColorSchemeOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3D12159A99E00C6493B /* EFilterColorSchemeOptionTableViewCell.swift */; };
+		58B6A3D42159A99E00C6493B /* EFilterColorSchemeOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3D12159A99E00C6493B /* EFilterColorSchemeOptionTableViewCell.swift */; };
+		58B6A3D62159A9AA00C6493B /* EFilterColorSchemePlainSpaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3D52159A9AA00C6493B /* EFilterColorSchemePlainSpaceTableViewCell.swift */; };
+		58B6A3D72159A9AA00C6493B /* EFilterColorSchemePlainSpaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3D52159A9AA00C6493B /* EFilterColorSchemePlainSpaceTableViewCell.swift */; };
+		58B6A3D82159A9AA00C6493B /* EFilterColorSchemePlainSpaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A3D52159A9AA00C6493B /* EFilterColorSchemePlainSpaceTableViewCell.swift */; };
 		58BA3967214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BA3966214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift */; };
 		58BBB6522028D368005F9E5A /* EFilterCategoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */; };
 		58BBB6562028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */; };
@@ -178,6 +187,9 @@
 		58B6A3BF215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryDataTypeTableViewCell.swift; sourceTree = "<group>"; };
 		58B6A3C321543CCE00C6493B /* colorMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = colorMap.json; sourceTree = "<group>"; };
 		58B6A3C72154BD0B00C6493B /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		58B6A3CC2159A96F00C6493B /* EFilterColorSchemeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterColorSchemeListViewController.swift; sourceTree = "<group>"; };
+		58B6A3D12159A99E00C6493B /* EFilterColorSchemeOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterColorSchemeOptionTableViewCell.swift; sourceTree = "<group>"; };
+		58B6A3D52159A9AA00C6493B /* EFilterColorSchemePlainSpaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterColorSchemePlainSpaceTableViewCell.swift; sourceTree = "<group>"; };
 		58BA3966214ED6BA002F7E85 /* EFilterCategoryMapTypeOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryMapTypeOptionTableViewCell.swift; sourceTree = "<group>"; };
 		58BBB6512028D368005F9E5A /* EFilterCategoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoriesListViewController.swift; sourceTree = "<group>"; };
 		58BBB6552028D404005F9E5A /* EFilterCategoryListOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFilterCategoryListOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -573,9 +585,27 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		58B6A3CB2159A95700C6493B /* ColorSchemeController */ = {
+			isa = PBXGroup;
+			children = (
+				58B6A3CC2159A96F00C6493B /* EFilterColorSchemeListViewController.swift */,
+			);
+			path = ColorSchemeController;
+			sourceTree = "<group>";
+		};
+		58B6A3D02159A98500C6493B /* ColorListCells */ = {
+			isa = PBXGroup;
+			children = (
+				58B6A3D12159A99E00C6493B /* EFilterColorSchemeOptionTableViewCell.swift */,
+				58B6A3D52159A9AA00C6493B /* EFilterColorSchemePlainSpaceTableViewCell.swift */,
+			);
+			path = ColorListCells;
+			sourceTree = "<group>";
+		};
 		58BBB6502028D307005F9E5A /* FilterViewController */ = {
 			isa = PBXGroup;
 			children = (
+				58B6A3CB2159A95700C6493B /* ColorSchemeController */,
 				58C2355220B35B2A00237A0B /* YearDateSelectionController */,
 				589AD412202B90FA00C300D4 /* CategoryListViewController */,
 				589AD411202B90FA00C300D4 /* LevelController */,
@@ -586,6 +616,7 @@
 		58BBB6532028D37A005F9E5A /* FilterCells */ = {
 			isa = PBXGroup;
 			children = (
+				58B6A3D02159A98500C6493B /* ColorListCells */,
 				58C2355720B35C7A00237A0B /* YearDatesCells */,
 				589AD415202B942500C300D4 /* LevelListCells */,
 				58BBB6542028D3D3005F9E5A /* CategoryListCells */,
@@ -1473,6 +1504,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				583EB4821FEAFF37003CEC57 /* ESideMenuSpacingTableViewCell.swift in Sources */,
+				58B6A3D22159A99E00C6493B /* EFilterColorSchemeOptionTableViewCell.swift in Sources */,
+				58B6A3CD2159A96F00C6493B /* EFilterColorSchemeListViewController.swift in Sources */,
 				58BBB6522028D368005F9E5A /* EFilterCategoriesListViewController.swift in Sources */,
 				58C2355620B35B4D00237A0B /* EDatesForYearListViewController.swift in Sources */,
 				589AD419202B945500C300D4 /* EFilterLevelListPlainSpaceTableViewCell.swift in Sources */,
@@ -1514,6 +1547,7 @@
 				58B6A3C0215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */,
 				5821B9572006B683001D9D82 /* EMiscGlobeViewController.swift in Sources */,
 				589AD414202B911700C300D4 /* EFilterLevelListViewController.swift in Sources */,
+				58B6A3D62159A9AA00C6493B /* EFilterColorSchemePlainSpaceTableViewCell.swift in Sources */,
 				58AE77111FD4C6B7002CAADC /* ELoginEmailViewController.swift in Sources */,
 				58E635E320081315008B5069 /* EPasswordRecoveryStepTwoViewController.swift in Sources */,
 				58DA1D7E1FD5F19C00C3DA3B /* ECustomView.swift in Sources */,
@@ -1526,7 +1560,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				58B6A3BD2152FD7900C6493B /* ColorMap.swift in Sources */,
+				58B6A3D32159A99E00C6493B /* EFilterColorSchemeOptionTableViewCell.swift in Sources */,
+				58B6A3D72159A9AA00C6493B /* EFilterColorSchemePlainSpaceTableViewCell.swift in Sources */,
 				58B6A3C1215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */,
+				58B6A3CE2159A96F00C6493B /* EFilterColorSchemeListViewController.swift in Sources */,
 				585D94541FD49C7A00F076A4 /* EyesOnCropsTests.swift in Sources */,
 				58B6A3C92154BD0B00C6493B /* UIColor+Extension.swift in Sources */,
 			);
@@ -1537,7 +1574,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				58B6A3BE2152FD7900C6493B /* ColorMap.swift in Sources */,
+				58B6A3D42159A99E00C6493B /* EFilterColorSchemeOptionTableViewCell.swift in Sources */,
+				58B6A3D82159A9AA00C6493B /* EFilterColorSchemePlainSpaceTableViewCell.swift in Sources */,
 				58B6A3C2215310E800C6493B /* EFilterCategoryDataTypeTableViewCell.swift in Sources */,
+				58B6A3CF2159A96F00C6493B /* EFilterColorSchemeListViewController.swift in Sources */,
 				585D945F1FD49C7B00F076A4 /* EyesOnCropsUITests.swift in Sources */,
 				58B6A3CA2154BD0B00C6493B /* UIColor+Extension.swift in Sources */,
 			);

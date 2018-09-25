@@ -51,14 +51,11 @@ func giveColorMapLimits(currValue: Float) -> (Float, Float) {
     else if currValue >= -40.0 && currValue < -20.0 {
         return (-40.0, -20.0)
     }
-    else if currValue >= -20.0 && currValue < 0.0 {
-        return (-20.0, 0.0)
-    }
-    else if currValue >= 0.0 && currValue < 20.0 {
-        return (0, 20.0)
+    else if currValue >= -20.0 && currValue < 20.0 {
+        return (-20.0, 20.0)
     }
     else if currValue >= 20.0 && currValue < 40.0 {
-        return (0, 20.0)
+        return (20, 40.0)
     }
     else if currValue >= 40.0 && currValue < 60.0 {
         return (40.0, 60.0)
@@ -78,12 +75,33 @@ func rgbOnLimits(currentColorMap: String, minValue: Float, maxValue: Float) -> (
     
     var minColor = UIColor()
     var maxColor = UIColor()
+
+    if let colorMap = getColorMapFromJSONFile(for: currentColorMap) {
+        for index in 0..<colorMap.count {
+            
+            if let r = colorMap[index]["r"], let g = colorMap[index]["g"], let b = colorMap[index]["b"], let floatR = Float(r), let floatG = Float(g), let floatB = Float(b) {
+                
+                if let min = colorMap[index]["value"], minValue == Float(min) {
+                    minColor = UIColor(red: CGFloat(floatR/255.0), green: CGFloat(floatG/255.0), blue: CGFloat(floatB/255.0), alpha: 1.0)
+                }
+                if let max = colorMap[index]["value"], maxValue == Float(max) {
+                    maxColor = UIColor(red: CGFloat(floatR/255.0), green: CGFloat(floatG/255.0), blue: CGFloat(floatB/255.0), alpha: 1.0)
+                }
+            }
+        }
+    }
+    
+    return (minColor, maxColor)
+}
+
+func getColorMapFromJSONFile(for colorMap: String) -> [[String : String]]?{
+    
     var colorMapIndex = 0
     
-    if currentColorMap == "DEFAULT" {
+    if colorMap == "DEFAULT" {
         colorMapIndex = 0
     }
-    else if currentColorMap == "UPDATE_1" {
+    else if colorMap == "UPDATE_1" {
         colorMapIndex = 1
     }
     
@@ -93,45 +111,61 @@ func rgbOnLimits(currentColorMap: String, minValue: Float, maxValue: Float) -> (
             let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
             let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
             if let jr = jsonResult as? [Any], let colorMap = jr[colorMapIndex] as? [[String : String]] {
-                // do stuff
-                print(colorMap)
-                print(colorMap.count)
-                
-                for index in 0..<colorMap.count {
-                    
-                    if let r = colorMap[index]["r"], let g = colorMap[index]["g"], let b = colorMap[index]["b"], let floatR = Float(r), let floatG = Float(g), let floatB = Float(b) {
-                        
-                        if let min = colorMap[index]["value"], minValue == Float(min) {
-                            minColor = UIColor(red: CGFloat(floatR/255.0), green: CGFloat(floatG/255.0), blue: CGFloat(floatB/255.0), alpha: 1.0)
-                        }
-                        if let max = colorMap[index]["value"], maxValue == Float(max) {
-                            maxColor = UIColor(red: CGFloat(floatR/255.0), green: CGFloat(floatG/255.0), blue: CGFloat(floatB/255.0), alpha: 1.0)
-                        }
-                    }
-                }
+                return colorMap
             }
         } catch {
-            // handle error
+            return nil
         }
     }
-    
-    return (minColor, maxColor)
+    return nil
 }
 
 //function which takes limits and their color and returns gradient of the current value
 func gradientColor(minColor: UIColor, maxColor: UIColor, currentValue: Float, minValue: Float, maxValue: Float) -> UIColor? {
     
+    guard let (diffR, diffG, diffB) = rgbDifference(minColor: minColor, maxColor: maxColor) else { return nil }
+  
+    let diff =  CGFloat((currentValue - minValue) / (maxValue - minValue))
     
+    if let minR = colorToRGBComponents(color: minColor) {
+        let newRed = minR.0 + diffR * diff
+        let newGreen = minR.1 + diffG * diff
+        let newBlue = minR.2 + diffB * diff
+        
+        return (UIColor(red: newRed/255.0, green: newGreen/255.0, blue: newBlue/255.0, alpha: 1.0))
+    }
+    
+    return nil
+}
+
+func colorToRGBComponents(color: UIColor) -> (CGFloat, CGFloat, CGFloat)? {
+    guard
+        let (r, g, b) = color.colorComponents()
+        else { return nil }
+    
+    return (r, g, b)
+}
+
+func rgbDifference(minColor: UIColor, maxColor: UIColor) -> (CGFloat, CGFloat, CGFloat)? {
     guard
         let (minR, minG, minB) = minColor.colorComponents(),
         let (maxR, maxG, maxB) = maxColor.colorComponents()
         else { return nil }
     
-     
-    
-    
-    
-    return nil
+    return (maxR - minR, maxG - minG, maxB - minB)
 }
+
+func getColor(colorValue: Float) -> UIColor? {
+    print("colorvalue: \(colorValue)")
+    let (m, n) = giveColorMapLimits(currValue: colorValue)
+    print("limits: colorvalue: \(m) & \(n)")
+    if let (a, b) = rgbOnLimits(currentColorMap: "DEFAULT", minValue: m, maxValue: n) {
+        print("rgbonlimits: colorvalue: \(String(describing: a.colorComponents())) & \(String(describing: b.colorComponents()))")
+        let color = gradientColor(minColor: a, maxColor: b, currentValue: colorValue, minValue: m, maxValue: n)
+        return color
+    }
+    return UIColor.gray
+}
+
 
 

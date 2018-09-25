@@ -138,7 +138,7 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
                     cell.labelDetail.text = "NDVI selected"
                 }
                 
-                cell.labelHeading.text = "NDVI / NDVI Anomaly"
+                cell.labelHeading.text = "NDVI / NDVI Anomaly (%)"
                 
                 
                 return cell
@@ -202,6 +202,10 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
         //level list screen
         case 9:
             self.performSegue(withIdentifier: CATEGORY_LIST_TO_LEVEL_LIST_SEGUE_VC, sender: nil)
+            
+        //Color scheme list screen
+        case 11:
+            self.performSegue(withIdentifier: FILTER_TO_COLOR_LIST_SEGUE_VC, sender: nil)
             
         default:
             break

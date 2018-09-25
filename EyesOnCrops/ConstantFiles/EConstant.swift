@@ -39,6 +39,7 @@ let PSWD_RECOVERY_DOB_TO_FINAL_SEGUE_VC                 = "passwordRecovery3Segu
 let PURPOSE_TO_HOME_SEGUE_VC                            = "registerToHomeSegueVC"
 let FILTER_TO_YEAR_LIST_SEGUE_VC                        = "filterOptionsToYearsListSegueVC"
 let YEAR_LIST_TO_DATES_SEGUE_VC                         = "yearListToDatesListSegueVC"
+let FILTER_TO_COLOR_LIST_SEGUE_VC                       = "filterToColorListSegueVC"
 
 /* ---------- STORYBOARD IDs -------------------- */
 let TERMS_PRIVACY_STORYBOARD_ID                         = "termsPrivacyStoryboardId"
@@ -57,6 +58,8 @@ let FILTER_CATEGORY_MAP_TYPE_CUSTOM_CELL                = "filterCategoryMapType
 let YEAR_LIST_CUSTOM_CELL                               = "yearListCustomCell"
 let DATES_LIST_CUSTOM_CELL                              = "datesListCustomCell"
 let FILTER_CATEGORY_DATA_TYPE_CUSTOM_CELL               = "filterCategoryDataTypeCustomCell"
+let FILTER_COLOR_SCHEME_OPTION_CUSTOM_CELL              = "eFilterColorSchemeOptionListCustomCell"
+let FILTER_COLOR_PLAIN_SPACE_CUSTOM_CELL                = "eFilterColorSchemePlainSpaceCustomCell"
 
 
 /* -------- STATIC ARRAYS / DATA ---------------- */

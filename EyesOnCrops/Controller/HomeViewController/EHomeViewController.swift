@@ -64,6 +64,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     var dataParams: [Any] = []
     var dataPointsArray: [Any] = []
     var isCurrentGlobe = Bool()
+    var lastSelectedDataType: String?
     
     
     override func viewDidLoad() {
@@ -422,6 +423,7 @@ extension EHomeViewController {
         self.json = []
         self.dataParams.removeAll()
         self.dataToExport.removeAll()
+        self.updateViewsVisibility()
     }
     
     func removeActivePoints() {
@@ -438,10 +440,27 @@ extension EHomeViewController {
         self.dataParams.removeAll()
     }
     
+    func checkDataTypeUpdation(){
+        //get the current data type if it is updated, reset data
+        if let dataType = self.getStoredDataFromUserDefaults(for: "DATA_TYPE") {
+            if lastSelectedDataType == "" {
+                lastSelectedDataType = dataType
+            }
+            else if dataType != lastSelectedDataType {
+                lastSelectedDataType = dataType
+                self.resetConfiguration()
+            }
+        }
+        else{
+            lastSelectedDataType = "NDVI"
+        }
+    }
+    
     //updating globe with level and date
     func udpateGlobeLevel(){
         
         updateViewsVisibility()
+        checkDataTypeUpdation()
         
         if let selectedLevel = self.getStoredDataFromUserDefaults(for: "LEVEL") {
             
@@ -662,10 +681,36 @@ extension EHomeViewController {
                 let lat = Float(latStr),
                 let lon = Float(lonStr),
                 let ndvi = json[index].ndvi,
-                let _ = Float(ndvi) {
+                let ndviFloat = Float(ndvi),
+                let anomaly = json[index].anomaly,
+                let anomalyFloat = Float(anomaly) {
+                
+                var colorValue : Float = 0.0
+                
+                //check if anamoly is selected or ndvi
+                if let dataTypeSelected = self.getStoredDataFromUserDefaults(for: "DATA_TYPE") {
+                   
+                    if dataTypeSelected == "NDVI_ANOMALY" {
+                        colorValue = anomalyFloat*100
+                    }
+                    else{
+                        colorValue = ndviFloat*100
+                    }
+                    
+                }
+                //default is NDVI
+                else{
+                    colorValue = ndviFloat*100
+                }
+                
+                if let color = getColor(colorValue: colorValue) {
+                    colors.append(color)
+                }
+                else{
+                    colors.append(UIColor.gray)
+                }
                 
                 coordinates.append(MaplyCoordinateMakeWithDegrees(lon, lat))
-                colors.append(UIColor.green)
             }
         }
         
@@ -673,7 +718,7 @@ extension EHomeViewController {
         for index in 0..<coordinates.count {
             let circle = MaplyShapeSphere()
             circle.center = coordinates[index]
-            circle.radius = 0.01
+            circle.radius = 0.005
             circle.color = colors[index]
             circles.append(circle)
         }
