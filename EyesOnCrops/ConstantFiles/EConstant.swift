@@ -67,6 +67,7 @@ let FILTER_COLOR_PLAIN_SPACE_CUSTOM_CELL                = "eFilterColorSchemePla
 let FilterCategoryArray = ["Data","Map","Layer","Year : Date", "Level", "Color Scheme"]
 let LevelListArray = ["Admin Level 0","Admin Level 1","Admin Level 2"]
 let categoryDetailsArray = [".",".",".","Select year and date", "Select Admin Level", "Select color scheme for data"]
+let colorSchemeListArray = ["DEFAULT","CUSTOM - 1"]
 
 
 /* -------- ALERT MESSAGE STRINGS ---------------- */

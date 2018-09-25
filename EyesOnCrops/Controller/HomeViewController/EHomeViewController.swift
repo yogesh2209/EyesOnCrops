@@ -703,7 +703,7 @@ extension EHomeViewController {
                     colorValue = ndviFloat*100
                 }
                 
-                if let color = getColor(colorValue: colorValue) {
+                if let color = ColorMap().getColor(colorValue: colorValue) {
                     colors.append(color)
                 }
                 else{

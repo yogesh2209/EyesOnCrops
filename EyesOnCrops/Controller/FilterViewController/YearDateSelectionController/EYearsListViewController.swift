@@ -36,8 +36,6 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         customiseUI()
-        tableView.tableFooterView = UIView()
-        tableView.addSubview(refreshControl)
         // Do any additional setup after loading the view.
     }
     
@@ -54,6 +52,7 @@ class EYearsListViewController: EBaseViewController, UITableViewDataSource, UITa
     
     func customiseUI() {
         self.tableView.tableFooterView = UIView()
+        tableView.addSubview(refreshControl)
         title = "Years"
     }
     
