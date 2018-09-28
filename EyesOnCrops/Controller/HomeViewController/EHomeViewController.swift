@@ -61,6 +61,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     var dateSelected: String?
     var statesObjectArray: [MaplyComponentObject] = []
     var countryObjectArray: [MaplyComponentObject] = []
+    var districtObjectArray: [MaplyComponentObject] = []
     var dataParams: [Any] = []
     var dataPointsArray: [Any] = []
     var isCurrentGlobe = Bool()
@@ -553,7 +554,7 @@ extension EHomeViewController {
     func addStates() {
         
         self.statesObjectArray.removeAll()
-        
+     
         // handle this in another thread
         let queue = DispatchQueue.global()
         queue.async {
@@ -573,6 +574,36 @@ extension EHomeViewController {
                         self.statesObjectArray.append(maplyObj)
                     }
                 }
+            }
+        }
+    }
+    
+    func addDistricts() {
+        let path = Bundle.main.path(forResource: "district_json/united_states", ofType: nil)
+        if let path = path  {
+            let url: URL = URL(fileURLWithPath: path)
+            do {
+                let directoryContents = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [])
+               
+                for directory in directoryContents {
+                    let file = directory.appendingPathComponent("shape.geojson")
+                    print(file)
+                    if let jsonData = NSData(contentsOf: file),
+                        let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
+                        
+                        wgVecObj.selectable = true
+                        
+                        // add the outline to our view
+                        let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDict)
+                        if let maplyObj = obj {
+                            self.districtObjectArray.append(maplyObj)
+                        }
+                    }
+                }
+                
+                // now do whatever with the onlyFileNamesStr & subdirNamesStr
+            } catch let error as NSError {
+                print(error.localizedDescription)
             }
         }
     }
