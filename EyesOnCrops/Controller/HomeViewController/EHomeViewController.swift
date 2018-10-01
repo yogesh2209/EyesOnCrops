@@ -26,6 +26,10 @@ struct JSONData: Decodable {
     let anomaly_count: String?
     let centr_lon: String?
     let centr_lat: String?
+    let mean_ndvi: String?
+    let mean_ndvi_count: String?
+    let mean_anomaly: String?
+    let mean_anomaly_count: String?
 }
 
 class JSONExportData {
@@ -39,6 +43,10 @@ class JSONExportData {
     var anomaly_count: String? = ""
     var centr_lon: String? = ""
     var centr_lat: String? = ""
+    var mean_ndvi: String? = ""
+    var mean_ndvi_count: String? = ""
+    var mean_anomaly: String? = ""
+    var mean_anomaly_count: String? = ""
 }
 
 class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
@@ -48,6 +56,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     @IBOutlet weak var viewBanner: GADBannerView!
     @IBOutlet weak var barButtonFilter: UIBarButtonItem!
     @IBOutlet weak var barButtonReset: UIBarButtonItem!
+
     
     var json : [JSONData] = []
     var dataToExport : [Any] = []
@@ -66,6 +75,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     var dataPointsArray: [Any] = []
     var isCurrentGlobe = Bool()
     var lastSelectedDataType: String?
+    var adminLevel: String?
     
     
     override func viewDidLoad() {
@@ -108,6 +118,26 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
                 self.imageViewExport.isHidden = true
                 self.imageViewInfo.isHidden = true
             }
+        }
+    }
+    
+    func getCurrentAdminLevel() -> String {
+        if let adminLevel = self.getStoredDataFromUserDefaults(for: "LEVEL") {
+            return adminLevel
+        }
+        //admin level - 0 be default country wise
+        else{
+            adminLevel = "LEVEL-0"
+            return adminLevel!
+        }
+    }
+    
+    func getCurrentDataType() -> String {
+        if let dataType = self.getStoredDataFromUserDefaults(for: "DATA_TYPE") {
+            return dataType
+        }
+        else{
+            return "NDVI"
         }
     }
     
@@ -554,7 +584,8 @@ extension EHomeViewController {
     func addStates() {
         
         self.statesObjectArray.removeAll()
-     
+        
+        
         // handle this in another thread
         let queue = DispatchQueue.global()
         queue.async {
@@ -771,8 +802,8 @@ extension EHomeViewController {
         }
         
         updateViewsVisibility()
-        
-        let shapes = self.theViewC?.addShapes(circles, desc: [:], mode: MaplyThreadAny)
+        let shapes = self.theViewC?.addLoftedPolys(circles, key: "", cache: nil, desc: [:], mode: MaplyThreadAny)
+      //  let shapes = self.theViewC?.addShapes(circles, desc: [:], mode: MaplyThreadAny)
         if let s = shapes {
             dict["shape_object"] = s
         }
@@ -785,6 +816,8 @@ extension EHomeViewController {
             [
                 "date"               : date                     as Any,
                 "country"            : country                  as Any,
+                "admin_level"        : getCurrentAdminLevel()   as Any,
+                "data_type"          : getCurrentDataType()     as Any,
                 "action_for"         : ACTION_FOR_JSON_DATA     as Any
                 
                 ] as Dictionary<String, Any>
