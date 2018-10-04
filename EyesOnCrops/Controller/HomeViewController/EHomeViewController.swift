@@ -63,7 +63,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     private var theViewC: MaplyBaseViewController?
     private var globeViewC: WhirlyGlobeViewController?
     private var mapViewC: MaplyViewController?
-    private var vectorDict: [String:AnyObject]?
+    private var vectorDictBoundary: [String:AnyObject]?
     private var vecName: NSObject?
     
     var selectedLevel: String?
@@ -412,10 +412,12 @@ extension EHomeViewController {
             mapViewC.animate(toPosition: MaplyCoordinateMakeWithDegrees(-122.4192, 37.7793), time: 1.0)
         }
         
-        vectorDict = [
+        vectorDictBoundary = [
             kMaplyColor: UIColor.black,
             kMaplySelectable: true as AnyObject,
-            kMaplyVecWidth: 4.0 as AnyObject
+            kMaplyVecWidth: 3.0 as AnyObject,
+            kMaplyFilled: false as AnyObject,
+            kMaplyDrawPriority: 1.0 as AnyObject
         ]
         
         setupZoomLevel(isGlobe: isGlobeDisplay)
@@ -452,7 +454,7 @@ extension EHomeViewController {
         self.countryObjectArray.removeAll()
         self.statesObjectArray.removeAll()
         self.storeDataInDefaults(type: "LEVEL-0", key: "LEVEL")
-        self.addCountries()
+        self.addCountryBoundaries()
         
         //removing all active maplycomponentobject
         removeActivePoints()
@@ -510,7 +512,7 @@ extension EHomeViewController {
                     self.theViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
                 }
                 else{
-                    self.addCountries()
+                    self.addCountryBoundaries()
                 }
                 
                 self.theViewC?.disableObjects(statesObjectArray, mode: MaplyThreadAny)
@@ -522,14 +524,14 @@ extension EHomeViewController {
                     self.theViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
                 }
                 else{
-                    self.addCountries()
+                    self.addCountryBoundaries()
                 }
                 
                 if self.statesObjectArray.count != 0 {
                     self.theViewC?.enable(statesObjectArray, mode: MaplyThreadAny)
                 }
                 else{
-                    self.addStates()
+                    self.addStatesBoundaries()
                 }
             }
         }
@@ -539,14 +541,14 @@ extension EHomeViewController {
                 self.theViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
             }
             else{
-                self.addCountries()
+                self.addCountryBoundaries()
             }
             
             self.theViewC?.disableObjects(statesObjectArray, mode: MaplyThreadAny)
         }
     }
     
-    func addCountries() {
+    func addCountryBoundaries() {
         
         self.countryObjectArray.removeAll()
         
@@ -570,7 +572,7 @@ extension EHomeViewController {
                     }
                     
                     // add the outline to our view
-                    let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDict)
+                    let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDictBoundary)
                     if let maplyObj = obj {
                         self.countryObjectArray.append(maplyObj)
                     }
@@ -581,10 +583,9 @@ extension EHomeViewController {
         }
     }
     
-    func addStates() {
+    func addStatesBoundaries() {
         
         self.statesObjectArray.removeAll()
-        
         
         // handle this in another thread
         let queue = DispatchQueue.global()
@@ -598,9 +599,11 @@ extension EHomeViewController {
                     let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
                     
                     wgVecObj.selectable = true
-                    
+                
+        
                     // add the outline to our view
-                    let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDict)
+                    let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDictBoundary)
+                
                     if let maplyObj = obj {
                         self.statesObjectArray.append(maplyObj)
                     }
@@ -609,7 +612,7 @@ extension EHomeViewController {
         }
     }
     
-    func addDistricts() {
+    func addDistrictBoundaries() {
         let path = Bundle.main.path(forResource: "district_json/united_states", ofType: nil)
         if let path = path  {
             let url: URL = URL(fileURLWithPath: path)
@@ -618,14 +621,13 @@ extension EHomeViewController {
                
                 for directory in directoryContents {
                     let file = directory.appendingPathComponent("shape.geojson")
-                    print(file)
                     if let jsonData = NSData(contentsOf: file),
                         let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
                         
                         wgVecObj.selectable = true
                         
                         // add the outline to our view
-                        let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDict)
+                        let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDictBoundary)
                         if let maplyObj = obj {
                             self.districtObjectArray.append(maplyObj)
                         }
@@ -636,6 +638,94 @@ extension EHomeViewController {
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func colorCountry(vectorDict: [String : AnyObject]) {
+        // handle this in another thread
+        let queue = DispatchQueue.global()
+        queue.async {
+            let bundle = Bundle.main
+            let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "country_json")
+            
+            for outline in allOutlines {
+                if let jsonData = NSData(contentsOfFile: outline),
+                    let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
+                    
+                    wgVecObj.selectable = true
+                    
+                    // the admin tag from the country outline geojson has the country name ­ save
+                    if let attrs = wgVecObj.attributes,
+                        let vecNameee = attrs.object(forKey: "ADMIN") as? NSObject {
+                        
+                        if let a = vecNameee as? String, a == "United States" {
+                            self.vecName = vecNameee
+                            wgVecObj.userObject = self.vecName
+                            
+                            // add the outline to our view
+                            let obj = self.theViewC?.addVectors([wgVecObj], desc: vectorDict)
+                            if let maplyObj = obj {
+                                self.countryObjectArray.append(maplyObj)
+                            }
+                            var c = wgVecObj.center()
+                            wgVecObj.centroid(&c)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func colorArea(json: [JSONData], currentAdminLevel: String, country: String) {
+        
+        //if current admin level = 0 -> COUNTRY SAME COLOR
+        // fetch geojson file for that country and pass maplyfilled color
+        
+        guard json.count != 0 else { return }
+        
+        var vectorDictLocal: [String:AnyObject] = [:]
+        
+        var colorValue: Float = 0.0
+        
+        //COUNTRY SAME COLOR
+        if currentAdminLevel == "LEVEL-0" {
+            
+            //NDVI
+           
+                if let mean_ndvi = json[0].mean_ndvi, let floatNDVI = Float(mean_ndvi), let mean_anomaly = json[0].mean_anomaly, let floatAnomaly = Float(mean_anomaly) {
+                    
+                    
+                    if getCurrentDataType() == "NDVI" {
+                        colorValue = floatNDVI * 100
+                    }
+                    else{
+                        colorValue = floatAnomaly * 100
+                    }
+                    
+                    if let color = ColorMap().getColor(colorValue: colorValue) {
+                        vectorDictLocal = [
+                            kMaplyColor: color,
+                            kMaplySelectable: true as AnyObject,
+                            kMaplyFilled: true as AnyObject,
+                            kMaplyDrawPriority: 3.0 as AnyObject
+                        ]
+                        
+                        colorCountry(vectorDict: vectorDictLocal)
+                        
+                    }
+                    else{
+                        self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                    }
+                }
+            }
+        //STATE WISE COLOR
+        else if currentAdminLevel == "LEVEL-1" {
+            
+        }
+        //DISTRICT WISE COLOR
+        else{
+            
         }
     }
     
@@ -817,7 +907,6 @@ extension EHomeViewController {
                 "date"               : date                     as Any,
                 "country"            : country                  as Any,
                 "admin_level"        : getCurrentAdminLevel()   as Any,
-                "data_type"          : getCurrentDataType()     as Any,
                 "action_for"         : ACTION_FOR_JSON_DATA     as Any
                 
                 ] as Dictionary<String, Any>
@@ -846,7 +935,8 @@ extension EHomeViewController {
                     if self.json.count != 0 {
                         self.dataParams.append(param)
                         self.appendExportData(json: self.json, params: param)
-                        self.addCoordinates(json: self.json, country: country, date: date)
+                       // self.addCoordinates(json: self.json, country: country, date: date)
+                        self.colorArea(json: self.json, currentAdminLevel: self.getCurrentAdminLevel(), country: country)
                     }
                 }
                 catch {
