@@ -40,36 +40,9 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
     
     //Switch Actions
     @objc func switchAquaChanged(_ sender : UISwitch!){
-        //If switch aqua is on, need to switch off the terra and vice versa
-        if sender.isOn == true {
-            let indexPath = IndexPath(row: 5, section: 0)
-            let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategorySatelliteTypeTableViewCell
-            cell.switchAqua.setOn(true, animated: true)
-            cell.switchTerra.setOn(false, animated: true)
-        }
-        else{
-            let indexPath = IndexPath(row: 5, section: 0)
-            let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategorySatelliteTypeTableViewCell
-            cell.switchAqua.setOn(false, animated: true)
-            cell.switchTerra.setOn(true, animated: true)
-        }
+      
     }
-    @objc func switchTerraChanged(_ sender : UISwitch!){
-        //If switch aqua is on, need to switch off the terra and vice versa
-        if sender.isOn == true {
-            let indexPath = IndexPath(row: 5, section: 0)
-            let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategorySatelliteTypeTableViewCell
-            cell.switchAqua.setOn(false, animated: true)
-            cell.switchTerra.setOn(true, animated: true)
-        }
-        else{
-            let indexPath = IndexPath(row: 5, section: 0)
-            let cell = self.tableView.cellForRow(at: indexPath) as! EFilterCategorySatelliteTypeTableViewCell
-            cell.switchAqua.setOn(true, animated: true)
-            cell.switchTerra.setOn(false, animated: true)
-        }
-    }
-    
+   
     @objc func switchMapTypeChanged(_ sender : UISwitch!){
         //Globe selected
         if sender.isOn == true {
@@ -175,7 +148,6 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
            else if indexPath.row == 5 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: FILTER_CATEGORY_SATELLITE_TYPE_CUSTOM_CELL, for: indexPath as IndexPath) as! EFilterCategorySatelliteTypeTableViewCell
                 cell.switchAqua.addTarget(self, action: #selector(self.switchAquaChanged(_:)), for: .valueChanged)
-                cell.switchTerra.addTarget(self, action: #selector(self.switchTerraChanged(_:)), for: .valueChanged)
                 return cell
             }
                 //REST OPTIONS HERE
@@ -217,7 +189,7 @@ class EFilterCategoriesListViewController: EBaseViewController, UITableViewDataS
                 return 65.0
             }
             else if indexPath.row == 5 {
-                return 110.0
+                return 88.0
             }
             else{
                 return 65.0

@@ -165,9 +165,6 @@ class ELoginViewController: EBaseViewController, GIDSignInDelegate, GIDSignInUID
         self.showAnimatedProgressBar(title: "Wait..", subTitle: "Fetching info")
         let urL = MAIN_URL + POST_CREDENTIALS
         Alamofire.request(urL, method: .get, parameters: param).responseJSON{ response in
-            
-            print(response)
-            print(param)
         
             switch response.result {
             case .success:

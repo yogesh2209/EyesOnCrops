@@ -11,8 +11,7 @@ import UIKit
 class EFilterCategorySatelliteTypeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var switchAqua: UISwitch!
-    @IBOutlet weak var switchTerra: UISwitch!
-    
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
