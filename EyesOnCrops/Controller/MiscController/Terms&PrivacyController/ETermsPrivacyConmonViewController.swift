@@ -10,10 +10,11 @@ import UIKit
 import WebKit
 
 class ETermsPrivacyConmonViewController: EBaseViewController, WKNavigationDelegate {
-    @IBOutlet weak var webView: WKWebView!
     
+    @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var buttonBack: UIButton!
+    
     var indicatorVariable : String!
 
     override func viewDidLoad() {
