@@ -116,4 +116,11 @@ let ACTION_FOR_DATES_IN_YEAR                            = "dates_in_year"
 let ACTION_FOR_JSON_DATA                                = "ndvi_data"
 
 
+/* --------- DOC FILE URLs ----------- */
+let ABOUT_US_URL                                        = "AboutUs.docx"
+let TERMSOFUSE_URL                                      = "TermsOfUse.docx"
+let PRIVACY_POLICY_URL                                  = "PrivacyPolicy.docx"
+let HELP_URL                                            = "Help.docx"
+
+
 

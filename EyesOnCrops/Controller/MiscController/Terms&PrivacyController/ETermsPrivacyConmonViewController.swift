@@ -26,12 +26,12 @@ class ETermsPrivacyConmonViewController: EBaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setup()
+        loadWebView()
         setupFirebaseAnalytics(title: "ETermsPrivacyConmonViewController")
     }
     
     //MARK: Private Methods
-    func setup() {
+    func loadWebView() {
         if indicatorVariable == "TERMS" {
             
         }
@@ -39,6 +39,9 @@ class ETermsPrivacyConmonViewController: EBaseViewController {
             
         }
         //setup webview here
+        
+        
+        
     }
     //MARK: UIButton Actions
     @IBAction func buttonBackPressed(_ sender: Any) {
