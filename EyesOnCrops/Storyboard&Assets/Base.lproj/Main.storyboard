@@ -1666,6 +1666,9 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="EVL-3V-ntN">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1675,11 +1678,15 @@
                             <constraint firstItem="HId-wG-yd6" firstAttribute="top" secondItem="eke-GL-FSH" secondAttribute="top" id="PEO-4B-H0a"/>
                             <constraint firstItem="HId-wG-yd6" firstAttribute="leading" secondItem="eke-GL-FSH" secondAttribute="leading" id="RNO-2g-yqK"/>
                             <constraint firstItem="xSZ-nq-5cG" firstAttribute="leading" secondItem="eke-GL-FSH" secondAttribute="leading" id="UnW-F6-yRY"/>
+                            <constraint firstItem="EVL-3V-ntN" firstAttribute="centerX" secondItem="JxS-lc-879" secondAttribute="centerX" id="old-xv-n7t"/>
+                            <constraint firstItem="EVL-3V-ntN" firstAttribute="centerY" secondItem="JxS-lc-879" secondAttribute="centerY" id="zPV-0Y-knT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eke-GL-FSH"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="EVL-3V-ntN" id="rK6-vo-22s"/>
                         <outlet property="buttonBack" destination="HId-wG-yd6" id="U5I-1N-UKx"/>
+                        <outlet property="webView" destination="xSZ-nq-5cG" id="9bu-gi-ewe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5k-OQ-Ars" userLabel="First Responder" sceneMemberID="firstResponder"/>
