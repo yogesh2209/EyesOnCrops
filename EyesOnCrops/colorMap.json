@@ -144,24 +144,3 @@
     }
   ]
 ]
- 
- 
- 
- 
- 
- 
- {
-     "r": "165",        // R = Red
-     "g": "0",          // G = Green
-     "b": "38",         // B = Blue
-     "number": "0",     // Index
-     "value": "-125"    // ndvi/anomaly % => value with -125 will have this (165,0,38) color combination
- },
- {
-     "r": "215",
-     "g": "48",
-     "b": "39",
-     "number": "1",
-     "value": "-80"     // ndvi/anomaly % => value with -80 will have this (215,48,39) color combination
- }
- 
