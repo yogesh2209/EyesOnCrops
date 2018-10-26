@@ -76,7 +76,6 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     var districtObjectArray: [MaplyComponentObject] = []
     
     var statesObjectColorArray: [MaplyComponentObject] = []
-    var countryObjectColorArray: [MaplyComponentObject] = []
     var districtObjectColorArray: [MaplyComponentObject] = []
     
     
@@ -465,7 +464,7 @@ extension EHomeViewController {
         
         //reseting shape files
         self.countryObjectArray.removeAll()
-        self.countryObjectColorArray.removeAll()
+     //   self.countryObjectColorArray.removeAll()
         self.statesObjectArray.removeAll()
         self.statesObjectColorArray.removeAll()
         self.storeDataInDefaults(type: "LEVEL-0", key: "LEVEL")
@@ -486,8 +485,11 @@ extension EHomeViewController {
         //remove country colors
         print(self.colorArray)
         for index in 0..<self.colorArray.count {
-            if let dict = self.colorArray[index] as? [String : Any], let obj = dict["color_object"] as? MaplyComponentObject {
-                 self.theViewC?.remove(obj)
+            if let dict = self.colorArray[index] as? [String : Any], let obj = dict["color_object"] as? [MaplyComponentObject] {
+                
+                for j in 0..<obj.count {
+                    self.theViewC?.remove(obj[j])
+                }
             }
         }
         
@@ -666,8 +668,7 @@ extension EHomeViewController {
     }
     
     func colorCountry(vectorDict: [String : AnyObject], country: String, date: String) {
-        
-        self.countryObjectColorArray.removeAll()
+   
         
         var dict: [String: Any] = [:]
         
@@ -694,11 +695,11 @@ extension EHomeViewController {
                             // add the outline to our view
                             let obj = self.theViewC?.addVectors([wgVecObj], desc: vectorDict)
                             if let maplyObj = obj {
-                                self.countryObjectColorArray.append(maplyObj)
+                                
                             
                                     dict["country"] = country
                                     dict["date"] = date
-                                    dict["color_object"] = maplyObj
+                                    dict["color_object"] = [maplyObj]
                                 
                                  self.colorArray.append(dict)
                                 
@@ -748,11 +749,11 @@ extension EHomeViewController {
             
             var dict: [String: Any] = [:]
             
-            if self.countryObjectColorArray.count != 0 {
-                dict["country"] = country
-                dict["date"] = date
-                dict["color_object"] = self.statesObjectColorArray
-            }
+//            if self.countryObjectColorArray.count != 0 {
+//                dict["country"] = country
+//                dict["date"] = date
+//                dict["color_object"] = self.statesObjectColorArray
+//            }
             
             self.colorArray.append(dict)
         }
@@ -899,21 +900,23 @@ extension EHomeViewController {
             if  let param = data[index] as? [String : Any],
                 let country = param["country"] as? String,
                 let date = param["date"] as? String,
-                let color_object = param["color_object"] as? MaplyComponentObject {
+                let color_object = param["color_object"] as? [MaplyComponentObject] {
                 
-                //same country selected and different date - so clean old data
-                if selectedCountry == country && currentSelectedDate != date {
-                    //remove old data from dataparam too
-                    self.dataParams.remove(at: index)
-                    self.theViewC?.remove(color_object)
-                    isValidDateCountry = true
-                }
-                else if selectedCountry != country {
-                    isValidDateCountry = true
-                }
-                else if selectedCountry == country && currentSelectedDate == date {
-                    self.alertMessage(title: ALERT_TITLE, message: "Data already visible for the date and country")
-                    return false
+                for j in 0..<color_object.count {
+                    //same country selected and different date - so clean old data
+                    if selectedCountry == country && currentSelectedDate != date {
+                        //remove old data from dataparam too
+                        self.dataParams.remove(at: index)
+                        self.theViewC?.remove(color_object[j])
+                        isValidDateCountry = true
+                    }
+                    else if selectedCountry != country {
+                        isValidDateCountry = true
+                    }
+                    else if selectedCountry == country && currentSelectedDate == date {
+                        self.alertMessage(title: ALERT_TITLE, message: "Data already visible for the date and country")
+                        return false
+                    }
                 }
             }
         }
