@@ -724,14 +724,23 @@ extension EHomeViewController {
           
                 if let jsonData = NSData(contentsOfFile: file),
                     let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
+              
                     
                     wgVecObj.selectable = true
+                    
+                    print(wgVecObj.splitVectors().count)
+                    
+                    
                     
                     // the admin tag from the country outline geojson has the country name ­ save
                     if let attrs = wgVecObj.attributes,
                         let vecNameee = attrs.object(forKey: "name") as? NSObject {
                         
-                        if let state = vecNameee as? String, state == state {
+                    
+          
+                        //print(attrs)
+                        
+                        if let st = vecNameee as? String, state == st {
                             self.vecName = vecNameee
                             wgVecObj.userObject = self.vecName
                             
@@ -747,7 +756,7 @@ extension EHomeViewController {
                 }
             
             
-            var dict: [String: Any] = [:]
+          //  var dict: [String: Any] = [:]
             
 //            if self.countryObjectColorArray.count != 0 {
 //                dict["country"] = country
@@ -755,7 +764,7 @@ extension EHomeViewController {
 //                dict["color_object"] = self.statesObjectColorArray
 //            }
             
-            self.colorArray.append(dict)
+          //  self.colorArray.append(dict)
         }
     }
     
@@ -796,8 +805,6 @@ extension EHomeViewController {
                     ]
                     
                     updateViewsVisibility()
-                    print(colorValue)
-                    print(color.colorComponents())
                     colorCountry(vectorDict: vectorDictLocal, country: country, date: date)
                 }
                 else{
@@ -811,10 +818,7 @@ extension EHomeViewController {
             
             //find the geojson file for that country from bundle
             // apply for loop with the same file and match name everytime with state name from json everytime, if it matches color it accordingly.
-            
-            // handle this in another thread
-            let queue = DispatchQueue.global()
-            queue.async {
+        
                 let bundle = Bundle.main
                 let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "state_json")
                 
@@ -826,7 +830,7 @@ extension EHomeViewController {
                         
                         //we got the geojson file of the country, now apply for loop on the same file
                         
-                        for index in 0..<json.count {
+                        for index in 0..<1 {
                             
                             print(json[index])
                             
@@ -862,7 +866,6 @@ extension EHomeViewController {
                             }
                         }
                     }
-                }
             }
         }
         //DISTRICT WISE COLOR
