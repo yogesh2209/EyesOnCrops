@@ -459,6 +459,10 @@ extension EHomeViewController {
     }
     
     func resetConfiguration(){
+        
+        //removing all active maplycomponentobject
+        removeActiveColors()
+        
         //reseting shape files
         self.countryObjectArray.removeAll()
         self.countryObjectColorArray.removeAll()
@@ -467,21 +471,24 @@ extension EHomeViewController {
         self.storeDataInDefaults(type: "LEVEL-0", key: "LEVEL")
         self.addCountryBoundaries()
         
-        //removing all active maplycomponentobject
-        removeActiveColors()
-        
         //empty json
         self.json.removeAll()
         self.json = []
         self.dataParams.removeAll()
         self.dataToExport.removeAll()
         self.updateViewsVisibility()
+        dateSelected = ""
+        
+        self.colorArray.removeAll()
     }
     
     func removeActiveColors() {
         //remove country colors
-        for index in 0..<self.countryObjectColorArray.count {
-            self.theViewC?.remove(countryObjectColorArray[index])
+        print(self.colorArray)
+        for index in 0..<self.colorArray.count {
+            if let dict = self.colorArray[index] as? [String : Any], let obj = dict["color_object"] as? MaplyComponentObject {
+                 self.theViewC?.remove(obj)
+            }
         }
         
         //remove state colors
@@ -493,6 +500,9 @@ extension EHomeViewController {
         for index in 0..<self.districtObjectColorArray.count {
             self.theViewC?.remove(districtObjectColorArray[index])
         }
+        
+        
+        
     }
     
     func checkDataTypeUpdation(){
@@ -659,6 +669,8 @@ extension EHomeViewController {
         
         self.countryObjectColorArray.removeAll()
         
+        var dict: [String: Any] = [:]
+        
         // handle this in another thread
         let queue = DispatchQueue.global()
         queue.async {
@@ -683,6 +695,14 @@ extension EHomeViewController {
                             let obj = self.theViewC?.addVectors([wgVecObj], desc: vectorDict)
                             if let maplyObj = obj {
                                 self.countryObjectColorArray.append(maplyObj)
+                            
+                                    dict["country"] = country
+                                    dict["date"] = date
+                                    dict["color_object"] = maplyObj
+                                
+                                 self.colorArray.append(dict)
+                                
+                                
                             }
                             var c = wgVecObj.center()
                             wgVecObj.centroid(&c)
@@ -690,40 +710,27 @@ extension EHomeViewController {
                     }
                 }
             }
-            
-            var dict: [String: Any] = [:]
-            
-            if self.countryObjectColorArray.count != 0 {
-                dict["country"] = country
-                dict["date"] = date
-                dict["color_object"] = self.countryObjectColorArray
-            }
-            
-            self.colorArray.append(dict)
         }
     }
     
-    func colorState(ofCountry country: String, vectorDict: [String : AnyObject], date: String) {
+    func colorState(ofCountry country: String, vectorDict: [String : AnyObject], date: String, file: String, state: String) {
         
         self.statesObjectColorArray.removeAll()
         
         // handle this in another thread
         let queue = DispatchQueue.global()
         queue.async {
-            let bundle = Bundle.main
-            let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "state_json")
-            
-            for outline in allOutlines {
-                if let jsonData = NSData(contentsOfFile: outline),
+          
+                if let jsonData = NSData(contentsOfFile: file),
                     let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
                     
                     wgVecObj.selectable = true
                     
                     // the admin tag from the country outline geojson has the country name ­ save
                     if let attrs = wgVecObj.attributes,
-                        let vecNameee = attrs.object(forKey: "ADMIN") as? NSObject {
+                        let vecNameee = attrs.object(forKey: "name") as? NSObject {
                         
-                        if let coun = vecNameee as? String, coun == country {
+                        if let state = vecNameee as? String, state == state {
                             self.vecName = vecNameee
                             wgVecObj.userObject = self.vecName
                             
@@ -737,7 +744,7 @@ extension EHomeViewController {
                         }
                     }
                 }
-            }
+            
             
             var dict: [String: Any] = [:]
             
@@ -748,7 +755,6 @@ extension EHomeViewController {
             }
             
             self.colorArray.append(dict)
-            
         }
     }
     
@@ -789,6 +795,8 @@ extension EHomeViewController {
                     ]
                     
                     updateViewsVisibility()
+                    print(colorValue)
+                    print(color.colorComponents())
                     colorCountry(vectorDict: vectorDictLocal, country: country, date: date)
                 }
                 else{
@@ -799,39 +807,64 @@ extension EHomeViewController {
             //STATE WISE COLOR
         else if currentAdminLevel == "LEVEL-1" {
             
-            for index in 0..<json.count {
-                if  let mean_ndvi = json[index].mean_ndvi,
-                    let floatNDVI = Float(mean_ndvi),
-                    let mean_anomaly = json[index].mean_anomaly,
-                    let floatAnomaly = Float(mean_anomaly) {
-                    
-                    //NDVI
-                    if getCurrentDataType() == "NDVI" {
-                        colorValue = floatNDVI * 100
-                    }
-                        //ANOMALY
-                    else{
-                        colorValue = floatAnomaly * 100
-                    }
-                    
-                    if let color = ColorMap().getColor(colorValue: colorValue) {
-                        vectorDictLocal = [
-                            kMaplyColor: color,
-                            kMaplySelectable: true as AnyObject,
-                            kMaplyFilled: true as AnyObject,
-                            kMaplyDrawPriority: 3.0 as AnyObject
-                        ]
+            
+            //find the geojson file for that country from bundle
+            // apply for loop with the same file and match name everytime with state name from json everytime, if it matches color it accordingly.
+            
+            // handle this in another thread
+            let queue = DispatchQueue.global()
+            queue.async {
+                let bundle = Bundle.main
+                let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "state_json")
+                
+                for outline in allOutlines {
+                  
+                    let fileUrl = NSURL(fileURLWithPath: outline)
+                
+                    if  let fileName = fileUrl.lastPathComponent, fileName == country + ".geojson" {
                         
-                        updateViewsVisibility()
-                        colorState(ofCountry: country, vectorDict: vectorDictLocal, date: date)
-                    }
-                    else{
-                        self.alertMessage(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                        //we got the geojson file of the country, now apply for loop on the same file
+                        
+                        for index in 0..<json.count {
+                            
+                            print(json[index])
+                            
+                            if  let mean_ndvi = json[index].mean_ndvi,
+                                let floatNDVI = Float(mean_ndvi),
+                                let state = json[index].state,
+                                let mean_anomaly = json[index].mean_anomaly,
+                                let floatAnomaly = Float(mean_anomaly) {
+                                
+                                //NDVI
+                                if self.getCurrentDataType() == "NDVI" {
+                                    colorValue = floatNDVI * 100
+                                }
+                                    //ANOMALY
+                                else{
+                                    colorValue = floatAnomaly * 100
+                                }
+                                
+                                if let color = ColorMap().getColor(colorValue: colorValue) {
+                                    vectorDictLocal = [
+                                        kMaplyColor: color,
+                                        kMaplySelectable: true as AnyObject,
+                                        kMaplyFilled: true as AnyObject,
+                                        kMaplyDrawPriority: 3.0 as AnyObject
+                                    ]
+                                    
+                                    self.updateViewsVisibility()
+                                    self.colorState(ofCountry: country, vectorDict: vectorDictLocal, date: date, file: outline, state: state)
+                                }
+                                else{
+                                   //error
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-            //DISTRICT WISE COLOR
+        //DISTRICT WISE COLOR
         else{
             
         }
@@ -915,7 +948,7 @@ extension EHomeViewController {
     
     // This is the version for a globe
     func globeViewController(_ viewC: WhirlyGlobeViewController, didSelect selectedObj: NSObject) {
-        if let dateSelected = dateSelected {
+        if let dateSelected = dateSelected, dateSelected != "" {
             handleSelection(selectedObject: selectedObj, date: dateSelected)
         }
         else{
@@ -925,7 +958,7 @@ extension EHomeViewController {
     
     // This is the version for a map
     func maplyViewController(_ viewC: MaplyViewController, didSelect selectedObj: NSObject) {
-        if let dateSelected = dateSelected {
+        if let dateSelected = dateSelected, dateSelected != ""  {
             handleSelection(selectedObject: selectedObj, date: dateSelected)
         }
         else{
@@ -937,7 +970,7 @@ extension EHomeViewController {
     }
     func locationManager(_ manager: CLLocationManager, didChange status: CLAuthorizationStatus) {
     }
-        
+    
     //MARK: Service Calling
     func getJSONDataServiceCall(date: String, country: String){
         let param: Dictionary<String, Any> =
@@ -975,6 +1008,9 @@ extension EHomeViewController {
                         self.appendExportData(json: self.json, params: param)
                         self.colorArea(json: self.json, currentAdminLevel: self.getCurrentAdminLevel(), country: country, date: date)
                     }
+                    else{
+                        self.alertMessage(title: ALERT_TITLE, message: NO_DATA_AVAILABLE + " " + date + ", " + country)
+                    }
                 }
                 catch {
                     self.updateViewsVisibility()
@@ -1003,24 +1039,9 @@ extension EHomeViewController {
     func setupMailFiles() -> ([Data]?, [String]?)? {
         
         if dataToExport.count != 0 {
-            //country wise
-            if self.getCurrentAdminLevel() == "LEVEL-0" {
-                return self.generateCSVforLevel0()
-            }
-                //state wise
-            else if self.getCurrentAdminLevel() == "LEVEL-1" {
-                return self.generateCSVforLevel1()
-            }
-                //district wise
-            else if self.getCurrentAdminLevel() == "LEVEL-2" {
-                return self.generateCSVforLevel2()
-            }
-            //some error
-            else{
-                self.alertMessage(title: ALERT_ERROR_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-            }
+          return self.generateCSV()
         }
-            //no data to attach - show him error
+        //no data to attach - show him error
         else{
             self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
         }
@@ -1029,12 +1050,11 @@ extension EHomeViewController {
     }
     
     //country wise
-    func generateCSVforLevel0() -> ([Data]?, [String]?)?  {
+    func generateCSV() -> ([Data]?, [String]?)?  {
         var filePathArray: [String] = []
         var fileNameArray: [String] = []
         var dataArray: [Data] = []
-        let header = ["country", "start_date", "mean_ndvi","mean_ndvi_count", "mean_anomaly", "mean_nomaly_count"]
-        
+        var header = [String]()
         for index in 0..<dataToExport.count {
             
             let data: NSMutableArray  = NSMutableArray()
@@ -1049,157 +1069,60 @@ extension EHomeViewController {
                     
                     if  let jsonForRow = jsonData[j] as? JSONData {
                         
-                        //valid data
-                        let jsonObject = JSONExportData()
-                        jsonObject.country = jsonForRow.country
-                        jsonObject.start_date = jsonForRow.start_date
-                        jsonObject.ndvi = jsonForRow.mean_ndvi
-                        jsonObject.ndvi_count = jsonForRow.mean_ndvi_count
-                        jsonObject.anomaly = jsonForRow.mean_anomaly
-                        jsonObject.anomaly_count = jsonForRow.mean_anomaly_count
                         
-                        data.add(listPropertiesWithValues(jsonObject))
-                        
+                        if self.getCurrentAdminLevel() == "LEVEL-0" {
+                            
+                            header = ["country", "start_date", "mean_ndvi", "mean_ndvi_count", "mean_anomaly", "mean_anomaly_count"]
+                            
+                            //valid data
+                            let jsonObject = JSONExportData()
+                            jsonObject.country = jsonForRow.country
+                            jsonObject.start_date = jsonForRow.start_date
+                            jsonObject.mean_ndvi = jsonForRow.mean_ndvi
+                            jsonObject.mean_ndvi_count = jsonForRow.mean_ndvi_count
+                            jsonObject.mean_anomaly = jsonForRow.mean_anomaly
+                            jsonObject.mean_anomaly_count = jsonForRow.mean_anomaly_count
+                            
+                            data.add(listPropertiesWithValues(jsonObject))
+                            
+                        }
+                        else if self.getCurrentAdminLevel() == "LEVEL-1" {
+                            
+                            header = ["country", "state", "start_date", "mean_ndvi","mean_ndvi_count", "mean_anomaly", "mean_anomaly_count"]
+                            
+                            //valid data
+                            let jsonObject = JSONExportData()
+                            jsonObject.country = jsonForRow.country
+                            jsonObject.country = jsonForRow.state
+                            jsonObject.start_date = jsonForRow.start_date
+                            jsonObject.mean_ndvi = jsonForRow.mean_ndvi
+                            jsonObject.mean_ndvi_count = jsonForRow.mean_ndvi_count
+                            jsonObject.mean_anomaly = jsonForRow.mean_anomaly
+                            jsonObject.mean_anomaly_count = jsonForRow.mean_anomaly_count
+                            
+                            data.add(listPropertiesWithValues(jsonObject))
+                        }
+                        else if self.getCurrentAdminLevel() == "LEVEL-2" {
+                            
+                           header = ["country", "state", "district", "start_date", "mean_ndvi","mean_ndvi_count", "mean_anomaly", "mean_anomaly_count"]
+                            
+                            //valid data
+                            let jsonObject = JSONExportData()
+                            jsonObject.country = jsonForRow.country
+                            jsonObject.state = jsonForRow.state
+                            jsonObject.district = jsonForRow.district
+                            jsonObject.start_date = jsonForRow.start_date
+                            jsonObject.mean_ndvi = jsonForRow.mean_ndvi
+                            jsonObject.mean_ndvi_count = jsonForRow.mean_ndvi_count
+                            jsonObject.mean_anomaly = jsonForRow.mean_anomaly
+                            jsonObject.mean_anomaly_count = jsonForRow.mean_anomaly_count
+                            
+                            data.add(listPropertiesWithValues(jsonObject))
+                        }
                     }
                 }
                 
-                // Create a object for write CSV
-                let writeCSVObj = CSV()
-                writeCSVObj.rows = data
-                writeCSVObj.delimiter = DividerType.comma.rawValue
-                writeCSVObj.fields = header as NSArray
-                writeCSVObj.name = "\(country)_\(date)"
-                
-                let output = CSVExport.export(writeCSVObj);
-                if output.result.isSuccess {
-                    guard let filePath =  output.filePath else {
-                        print("Export Error: \(String(describing: output.message))")
-                        self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-                        return nil
-                    }
-                    filePathArray.append(filePath)
-                    fileNameArray.append("\(country)_\(date)")
-                }
-            }
-        }
-        
-        //read csv and add it to mailcomposer
-        let fileManager = FileManager.default
-        for j in 0..<filePathArray.count {
-            if fileManager.fileExists(atPath: filePathArray[j]){
-                if let cert = NSData(contentsOfFile: filePathArray[j]) {
-                    dataArray.append(cert as Data)
-                }
-            }
-        }
-        return (dataArray, fileNameArray)
-    }
-    
-    //state wise
-    func generateCSVforLevel1() -> ([Data]?, [String]?)? {
-        var filePathArray: [String] = []
-        var fileNameArray: [String] = []
-        var dataArray: [Data] = []
-        let header = ["country", "state", "start_date", "mean_ndvi","mean_ndvi_count", "mean_anomaly", "mean_nomaly_count"]
-        
-        for index in 0..<dataToExport.count {
             
-            let data: NSMutableArray  = NSMutableArray()
-            
-            if  let dataAtIndex = dataToExport[index] as? [String : Any],
-                let paramsDict = dataAtIndex["params"] as? [String : Any],
-                let country = paramsDict["country"] as? String,
-                let date = paramsDict["date"] as? String,
-                let jsonData = dataAtIndex["json_data"] as? [Any] {
-                
-                for j in 0..<jsonData.count {
-                    
-                    if  let jsonForRow = jsonData[j] as? JSONData {
-                        
-                        //valid data
-                        let jsonObject = JSONExportData()
-                        jsonObject.country = jsonForRow.country
-                        jsonObject.country = jsonForRow.state
-                        jsonObject.start_date = jsonForRow.start_date
-                        jsonObject.ndvi = jsonForRow.mean_ndvi
-                        jsonObject.ndvi_count = jsonForRow.mean_ndvi_count
-                        jsonObject.anomaly = jsonForRow.mean_anomaly
-                        jsonObject.anomaly_count = jsonForRow.mean_anomaly_count
-                        
-                        data.add(listPropertiesWithValues(jsonObject))
-                        
-                    }
-                }
-                
-                // Create a object for write CSV
-                let writeCSVObj = CSV()
-                writeCSVObj.rows = data
-                writeCSVObj.delimiter = DividerType.comma.rawValue
-                writeCSVObj.fields = header as NSArray
-                writeCSVObj.name = "\(country)_\(date)"
-                
-                let output = CSVExport.export(writeCSVObj);
-                if output.result.isSuccess {
-                    guard let filePath =  output.filePath else {
-                        print("Export Error: \(String(describing: output.message))")
-                        self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-                        return nil
-                    }
-                    filePathArray.append(filePath)
-                    fileNameArray.append("\(country)_\(date)")
-                }
-            }
-        }
-        
-        //read csv and add it to mailcomposer
-        let fileManager = FileManager.default
-        for j in 0..<filePathArray.count {
-            if fileManager.fileExists(atPath: filePathArray[j]){
-                if let cert = NSData(contentsOfFile: filePathArray[j]) {
-                    dataArray.append(cert as Data)
-                }
-            }
-        }
-        return (dataArray, fileNameArray)
-    }
-    
-    //district wise
-    func generateCSVforLevel2() -> ([Data]?, [String]?)? {
-        var filePathArray: [String] = []
-        var fileNameArray: [String] = []
-        var dataArray: [Data] = []
-        let header = ["country", "state", "district", "start_date", "mean_ndvi","mean_ndvi_count", "mean_anomaly", "mean_nomaly_count"]
-        
-        for index in 0..<dataToExport.count {
-            
-            let data: NSMutableArray  = NSMutableArray()
-            
-            if  let dataAtIndex = dataToExport[index] as? [String : Any],
-                let paramsDict = dataAtIndex["params"] as? [String : Any],
-                let country = paramsDict["country"] as? String,
-                let date = paramsDict["date"] as? String,
-                let jsonData = dataAtIndex["json_data"] as? [Any] {
-                
-                for j in 0..<jsonData.count {
-                    
-                    if  let jsonForRow = jsonData[j] as? JSONData {
-                        
-                        //valid data
-                        let jsonObject = JSONExportData()
-                        jsonObject.country = jsonForRow.country
-                        jsonObject.state = jsonForRow.state
-                        jsonObject.district = jsonForRow.district
-                        jsonObject.start_date = jsonForRow.start_date
-                        jsonObject.ndvi = jsonForRow.mean_ndvi
-                        jsonObject.ndvi_count = jsonForRow.mean_ndvi_count
-                        jsonObject.anomaly = jsonForRow.mean_anomaly
-                        jsonObject.anomaly_count = jsonForRow.mean_anomaly_count
-                
-                        data.add(listPropertiesWithValues(jsonObject))
-                        
-                    }
-                }
-                
                 // Create a object for write CSV
                 let writeCSVObj = CSV()
                 writeCSVObj.rows = data
