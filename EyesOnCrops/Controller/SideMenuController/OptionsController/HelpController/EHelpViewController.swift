@@ -13,6 +13,7 @@ class EHelpViewController: EBaseViewController, WKNavigationDelegate {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var webView: WKWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

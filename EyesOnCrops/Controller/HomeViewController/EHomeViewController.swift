@@ -30,6 +30,7 @@ struct JSONData: Decodable {
     let mean_ndvi_count: String?
     let mean_anomaly: String?
     let mean_anomaly_count: String?
+    var start_date: String?
 }
 
 class JSONExportData {
@@ -47,6 +48,7 @@ class JSONExportData {
     var mean_ndvi_count: String? = ""
     var mean_anomaly: String? = ""
     var mean_anomaly_count: String? = ""
+    var start_date: String? = ""
 }
 
 class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlobeViewControllerDelegate, MaplyViewControllerDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
@@ -773,7 +775,7 @@ extension EHomeViewController {
                 if getCurrentDataType() == "NDVI" {
                     colorValue = floatNDVI * 100
                 }
-                //ANOMALY
+                    //ANOMALY
                 else{
                     colorValue = floatAnomaly * 100
                 }
@@ -794,7 +796,7 @@ extension EHomeViewController {
                 }
             }
         }
-        //STATE WISE COLOR
+            //STATE WISE COLOR
         else if currentAdminLevel == "LEVEL-1" {
             
             for index in 0..<json.count {
@@ -819,7 +821,7 @@ extension EHomeViewController {
                             kMaplyFilled: true as AnyObject,
                             kMaplyDrawPriority: 3.0 as AnyObject
                         ]
-                    
+                        
                         updateViewsVisibility()
                         colorState(ofCountry: country, vectorDict: vectorDictLocal, date: date)
                     }
@@ -829,7 +831,7 @@ extension EHomeViewController {
                 }
             }
         }
-        //DISTRICT WISE COLOR
+            //DISTRICT WISE COLOR
         else{
             
         }
@@ -935,79 +937,7 @@ extension EHomeViewController {
     }
     func locationManager(_ manager: CLLocationManager, didChange status: CLAuthorizationStatus) {
     }
-    
-    /*
-    private func addCoordinates(json: [JSONData], country: String, date: String) {
         
-        var coordinates: [MaplyCoordinate] = []
-        var colors: [UIColor] = []
-        
-        for index in 0..<json.count {
-            if  let latStr = json[index].centr_lat,
-                let lonStr = json[index].centr_lon,
-                let lat = Float(latStr),
-                let lon = Float(lonStr),
-                let ndvi = json[index].ndvi,
-                let ndviFloat = Float(ndvi),
-                let anomaly = json[index].anomaly,
-                let anomalyFloat = Float(anomaly) {
-                
-                var colorValue : Float = 0.0
-                
-                //check if anamoly is selected or ndvi
-                if let dataTypeSelected = self.getStoredDataFromUserDefaults(for: "DATA_TYPE") {
-                    
-                    if dataTypeSelected == "NDVI_ANOMALY" {
-                        colorValue = anomalyFloat*100
-                    }
-                    else{
-                        colorValue = ndviFloat*100
-                    }
-                    
-                }
-                    //default is NDVI
-                else{
-                    colorValue = ndviFloat*100
-                }
-                
-                if let color = ColorMap().getColor(colorValue: colorValue) {
-                    colors.append(color)
-                }
-                else{
-                    colors.append(UIColor.gray)
-                }
-                
-                coordinates.append(MaplyCoordinateMakeWithDegrees(lon, lat))
-            }
-        }
-        
-        var circles: [MaplyShapeSphere] = []
-        for index in 0..<coordinates.count {
-            let circle = MaplyShapeSphere()
-            circle.center = coordinates[index]
-            circle.radius = 0.005
-            circle.color = colors[index]
-            circles.append(circle)
-        }
-        
-        var dict: [String: Any] = [:]
-        
-        if circles.count != 0 {
-            dict["country"] = country
-            dict["date"] = date
-            dict["points"] = circles
-        }
-        
-        updateViewsVisibility()
-        let shapes = self.theViewC?.addLoftedPolys(circles, key: "", cache: nil, desc: [:], mode: MaplyThreadAny)
-        //  let shapes = self.theViewC?.addShapes(circles, desc: [:], mode: MaplyThreadAny)
-        if let s = shapes {
-            dict["shape_object"] = s
-        }
-       // dataPointsArray.append(dict)
-    }
- */
-    
     //MARK: Service Calling
     func getJSONDataServiceCall(date: String, country: String){
         let param: Dictionary<String, Any> =
@@ -1073,79 +1003,232 @@ extension EHomeViewController {
     func setupMailFiles() -> ([Data]?, [String]?)? {
         
         if dataToExport.count != 0 {
-            
-            var filePathArray: [String] = []
-            var fileNameArray: [String] = []
-            var dataArray: [Data] = []
-            let header = ["region_id", "country", "state", "district", "ndvi","ndvi_count", "anomaly", "anomaly_count", "centr_lon", "centr_lat"]
-            
-            for index in 0..<dataToExport.count {
-                
-                let data: NSMutableArray  = NSMutableArray()
-                
-                if  let dataAtIndex = dataToExport[index] as? [String : Any],
-                    let paramsDict = dataAtIndex["params"] as? [String : Any],
-                    let country = paramsDict["country"] as? String,
-                    let date = paramsDict["date"] as? String,
-                    let jsonData = dataAtIndex["json_data"] as? [Any] {
-                    
-                    for j in 0..<jsonData.count {
-                        
-                        if  let jsonForRow = jsonData[j] as? JSONData {
-                            
-                            //valid data
-                            let jsonObject = JSONExportData()
-                            jsonObject.region_id = jsonForRow.region_id
-                            jsonObject.country = jsonForRow.country
-                            jsonObject.state = jsonForRow.state
-                            jsonObject.district = jsonForRow.district
-                            jsonObject.ndvi = jsonForRow.ndvi
-                            jsonObject.ndvi_count = jsonForRow.ndvi_count
-                            jsonObject.anomaly = jsonForRow.anomaly
-                            jsonObject.anomaly_count = jsonForRow.anomaly_count
-                            jsonObject.centr_lon = jsonForRow.centr_lon
-                            jsonObject.centr_lat = jsonForRow.centr_lat
-                            
-                            data.add(listPropertiesWithValues(jsonObject))
-                            
-                        }
-                    }
-                    
-                    // Create a object for write CSV
-                    let writeCSVObj = CSV()
-                    writeCSVObj.rows = data
-                    writeCSVObj.delimiter = DividerType.comma.rawValue
-                    writeCSVObj.fields = header as NSArray
-                    writeCSVObj.name = "\(country)_\(date)"
-                    
-                    let output = CSVExport.export(writeCSVObj);
-                    if output.result.isSuccess {
-                        guard let filePath =  output.filePath else {
-                            print("Export Error: \(String(describing: output.message))")
-                            self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-                            return nil
-                        }
-                        filePathArray.append(filePath)
-                        fileNameArray.append("\(country)_\(date)")
-                    }
-                }
+            //country wise
+            if self.getCurrentAdminLevel() == "LEVEL-0" {
+                return self.generateCSVforLevel0()
             }
-            
-            //read csv and add it to mailcomposer
-            let fileManager = FileManager.default
-            for j in 0..<filePathArray.count {
-                if fileManager.fileExists(atPath: filePathArray[j]){
-                    if let cert = NSData(contentsOfFile: filePathArray[j]) {
-                        dataArray.append(cert as Data)
-                    }
-                }
+                //state wise
+            else if self.getCurrentAdminLevel() == "LEVEL-1" {
+                return self.generateCSVforLevel1()
             }
-            return (dataArray, fileNameArray)
+                //district wise
+            else if self.getCurrentAdminLevel() == "LEVEL-2" {
+                return self.generateCSVforLevel2()
+            }
+            //some error
+            else{
+                self.alertMessage(title: ALERT_ERROR_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+            }
         }
             //no data to attach - show him error
         else{
             self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
-            return nil
         }
+        
+        return nil
+    }
+    
+    //country wise
+    func generateCSVforLevel0() -> ([Data]?, [String]?)?  {
+        var filePathArray: [String] = []
+        var fileNameArray: [String] = []
+        var dataArray: [Data] = []
+        let header = ["country", "start_date", "mean_ndvi","mean_ndvi_count", "mean_anomaly", "mean_nomaly_count"]
+        
+        for index in 0..<dataToExport.count {
+            
+            let data: NSMutableArray  = NSMutableArray()
+            
+            if  let dataAtIndex = dataToExport[index] as? [String : Any],
+                let paramsDict = dataAtIndex["params"] as? [String : Any],
+                let country = paramsDict["country"] as? String,
+                let date = paramsDict["date"] as? String,
+                let jsonData = dataAtIndex["json_data"] as? [Any] {
+                
+                for j in 0..<jsonData.count {
+                    
+                    if  let jsonForRow = jsonData[j] as? JSONData {
+                        
+                        //valid data
+                        let jsonObject = JSONExportData()
+                        jsonObject.country = jsonForRow.country
+                        jsonObject.start_date = jsonForRow.start_date
+                        jsonObject.ndvi = jsonForRow.mean_ndvi
+                        jsonObject.ndvi_count = jsonForRow.mean_ndvi_count
+                        jsonObject.anomaly = jsonForRow.mean_anomaly
+                        jsonObject.anomaly_count = jsonForRow.mean_anomaly_count
+                        
+                        data.add(listPropertiesWithValues(jsonObject))
+                        
+                    }
+                }
+                
+                // Create a object for write CSV
+                let writeCSVObj = CSV()
+                writeCSVObj.rows = data
+                writeCSVObj.delimiter = DividerType.comma.rawValue
+                writeCSVObj.fields = header as NSArray
+                writeCSVObj.name = "\(country)_\(date)"
+                
+                let output = CSVExport.export(writeCSVObj);
+                if output.result.isSuccess {
+                    guard let filePath =  output.filePath else {
+                        print("Export Error: \(String(describing: output.message))")
+                        self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                        return nil
+                    }
+                    filePathArray.append(filePath)
+                    fileNameArray.append("\(country)_\(date)")
+                }
+            }
+        }
+        
+        //read csv and add it to mailcomposer
+        let fileManager = FileManager.default
+        for j in 0..<filePathArray.count {
+            if fileManager.fileExists(atPath: filePathArray[j]){
+                if let cert = NSData(contentsOfFile: filePathArray[j]) {
+                    dataArray.append(cert as Data)
+                }
+            }
+        }
+        return (dataArray, fileNameArray)
+    }
+    
+    //state wise
+    func generateCSVforLevel1() -> ([Data]?, [String]?)? {
+        var filePathArray: [String] = []
+        var fileNameArray: [String] = []
+        var dataArray: [Data] = []
+        let header = ["country", "state", "start_date", "mean_ndvi","mean_ndvi_count", "mean_anomaly", "mean_nomaly_count"]
+        
+        for index in 0..<dataToExport.count {
+            
+            let data: NSMutableArray  = NSMutableArray()
+            
+            if  let dataAtIndex = dataToExport[index] as? [String : Any],
+                let paramsDict = dataAtIndex["params"] as? [String : Any],
+                let country = paramsDict["country"] as? String,
+                let date = paramsDict["date"] as? String,
+                let jsonData = dataAtIndex["json_data"] as? [Any] {
+                
+                for j in 0..<jsonData.count {
+                    
+                    if  let jsonForRow = jsonData[j] as? JSONData {
+                        
+                        //valid data
+                        let jsonObject = JSONExportData()
+                        jsonObject.country = jsonForRow.country
+                        jsonObject.country = jsonForRow.state
+                        jsonObject.start_date = jsonForRow.start_date
+                        jsonObject.ndvi = jsonForRow.mean_ndvi
+                        jsonObject.ndvi_count = jsonForRow.mean_ndvi_count
+                        jsonObject.anomaly = jsonForRow.mean_anomaly
+                        jsonObject.anomaly_count = jsonForRow.mean_anomaly_count
+                        
+                        data.add(listPropertiesWithValues(jsonObject))
+                        
+                    }
+                }
+                
+                // Create a object for write CSV
+                let writeCSVObj = CSV()
+                writeCSVObj.rows = data
+                writeCSVObj.delimiter = DividerType.comma.rawValue
+                writeCSVObj.fields = header as NSArray
+                writeCSVObj.name = "\(country)_\(date)"
+                
+                let output = CSVExport.export(writeCSVObj);
+                if output.result.isSuccess {
+                    guard let filePath =  output.filePath else {
+                        print("Export Error: \(String(describing: output.message))")
+                        self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                        return nil
+                    }
+                    filePathArray.append(filePath)
+                    fileNameArray.append("\(country)_\(date)")
+                }
+            }
+        }
+        
+        //read csv and add it to mailcomposer
+        let fileManager = FileManager.default
+        for j in 0..<filePathArray.count {
+            if fileManager.fileExists(atPath: filePathArray[j]){
+                if let cert = NSData(contentsOfFile: filePathArray[j]) {
+                    dataArray.append(cert as Data)
+                }
+            }
+        }
+        return (dataArray, fileNameArray)
+    }
+    
+    //district wise
+    func generateCSVforLevel2() -> ([Data]?, [String]?)? {
+        var filePathArray: [String] = []
+        var fileNameArray: [String] = []
+        var dataArray: [Data] = []
+        let header = ["country", "state", "district", "start_date", "mean_ndvi","mean_ndvi_count", "mean_anomaly", "mean_nomaly_count"]
+        
+        for index in 0..<dataToExport.count {
+            
+            let data: NSMutableArray  = NSMutableArray()
+            
+            if  let dataAtIndex = dataToExport[index] as? [String : Any],
+                let paramsDict = dataAtIndex["params"] as? [String : Any],
+                let country = paramsDict["country"] as? String,
+                let date = paramsDict["date"] as? String,
+                let jsonData = dataAtIndex["json_data"] as? [Any] {
+                
+                for j in 0..<jsonData.count {
+                    
+                    if  let jsonForRow = jsonData[j] as? JSONData {
+                        
+                        //valid data
+                        let jsonObject = JSONExportData()
+                        jsonObject.country = jsonForRow.country
+                        jsonObject.state = jsonForRow.state
+                        jsonObject.district = jsonForRow.district
+                        jsonObject.start_date = jsonForRow.start_date
+                        jsonObject.ndvi = jsonForRow.mean_ndvi
+                        jsonObject.ndvi_count = jsonForRow.mean_ndvi_count
+                        jsonObject.anomaly = jsonForRow.mean_anomaly
+                        jsonObject.anomaly_count = jsonForRow.mean_anomaly_count
+                
+                        data.add(listPropertiesWithValues(jsonObject))
+                        
+                    }
+                }
+                
+                // Create a object for write CSV
+                let writeCSVObj = CSV()
+                writeCSVObj.rows = data
+                writeCSVObj.delimiter = DividerType.comma.rawValue
+                writeCSVObj.fields = header as NSArray
+                writeCSVObj.name = "\(country)_\(date)"
+                
+                let output = CSVExport.export(writeCSVObj);
+                if output.result.isSuccess {
+                    guard let filePath =  output.filePath else {
+                        print("Export Error: \(String(describing: output.message))")
+                        self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                        return nil
+                    }
+                    filePathArray.append(filePath)
+                    fileNameArray.append("\(country)_\(date)")
+                }
+            }
+        }
+        
+        //read csv and add it to mailcomposer
+        let fileManager = FileManager.default
+        for j in 0..<filePathArray.count {
+            if fileManager.fileExists(atPath: filePathArray[j]){
+                if let cert = NSData(contentsOfFile: filePathArray[j]) {
+                    dataArray.append(cert as Data)
+                }
+            }
+        }
+        return (dataArray, fileNameArray)
     }
 }

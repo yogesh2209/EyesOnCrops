@@ -69,6 +69,9 @@ class EFilterLevelListViewController: EBaseViewController, UITableViewDataSource
         else if lastSelected?.row == 3 {
             self.storeDataInDefaults(type: "LEVEL-1", key: "LEVEL")
         }
+        else if lastSelected?.row == 5 {
+            self.storeDataInDefaults(type: "LEVEL-2", key: "LEVEL")
+        }
         self.navigationController?.popViewController(animated: true)
     }
     //MARK: UITableView DataSource
