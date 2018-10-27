@@ -175,7 +175,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
             }
         }
         
-        composeVC.setMessageBody("hello", isHTML: false)
+        composeVC.setMessageBody("Data", isHTML: false)
         
         self.present(composeVC, animated: true, completion: nil)
     }
@@ -1078,7 +1078,7 @@ extension EHomeViewController {
                             //valid data
                             let jsonObject = JSONExportData()
                             jsonObject.country = jsonForRow.country
-                            jsonObject.country = jsonForRow.state
+                            jsonObject.state = jsonForRow.state
                             jsonObject.start_date = jsonForRow.start_date
                             jsonObject.mean_ndvi = jsonForRow.mean_ndvi
                             jsonObject.mean_ndvi_count = jsonForRow.mean_ndvi_count
