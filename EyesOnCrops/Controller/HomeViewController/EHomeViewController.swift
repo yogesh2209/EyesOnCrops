@@ -75,7 +75,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     var countryObjectArray: [MaplyComponentObject] = []
     var districtObjectArray: [MaplyComponentObject] = []
     
-    var statesObjectColorArray: [MaplyComponentObject] = []
+   // var statesObjectColorArray: [MaplyComponentObject] = []
     var districtObjectColorArray: [MaplyComponentObject] = []
     
     
@@ -425,7 +425,7 @@ extension EHomeViewController {
             kMaplySelectable: true as AnyObject,
             kMaplyVecWidth: 3.0 as AnyObject,
             kMaplyFilled: false as AnyObject,
-            kMaplyDrawPriority: 1.0 as AnyObject
+            kMaplyDrawPriority: 50.0 as AnyObject
         ]
         
         setupZoomLevel(isGlobe: isGlobeDisplay)
@@ -464,9 +464,9 @@ extension EHomeViewController {
         
         //reseting shape files
         self.countryObjectArray.removeAll()
-     //   self.countryObjectColorArray.removeAll()
+        //   self.countryObjectColorArray.removeAll()
         self.statesObjectArray.removeAll()
-        self.statesObjectColorArray.removeAll()
+       // self.statesObjectColorArray.removeAll()
         self.storeDataInDefaults(type: "LEVEL-0", key: "LEVEL")
         self.addCountryBoundaries()
         
@@ -492,19 +492,11 @@ extension EHomeViewController {
                 }
             }
         }
-        
-        //remove state colors
-        for index in 0..<self.statesObjectColorArray.count {
-            self.theViewC?.remove(statesObjectColorArray[index])
-        }
-        
+
         //remove district colors
         for index in 0..<self.districtObjectColorArray.count {
             self.theViewC?.remove(districtObjectColorArray[index])
         }
-        
-        
-        
     }
     
     func checkDataTypeUpdation(){
@@ -626,7 +618,6 @@ extension EHomeViewController {
                     
                     wgVecObj.selectable = true
                     
-                    
                     // add the outline to our view
                     let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDictBoundary)
                     
@@ -668,7 +659,6 @@ extension EHomeViewController {
     }
     
     func colorCountry(vectorDict: [String : AnyObject], country: String, date: String) {
-   
         
         var dict: [String: Any] = [:]
         
@@ -691,20 +681,15 @@ extension EHomeViewController {
                         if let coun = vecNameee as? String, coun == country {
                             self.vecName = vecNameee
                             wgVecObj.userObject = self.vecName
-                            
-                            // add the outline to our view
                             let obj = self.theViewC?.addVectors([wgVecObj], desc: vectorDict)
-                            if let maplyObj = obj {
-                                
                             
-                                    dict["country"] = country
-                                    dict["date"] = date
-                                    dict["color_object"] = [maplyObj]
-                                
-                                 self.colorArray.append(dict)
-                                
-                                
+                            if let maplyObj = obj {
+                                dict["country"] = country
+                                dict["date"] = date
+                                dict["color_object"] = [maplyObj]
+                                self.colorArray.append(dict)
                             }
+                            
                             var c = wgVecObj.center()
                             wgVecObj.centroid(&c)
                         }
@@ -715,56 +700,52 @@ extension EHomeViewController {
     }
     
     func colorState(ofCountry country: String, vectorDict: [String : AnyObject], date: String, file: String, state: String) {
-        
-        self.statesObjectColorArray.removeAll()
-        
+     
         // handle this in another thread
         let queue = DispatchQueue.global()
         queue.async {
-          
-                if let jsonData = NSData(contentsOfFile: file),
-                    let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
-              
-                    
-                    wgVecObj.selectable = true
-                    
-                    print(wgVecObj.splitVectors().count)
-                    
-                    
-                    
-                    // the admin tag from the country outline geojson has the country name ­ save
-                    if let attrs = wgVecObj.attributes,
-                        let vecNameee = attrs.object(forKey: "name") as? NSObject {
+            
+            if let jsonData = NSData(contentsOfFile: file),
+                let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
+                
+                wgVecObj.selectable = true
+                
+                do {
+                    if  let jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary,
+                        let feature_response = jsonResult["features"] as? NSArray {
                         
-                    
-          
-                        //print(attrs)
-                        
-                        if let st = vecNameee as? String, state == st {
-                            self.vecName = vecNameee
-                            wgVecObj.userObject = self.vecName
+                        for index in 0..<feature_response.count {
                             
-                            // add the outline to our view
-                            let obj = self.theViewC?.addVectors([wgVecObj], desc: vectorDict)
-                            if let maplyObj = obj {
-                                self.statesObjectColorArray.append(maplyObj)
+                            var dict: [String: Any] = [:]
+                            
+                            if  let local_response = feature_response[index] as? [String : Any],
+                                let pr = local_response["properties"] as? [String : Any],
+                                let local_state = pr["name"] as? String, local_state == state  {
+                                
+                                if let maply_obj = MaplyVectorObject(fromGeoJSONDictionary: local_response) {
+                                    maply_obj.userObject = local_state
+                                    maply_obj.selectable = true
+                                    let obj = self.theViewC?.addVectors([maply_obj], desc: vectorDict)
+                                    
+                                    if let maplyObj = obj {
+                                        dict["country"] = country
+                                        dict["date"] = date
+                                        dict["color_object"] = [maplyObj]
+                                        self.colorArray.append(dict)
+                                    }
+                                    
+                                    var c = maply_obj.center()
+                                    maply_obj.centroid(&c)
+                                }
                             }
-                            var c = wgVecObj.center()
-                            wgVecObj.centroid(&c)
                         }
                     }
                 }
-            
-            
-          //  var dict: [String: Any] = [:]
-            
-//            if self.countryObjectColorArray.count != 0 {
-//                dict["country"] = country
-//                dict["date"] = date
-//                dict["color_object"] = self.statesObjectColorArray
-//            }
-            
-          //  self.colorArray.append(dict)
+                catch {
+                    print("Error while parsing: \(error)")
+                    self.alertMessage(title: ALERT_ERROR_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
+                }
+            }
         }
     }
     
@@ -818,57 +799,55 @@ extension EHomeViewController {
             
             //find the geojson file for that country from bundle
             // apply for loop with the same file and match name everytime with state name from json everytime, if it matches color it accordingly.
-        
-                let bundle = Bundle.main
-                let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "state_json")
+            
+            let bundle = Bundle.main
+            let allOutlines = bundle.paths(forResourcesOfType: "geojson", inDirectory: "state_json")
+            
+            for outline in allOutlines {
                 
-                for outline in allOutlines {
-                  
-                    let fileUrl = NSURL(fileURLWithPath: outline)
+                let fileUrl = NSURL(fileURLWithPath: outline)
                 
-                    if  let fileName = fileUrl.lastPathComponent, fileName == country + ".geojson" {
-                        
-                        //we got the geojson file of the country, now apply for loop on the same file
-                        
-                        for index in 0..<1 {
+                if  let fileName = fileUrl.lastPathComponent, fileName == country + ".geojson" {
+                    
+                    //we got the geojson file of the country, now apply for loop on the same file
+                    
+                    for index in 0..<json.count {
+                     
+                        if  let mean_ndvi = json[index].mean_ndvi,
+                            let floatNDVI = Float(mean_ndvi),
+                            let state = json[index].state,
+                            let mean_anomaly = json[index].mean_anomaly,
+                            let floatAnomaly = Float(mean_anomaly) {
                             
-                            print(json[index])
+                            //NDVI
+                            if self.getCurrentDataType() == "NDVI" {
+                                colorValue = floatNDVI * 100
+                            }
+                                //ANOMALY
+                            else{
+                                colorValue = floatAnomaly * 100
+                            }
                             
-                            if  let mean_ndvi = json[index].mean_ndvi,
-                                let floatNDVI = Float(mean_ndvi),
-                                let state = json[index].state,
-                                let mean_anomaly = json[index].mean_anomaly,
-                                let floatAnomaly = Float(mean_anomaly) {
+                            if let color = ColorMap().getColor(colorValue: colorValue) {
+                                vectorDictLocal = [
+                                    kMaplyColor: color,
+                                    kMaplySelectable: true as AnyObject,
+                                    kMaplyFilled: true as AnyObject,
+                                    kMaplyDrawPriority: 3.0 as AnyObject
+                                ]
                                 
-                                //NDVI
-                                if self.getCurrentDataType() == "NDVI" {
-                                    colorValue = floatNDVI * 100
-                                }
-                                    //ANOMALY
-                                else{
-                                    colorValue = floatAnomaly * 100
-                                }
-                                
-                                if let color = ColorMap().getColor(colorValue: colorValue) {
-                                    vectorDictLocal = [
-                                        kMaplyColor: color,
-                                        kMaplySelectable: true as AnyObject,
-                                        kMaplyFilled: true as AnyObject,
-                                        kMaplyDrawPriority: 3.0 as AnyObject
-                                    ]
-                                    
-                                    self.updateViewsVisibility()
-                                    self.colorState(ofCountry: country, vectorDict: vectorDictLocal, date: date, file: outline, state: state)
-                                }
-                                else{
-                                   //error
-                                }
+                                self.updateViewsVisibility()
+                                self.colorState(ofCountry: country, vectorDict: vectorDictLocal, date: date, file: outline, state: state)
+                            }
+                            else{
+                                //error
                             }
                         }
                     }
+                }
             }
         }
-        //DISTRICT WISE COLOR
+            //DISTRICT WISE COLOR
         else{
             
         }
@@ -1045,9 +1024,9 @@ extension EHomeViewController {
     func setupMailFiles() -> ([Data]?, [String]?)? {
         
         if dataToExport.count != 0 {
-          return self.generateCSV()
+            return self.generateCSV()
         }
-        //no data to attach - show him error
+            //no data to attach - show him error
         else{
             self.showInfoAlert(title: ALERT_TITLE, message: SOMETHING_WENT_WRONG_ERROR)
         }
@@ -1110,7 +1089,7 @@ extension EHomeViewController {
                         }
                         else if self.getCurrentAdminLevel() == "LEVEL-2" {
                             
-                           header = ["country", "state", "district", "start_date", "mean_ndvi","mean_ndvi_count", "mean_anomaly", "mean_anomaly_count"]
+                            header = ["country", "state", "district", "start_date", "mean_ndvi","mean_ndvi_count", "mean_anomaly", "mean_anomaly_count"]
                             
                             //valid data
                             let jsonObject = JSONExportData()
@@ -1128,7 +1107,7 @@ extension EHomeViewController {
                     }
                 }
                 
-            
+                
                 // Create a object for write CSV
                 let writeCSVObj = CSV()
                 writeCSVObj.rows = data
