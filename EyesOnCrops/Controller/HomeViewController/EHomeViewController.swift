@@ -663,7 +663,7 @@ extension EHomeViewController {
             let bundle = Bundle.main
             let allOutlines = bundle.paths(forResourcesOfType: "json", inDirectory: "district_json")
             
-            for outline in allOutlines.reversed() {
+            for outline in allOutlines {
                 
                 if let jsonData = NSData(contentsOfFile: outline),
                     let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
