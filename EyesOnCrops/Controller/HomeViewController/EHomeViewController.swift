@@ -534,6 +534,7 @@ extension EHomeViewController {
                 }
                 
                 self.theViewC?.disableObjects(statesObjectArray, mode: MaplyThreadAny)
+                self.theViewC?.disableObjects(districtObjectArray, mode: MaplyThreadAny)
             }
                 //state admin level
             else if selectedLevel == "LEVEL-1" {
@@ -550,6 +551,30 @@ extension EHomeViewController {
                 }
                 else{
                     self.addStatesBoundaries()
+                }
+                
+                self.theViewC?.disableObjects(districtObjectArray, mode: MaplyThreadAny)
+            }
+            else if selectedLevel == "LEVEL-2" {
+                if self.countryObjectArray.count != 0 {
+                    self.theViewC?.enable(countryObjectArray, mode: MaplyThreadAny)
+                }
+                else{
+                    self.addCountryBoundaries()
+                }
+                
+//                if self.statesObjectArray.count != 0 {
+//                    self.theViewC?.enable(statesObjectArray, mode: MaplyThreadAny)
+//                }
+//                else{
+//                    self.addStatesBoundaries()
+//                }
+                
+                if self.districtObjectArray.count != 0 {
+                    self.theViewC?.enable(districtObjectArray, mode: MaplyThreadAny)
+                }
+                else{
+                    self.addDistrictBoundaries()
                 }
             }
         }
@@ -630,30 +655,28 @@ extension EHomeViewController {
     }
     
     func addDistrictBoundaries() {
-        let path = Bundle.main.path(forResource: "district_json/united_states", ofType: nil)
-        if let path = path  {
-            let url: URL = URL(fileURLWithPath: path)
-            do {
-                let directoryContents = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [])
+        self.districtObjectArray.removeAll()
+        
+        // handle this in another thread
+        let queue = DispatchQueue.global()
+        queue.async {
+            let bundle = Bundle.main
+            let allOutlines = bundle.paths(forResourcesOfType: "json", inDirectory: "district_json")
+            
+            for outline in allOutlines.reversed() {
                 
-                for directory in directoryContents {
-                    let file = directory.appendingPathComponent("shape.geojson")
-                    if let jsonData = NSData(contentsOf: file),
-                        let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
-                        
-                        wgVecObj.selectable = true
-                        
-                        // add the outline to our view
-                        let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDictBoundary)
-                        if let maplyObj = obj {
-                            self.districtObjectArray.append(maplyObj)
-                        }
+                if let jsonData = NSData(contentsOfFile: outline),
+                    let wgVecObj = MaplyVectorObject(fromGeoJSON: jsonData as Data) {
+                    
+                    wgVecObj.selectable = true
+                    
+                    // add the outline to our view
+                    let obj = self.theViewC?.addVectors([wgVecObj], desc: self.vectorDictBoundary)
+                    
+                    if let maplyObj = obj {
+                        self.districtObjectArray.append(maplyObj)
                     }
                 }
-                
-                // now do whatever with the onlyFileNamesStr & subdirNamesStr
-            } catch let error as NSError {
-                print(error.localizedDescription)
             }
         }
     }
@@ -720,7 +743,7 @@ extension EHomeViewController {
                             
                             if  let local_response = feature_response[index] as? [String : Any],
                                 let pr = local_response["properties"] as? [String : Any],
-                                let local_state = pr["name"] as? String, local_state == state  {
+                                let local_state = pr["name"] as? String, local_state.lowercased() == state.lowercased()  {
                                 
                                 if let maply_obj = MaplyVectorObject(fromGeoJSONDictionary: local_response) {
                                     maply_obj.userObject = local_state
@@ -807,10 +830,9 @@ extension EHomeViewController {
                 
                 let fileUrl = NSURL(fileURLWithPath: outline)
                 
-                if  let fileName = fileUrl.lastPathComponent, fileName == country + ".geojson" {
+                if  let fileName = fileUrl.lastPathComponent, fileName.lowercased() == country.lowercased() + ".geojson" {
                     
                     //we got the geojson file of the country, now apply for loop on the same file
-                    
                     for index in 0..<json.count {
                      
                         if  let mean_ndvi = json[index].mean_ndvi,
@@ -849,6 +871,9 @@ extension EHomeViewController {
         }
             //DISTRICT WISE COLOR
         else{
+            
+            //find the geojson file for that country
+            
             
         }
     }
