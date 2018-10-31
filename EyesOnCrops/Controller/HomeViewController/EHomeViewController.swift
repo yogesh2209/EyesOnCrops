@@ -58,7 +58,7 @@ class EHomeViewController: EBaseViewController, GADBannerViewDelegate, WhirlyGlo
     @IBOutlet weak var viewBanner: GADBannerView!
     @IBOutlet weak var barButtonFilter: UIBarButtonItem!
     @IBOutlet weak var barButtonReset: UIBarButtonItem!
-    
+    @IBOutlet weak var imageViewColorScheme: UIImageView!
     
     var json : [JSONData] = []
     var dataToExport : [Any] = []
@@ -367,6 +367,7 @@ extension EHomeViewController {
         
         self.view.addSubview(theViewC!.view)
         self.view.bringSubview(toFront: viewBanner)
+        self.view.bringSubview(toFront: imageViewColorScheme)
         self.view.bringSubview(toFront: imageViewInfo)
         self.view.bringSubview(toFront: imageViewExport)
         //self.view.sendSubview(toBack: theViewC!.view)
@@ -458,6 +459,9 @@ extension EHomeViewController {
     }
     
     func resetConfiguration(){
+        
+        self.theViewC?.disableObjects(statesObjectArray, mode: MaplyThreadAny)
+        self.theViewC?.disableObjects(districtObjectArray, mode: MaplyThreadAny)
         
         //removing all active maplycomponentobject
         removeActiveColors()
